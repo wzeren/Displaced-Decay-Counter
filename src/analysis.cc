@@ -31,8 +31,8 @@ bool analysis::initPythia() {
   	
   	
         //set random seed on 
-        pythia->readString("Random:setSeed = on");
-        pythia->readString("Random:seed = 0");//pick new random number seed for each run, based on clock     
+        //pythia->readString("Random:setSeed = on");
+        //pythia->readString("Random:seed = 0");//pick new random number seed for each run, based on clock     
         
         //to speed up the simulation. swtich off MPI
         pythia->readString("PartonLevel:MPI = 0");//most of time can be switched off. Speeds up a lot.
