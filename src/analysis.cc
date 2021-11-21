@@ -9,7 +9,8 @@ analysis::analysis() {
     mLLP = 0;  //LLP mass in GeV 
     ctau = 0;//LLP ctau in m
     LLPPID = 0;
-    k_factor = 0;
+    k_factor = 1;
+    nLLP = 0;
     ProducedLLP = 0; //total number of produced LLP's in MC
 };    
 
@@ -95,7 +96,18 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
                     if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {//count LLP  //requiring the last LLP in pythia event record
 			mLLP = pythia->event[i].m0();
 			ctau = pythia->event[i].tau0()/1000.; //conver mm to m
-                        ProducedLLP += 1;
+                       ProducedLLP += 1;
+                        
+                        //find the mother of the LLP
+                        int mother_index = mother_finder(i, LLPPID);
+                        //find nLLP:  number of LLPs in each event
+                        nLLP = 0;//initialize to zero at each event i in the loop
+                        for (int j = pythia->event[mother_index].daughter1(); j <= pythia->event[mother_index].daughter2(); j++ ){
+                        	if (abs(pythia->event[j].id())==LLPPID){
+                        		nLLP += 1;
+                        	}
+                        }
+                        
                         
                         observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
                         observedLLPinANUBIS     += decayProbabilityANUBIS1(pythia->event[i])+decayProbabilityANUBIS2(pythia->event[i])+decayProbabilityANUBIS3(pythia->event[i]);
@@ -124,7 +136,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double sigma = pythia->info.sigmaGen()*1e12; //in fb  
 
     double baseline_int_lumi{3000};// in fb^{-1}
-    double ReallyProducedLLP = baseline_int_lumi * sigma * k_factor;
+    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
 
 
 
@@ -142,13 +154,15 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 
     // Results
-    std::cout << "mLLP [GeV]: " << mLLP << std::endl;
+    std::cout << "nLLP: " << nLLP << '\n';
+    std::cout << "mLLP [GeV]: " << mLLP << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
-    std::cout << "XS [fb]: " << sigma << std::endl;//in fb
-    std::cout << "produced LLP: " << ProducedLLP << std::endl;    
+    std::cout << "XS [fb]: " << sigma <<'\n';//in fb
+    std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
     std::cout << '\n';
     std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
+    std::cout << '\n';
     std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
     std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
     std::cout << "  observedLLPinCODEXb: " << observedLLPinCODEXb 	<< '\n';
@@ -173,6 +187,14 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 }
 
 
+
+
+int analysis::mother_finder(int i, int PID){//i is index of a particle in an event record
+		if (abs(pythia->event[pythia->event[i].mother1()].id())==PID){
+			return mother_finder(pythia->event[i].mother1(), PID);
+		}
+		else {return pythia->event[i].mother1();}//return mother particle index
+}
 
 
 //AL3X proposal 1810.03636
@@ -494,5 +516,7 @@ double analysis::decayProbabilityMATHUSLA(Pythia8::Particle XXX) {
 
     return  decayprobability;           
 }   
+
+
 
 

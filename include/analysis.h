@@ -43,7 +43,7 @@ public:
 private: 
     
 
-    Pythia8::Pythia* pythia; //< Pythia8 object for simulation
+    Pythia8::Pythia* pythia; 
     bool verbose; //< declares amount of Information Pythia writes
     
     double mLLP; // given in GeV
@@ -52,9 +52,13 @@ private:
 
     std::string input_path; 
     int LLPPID; 
-    double k_factor{1};
+    double k_factor;
     
     double ProducedLLP;
+    
+    int mother_finder(int i, int PID);
+    int nLLP;
+    
     
     double decayProbabilityAL3X(Pythia8::Particle XXX);
     double decayProbabilityANUBIS1(Pythia8::Particle XXX);    
