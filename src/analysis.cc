@@ -21,11 +21,15 @@ analysis::analysis() {
 bool analysis::initPythia() {
     try {
     
-        pythia->readString("Beams:frameType = 4");
-        pythia->readString("Beams:LHEF = "+input_path);
-        
+        if (parton_generation == "MG5"){
+        	pythia->readString("Beams:frameType = 4");
+        	pythia->readString("Beams:LHEF = "+input_path);
+        }
+        else if (parton_generation == "PY8"){
   
-  
+  		pythia->readFile(input_path);
+  	}
+  	
   	//allow for very long-lived particles
   	pythia->readString("ResonanceWidths:minWidth = 1.97e-30");
   	
@@ -161,8 +165,6 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
     std::cout << '\n';
-    std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
-    std::cout << '\n';
     std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
     std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
     std::cout << "  observedLLPinCODEXb: " << observedLLPinCODEXb 	<< '\n';
@@ -172,15 +174,19 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "   observedLLPinMAPP2: " << observedLLPinMAPP2 	<< '\n';
     std::cout << "observedLLPinMATHUSLA: " << observedLLPinMATHUSLA	<< '\n';
     std::cout << '\n';
-    std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
-    std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
-    std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
-    std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
+    if (parton_generation == "MG5"){
+    		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
+        	std::cout << '\n';
+		std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
+    		std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
+    		std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
+    	std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
+    		std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
+    		std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
+    		std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
+    		std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
+    		std::cout << '\n';
+    }
     
 
     return true;

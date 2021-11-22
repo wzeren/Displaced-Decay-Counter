@@ -30,6 +30,7 @@ public:
     analysis();
     ~analysis() {};    
     
+    void setPARTONGENERATION(std::string parton_generation_in) {parton_generation = parton_generation_in;}; 
     void setINPUTPATH(std::string input_path_in) {input_path = input_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
     void setKFACTOR(double k_factor_in) {k_factor = k_factor_in;};
@@ -49,7 +50,7 @@ private:
     double mLLP; // given in GeV
     double ctau;
     
-
+    std::string parton_generation;
     std::string input_path; 
     int LLPPID; 
     double k_factor;

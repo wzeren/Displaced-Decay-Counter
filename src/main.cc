@@ -13,9 +13,10 @@
 
 
 int main(int argc, char* argv[]) {
-    if (argc != 5) {
-        std::cout << "./main input-path LLPPID nMC K-factor" << std::endl;
-        std::cout << "   - input-path: LHE file for MG5" << std::endl;        
+    if (argc != 6) {
+        std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor" << std::endl;
+        std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
+        std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
         std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
         std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
         std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
@@ -24,15 +25,17 @@ int main(int argc, char* argv[]) {
     
     
 
-    std::string input_path= charToString(argv[1]); //  
-    int LLPPID = atof(argv[2]); 
-    int nMC = atof(argv[3]); 
-    double k_factor = atof(argv[4]); 
+    std::string parton_generation= charToString(argv[1]);  
+    std::string input_path= charToString(argv[2]);  
+    int LLPPID = atof(argv[3]); 
+    int nMC = atof(argv[4]); 
+    double k_factor = atof(argv[5]); 
 
 
-    std::cout << "input file path " << input_path << std::endl;   
-    std::cout << "PID of the LLP " << LLPPID << std::endl;
-    std::cout << "nMC " << nMC << std::endl;   
+    std::cout << "parton event generation: " << parton_generation << std::endl;   
+    std::cout << "input file path: " << input_path << std::endl;   
+    std::cout << "PID of the LLP: " << LLPPID << std::endl;
+    std::cout << "nMC: " << nMC << std::endl;   
     std::cout << "K-factor: " << k_factor << std::endl; 
     
     
@@ -92,6 +95,7 @@ int main(int argc, char* argv[]) {
     analysis mychecker;
     
     mychecker.setVerbose();
+    mychecker.setPARTONGENERATION(parton_generation);
     mychecker.setINPUTPATH(input_path);
     mychecker.setLLPPID(LLPPID);
     mychecker.setKFACTOR(k_factor);
