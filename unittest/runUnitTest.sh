@@ -3,11 +3,11 @@
 
 if [ $1 = "create" ]; then
 cd ../bin
-./main MG5 ../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe 9900012 1000 1 > ../unittest/testOutput.dat
+./main MG5 ../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe 9900012 1000 1 1 > ../unittest/testOutput.dat
 cd ../unittest
 elif [ $1 = "test" ]; then
 cd ../bin
-./main MG5 ../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe 9900012 1000 1 > ../unittest/tempTestOutput.dat
+./main MG5 ../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe 9900012 1000 1 1 > ../unittest/tempTestOutput.dat
 cd ../unittest
 diff tempTestOutput.dat testOutput.dat | wc -l
 else

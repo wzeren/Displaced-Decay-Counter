@@ -7,34 +7,64 @@
 #include <algorithm>
 #include "include/analysis.h"
 #include "include/functions.h"
-
+#include "fstream"
 
 
 
 
 int main(int argc, char* argv[]) {
-    if (argc != 7) {
-        std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor visible-BR" << std::endl;
-        std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
-        std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
-        std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
-        std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
-        std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
-        std::cout << "   - visible-BR: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
-        exit(1);
+  //JJJ: clean up the initialisation
+  std::string parton_generation;
+  std::string input_path;
+  int LLPPID;
+  int nMC;
+  double k_factor;
+  double visibleBR;
+  
+  if(argc == 7){
+    parton_generation= charToString(argv[1]);  
+    input_path= charToString(argv[2]);  
+    LLPPID = atof(argv[3]); 
+    nMC = atof(argv[4]); 
+    k_factor = atof(argv[5]); 
+    visibleBR = atof(argv[6]); 
+  }
+  //JJJ: do sanity checks of the input
+  //JJJ: throw exceptions!
+  else if(argc == 2){
+    std::string inputline;
+    std::string filename(argv[1]);
+    std::cout << "Reading input data from " + filename << '\n';
+    
+    std::ifstream inputfile(filename);
+    if (inputfile.is_open()){
+      inputfile >> parton_generation;
+      inputfile >> input_path;
+      inputfile >> LLPPID;
+      inputfile >> nMC;
+      inputfile >> k_factor;
+      inputfile >> visibleBR; 
+      inputfile.close();
     }
-    
-    
-
-    std::string parton_generation= charToString(argv[1]);  
-    std::string input_path= charToString(argv[2]);  
-    int LLPPID = atof(argv[3]); 
-    int nMC = atof(argv[4]); 
-    double k_factor = atof(argv[5]); 
-    double visibleBR = atof(argv[6]); 
-
-
-    std::cout << "parton event generation: " << parton_generation << std::endl;   
+    else{
+      std::cout << filename + " cannot be opened.";
+      exit(1);
+    }
+  }
+  else{
+    std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor visible-BR" << std::endl;
+    std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
+    std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
+    std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
+    std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
+    std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
+    std::cout << "   - visible-BR: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
+    std::cout << std::endl << std::endl;
+    std::cout << "./main input.dat" << std::endl;
+      exit(1);
+  }
+  
+  std::cout << "parton event generation: " << parton_generation << std::endl;   
     std::cout << "input file path: " << input_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
     std::cout << "nMC: " << nMC << std::endl;   
