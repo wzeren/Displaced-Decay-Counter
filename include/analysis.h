@@ -34,6 +34,7 @@ public:
     void setINPUTPATH(std::string input_path_in) {input_path = input_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
     void setKFACTOR(double k_factor_in) {k_factor = k_factor_in;};
+    void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
     void setVerbose() {verbose = true;};
     
     bool doCalculations(); //< evaluates widths 
@@ -54,6 +55,7 @@ private:
     std::string input_path; 
     int LLPPID; 
     double k_factor;
+    double visibleBR;
     
     double ProducedLLP;
     

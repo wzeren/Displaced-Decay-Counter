@@ -13,13 +13,14 @@
 
 
 int main(int argc, char* argv[]) {
-    if (argc != 6) {
-        std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor" << std::endl;
+    if (argc != 7) {
+        std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor visible-BR" << std::endl;
         std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
         std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
         std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
         std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
         std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
+        std::cout << "   - visible-BR: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
         exit(1);
     }
     
@@ -30,6 +31,7 @@ int main(int argc, char* argv[]) {
     int LLPPID = atof(argv[3]); 
     int nMC = atof(argv[4]); 
     double k_factor = atof(argv[5]); 
+    double visibleBR = atof(argv[6]); 
 
 
     std::cout << "parton event generation: " << parton_generation << std::endl;   
@@ -37,6 +39,7 @@ int main(int argc, char* argv[]) {
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
     std::cout << "nMC: " << nMC << std::endl;   
     std::cout << "K-factor: " << k_factor << std::endl; 
+    std::cout << "visible-BR: " << visibleBR << std::endl; 
     
     
    
@@ -99,6 +102,7 @@ int main(int argc, char* argv[]) {
     mychecker.setINPUTPATH(input_path);
     mychecker.setLLPPID(LLPPID);
     mychecker.setKFACTOR(k_factor);
+    mychecker.setVISIBLEBR(visibleBR);
 
     if (!mychecker.initPythia())
         return 1;
