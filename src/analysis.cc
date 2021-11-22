@@ -174,6 +174,15 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "   observedLLPinMAPP2: " << observedLLPinMAPP2 	<< '\n';
     std::cout << "observedLLPinMATHUSLA: " << observedLLPinMATHUSLA	<< '\n';
     std::cout << '\n';
+    std::cout << "    acceptanceAL3X: " << observedLLPinAL3X / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceANUBIS: " << observedLLPinANUBIS / ProducedLLP	<< '\n';
+    std::cout << "  acceptanceCODEXb: " << observedLLPinCODEXb / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceFASER1: " << observedLLPinFASER1 / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceFASER2: " << observedLLPinFASER2 / ProducedLLP 	<< '\n';
+    std::cout << "   acceptanceMAPP1: " << observedLLPinMAPP1 / ProducedLLP 	<< '\n';
+    std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
+    std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
+    std::cout << '\n';
     if (parton_generation == "MG5"){
     		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
         	std::cout << '\n';
