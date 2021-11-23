@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[]) {
   //JJJ: clean up the initialisation
-  std::string parton_generation;
+  std::string input_file_format;
   std::string input_path;
   int LLPPID;
   int nMC;
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
   double visibleBR;
   
   if(argc == 7){
-    parton_generation= charToString(argv[1]);  
+    input_file_format= charToString(argv[1]);  
     input_path= charToString(argv[2]);  
     LLPPID = atof(argv[3]); 
     nMC = atof(argv[4]); 
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     
     std::ifstream inputfile(filename);
     if (inputfile.is_open()){
-      inputfile >> parton_generation;
+      inputfile >> input_file_format;
       inputfile >> input_path;
       inputfile >> LLPPID;
       inputfile >> nMC;
@@ -52,9 +52,9 @@ int main(int argc, char* argv[]) {
     }
   }
   else{
-    std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor visible-BR" << std::endl;
-    std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
-    std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
+    std::cout << "./main input-file-format input-path LLPPID nMC K-factor visible-BR" << std::endl;
+    std::cout << "   - input-file-format: LHE, cmnd, or HEPMC" << std::endl;        
+    std::cout << "   - input-path: path to the input file" << std::endl;        
     std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
     std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
     std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
       exit(1);
   }
   
-  std::cout << "parton event generation: " << parton_generation << std::endl;   
+  std::cout << "input file format: " << input_file_format << std::endl;   
     std::cout << "input file path: " << input_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
     std::cout << "nMC: " << nMC << std::endl;   
@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
     analysis mychecker;
     
     mychecker.setVerbose();
-    mychecker.setPARTONGENERATION(parton_generation);
+    mychecker.setINPUTFILEFORMAT(input_file_format);
     mychecker.setINPUTPATH(input_path);
     mychecker.setLLPPID(LLPPID);
     mychecker.setKFACTOR(k_factor);
@@ -137,6 +137,8 @@ int main(int argc, char* argv[]) {
     if (!mychecker.initPythia())
         return 1;
     if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
+        return 1;
+    if (!mychecker.runHepMC(nMC,MAPP1,MAPP2))
         return 1;
     return 0;
 }

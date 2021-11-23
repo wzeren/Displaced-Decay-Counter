@@ -17,6 +17,14 @@
 #include "include/cornerpoint/cubic_detector.h"
 
 
+#include "HepMC/IO_GenEvent.h"
+#include "HepMC/GenEvent.h"
+//#include "HepMC/ParticleData.h"
+#include "HepMC/SimpleVector.h"
+
+
+
+
 /* This class serves as a generalised C++ framework to embed specific scenarios of 
  * RPV decay scenarios Meson -> Neutralino + X, Neutralino -> Meson + Y.
  * The user just dictates the scenario to be considered and this class collects the respective
@@ -30,7 +38,7 @@ public:
     analysis();
     ~analysis() {};    
     
-    void setPARTONGENERATION(std::string parton_generation_in) {parton_generation = parton_generation_in;}; 
+    void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
     void setINPUTPATH(std::string input_path_in) {input_path = input_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
     void setKFACTOR(double k_factor_in) {k_factor = k_factor_in;};
@@ -40,6 +48,8 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
+    
+    bool runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
     
         
 private: 
@@ -51,7 +61,7 @@ private:
     double mLLP; // given in GeV
     double ctau;
     
-    std::string parton_generation;
+    std::string input_file_format;
     std::string input_path; 
     int LLPPID; 
     double k_factor;
@@ -59,7 +69,9 @@ private:
     
     double ProducedLLP;
     
-    int mother_finder(int i, int PID);
+    int mother_finder_pythia(int i, int PID);
+    int mother_finder_hepmc(int i, int PID);
+    
     int nLLP;
     
     
