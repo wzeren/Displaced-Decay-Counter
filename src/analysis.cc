@@ -242,233 +242,105 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 
 
-bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
+bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2) {
     if (input_file_format == "HEPMC"){  
     
     
-    ProducedLLP = 0;
+      ProducedLLP = 0;
     
     
-    double observedLLPinAL3X{};
-    double observedLLPinANUBIS{};
-    double observedLLPinCODEXb{};
-    double observedLLPinFASER1{};
-    double observedLLPinFASER2{};
-    double observedLLPinMAPP1{};
-    double observedLLPinMAPP2{};
-    double observedLLPinMATHUSLA{};
+      double observedLLPinAL3X{};
+      double observedLLPinANUBIS{};
+      double observedLLPinCODEXb{};
+      double observedLLPinFASER1{};
+      double observedLLPinFASER2{};
+      double observedLLPinMAPP1{};
+      double observedLLPinMAPP2{};
+      double observedLLPinMATHUSLA{};
+      
 
-
-    try{
-    
-    //bool operator()( const HepMC::GenEvent* evt ) { 
-    
-    //read the input HepMC file
-    HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
-    
-    //select an event
-    HepMC::GenEvent* evt = ascii_in.read_next_event();
-    
-    //loop over events of this HepMC file
-    while ( evt ){
-    
-    	//loop over all partcles in the event evt
-	for ( HepMC::GenEvent::particle_const_iterator p 
+      try{
+	
+	//bool operator()( const HepMC::GenEvent* evt ) { 
+	
+	//read the input HepMC file
+	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
+	
+	//select an event
+	HepMC::GenEvent* evt = ascii_in.read_next_event();
+	
+	//loop over events of this HepMC file
+	while ( evt ){
+	  
+	  //loop over all partcles in the event evt
+	  for ( HepMC::GenEvent::particle_const_iterator p 
 		  = evt->particles_begin(); p != evt->particles_end(); ++p ){
 	    if ( (*p)->pdg_id() == LLPPID && (*p)->is_undecayed() == 1 ) {
-	    	mLLP = (*p)->momentum().m();
-	    	ctau = (*p)->momentum().clifetime()/1000.; //convert mm to m
-	    	ProducedLLP += 1;
-	    	
-	    	
-               //find the mother of the LLP
-               HepMC::GenEvent::particle_const_iterator LLP_mother = mother_finder_hepmc(p, LLPPID);
-               //find nLLP:  number of LLPs in each event
-               nLLP = 0;//initialize to zero at each event i in the loop
-               HepMC::GenVertex::particle_iterator firstChild = (*LLP_mother)->end_vertex()->particles_begin(HepMC::children);
-               HepMC::GenVertex::particle_iterator lastChild = (*LLP_mother)->end_vertex()->particles_end(HepMC::children);
-               for (HepMC::GenVertex::particle_iterator iter = firstChild; iter <= endChild; iter++ ){
-                    	if (  (*iter)->pdg_id() == LLPPID  ){
-                      		nLLP += 1;
-                      	}
-               }
-               
-               observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
-               //observedLLPinANUBIS     += decayProbabilityANUBIS1(p)+decayProbabilityANUBIS2(p)+decayProbabilityANUBIS3(p);
-               //observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
-               //observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
-               //observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
-               //observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
-               //observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
-               //observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
-               
-	    	
+	      mLLP = (*p)->momentum().m();
+	      //	    	ctau = (*p)->momentum().clifetime()/1000.; //convert mm to m
+	      ProducedLLP += 1;
+	      
+	      //find the mother of the LLP
+	      nLLP = 0;//initialize to zero at each event i in the loop
 
-	    }
-	}
-    
-    
-    }
+	      nLLP = LLPMotherCounter_hepmc(p, LLPPID);	
 
-    
-		//std::cout << "Event " << evt->event_number()
-		//     << " is a good event." << std::endl;
-		//(*p)->print();
-    
-    
-    
-        for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
-                if (!pythia->next()) continue;
-                // Check the list of final state particles
-                for (int i = 0; i < pythia->event.size(); ++i) {
-                    if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {//count LLP  //requiring the last LLP in pythia event record
-			mLLP = pythia->event[i].m0();
-			ctau = pythia->event[i].tau0()/1000.; //convert mm to m
-                       ProducedLLP += 1;
-                        
-                        //find the mother of the LLP
-                        int mother_index = mother_finder_pythia(i, LLPPID);
-                        //find nLLP:  number of LLPs in each event
-                        nLLP = 0;//initialize to zero at each event i in the loop
-                        for (int j = pythia->event[mother_index].daughter1(); j <= pythia->event[mother_index].daughter2(); j++ ){
-                        	if (abs(pythia->event[j].id())==LLPPID){
-                        		nLLP += 1;
-                        	}
-                        }
-                        
-                        
-                        observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
-                        /*
-                        observedLLPinANUBIS     += decayProbabilityANUBIS1(pythia->event[i])+decayProbabilityANUBIS2(pythia->event[i])+decayProbabilityANUBIS3(pythia->event[i]);
-                        observedLLPinCODEXb     += decayProbabilityCODEXb(pythia->event[i]);
-                        observedLLPinFASER1     += decayProbabilityFASER1(pythia->event[i]);
-                        observedLLPinFASER2     += decayProbabilityFASER2(pythia->event[i]);
-                        observedLLPinMAPP1      += decayProbabilityMAPP1(pythia->event[i],MAPP1);
-                        observedLLPinMAPP2      += decayProbabilityMAPP2(pythia->event[i],MAPP2);
-                        observedLLPinMATHUSLA   += decayProbabilityMATHUSLA(pythia->event[i]);
-                        */
-                        
-                        
-                       }
-                }
-            }
-        if(verbose)
-            pythia->stat();   
-    }
-    catch(std::exception& e) {
-        std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
-        return false;
-    }
-
+	      observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
+	      //observedLLPinANUBIS     += decayProbabilityANUBIS1(p)+decayProbabilityANUBIS2(p)+decayProbabilityANUBIS3(p);
+	      //observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
+	      //observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
+	      //observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
+	      //observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
+	      //observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
+	      //observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
+	    } //if
+	  } // for
+	} //while loop
+	
+	
+      }
+      
+      catch(std::exception& e) {
+	std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
+	return false;
+      }
+      
  
-    
-
-    double sigma = pythia->info.sigmaGen()*1e12; //in fb  
-
-    double baseline_int_lumi{3000};// in fb^{-1}
-    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+      return true;
 
 
-
-    double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
-    /*
-    double reallyobservedLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMATHUSLA	= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP;
-
-    double reallyvisibleLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-
-    */
-
-
-
-    // Results
-    std::cout << "nLLP: " << nLLP << '\n';
-    std::cout << "mLLP [GeV]: " << mLLP << '\n';
-    std::cout << "ctau [m]: " << ctau << '\n';
-    std::cout << "produced LLP: " << ProducedLLP << '\n';  
-    std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
-    std::cout << '\n';
-    std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
-    /*
-    std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
-    std::cout << "  observedLLPinCODEXb: " << observedLLPinCODEXb 	<< '\n';
-    std::cout << "  observedLLPinFASER1: " << observedLLPinFASER1 	<< '\n';
-    std::cout << "  observedLLPinFASER2: " << observedLLPinFASER2 	<< '\n';
-    std::cout << "   observedLLPinMAPP1: " << observedLLPinMAPP1 	<< '\n';
-    std::cout << "   observedLLPinMAPP2: " << observedLLPinMAPP2 	<< '\n';
-    std::cout << "observedLLPinMATHUSLA: " << observedLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
-    std::cout << "    acceptanceAL3X: " << observedLLPinAL3X / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceANUBIS: " << observedLLPinANUBIS / ProducedLLP	<< '\n';
-    std::cout << "  acceptanceCODEXb: " << observedLLPinCODEXb / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceFASER1: " << observedLLPinFASER1 / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceFASER2: " << observedLLPinFASER2 / ProducedLLP 	<< '\n';
-    std::cout << "   acceptanceMAPP1: " << observedLLPinMAPP1 / ProducedLLP 	<< '\n';
-    std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
-    std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
-    std::cout << '\n';
-    std::cout << "XS [fb]: " << sigma <<'\n';//in fb
-    std::cout << "visibleBR: " << visibleBR << '\n';
-    std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
-    std::cout << '\n';
-    std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
-    std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
-    std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
-    std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
-    std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
-    std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
-    std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
-    std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
-    std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
-    std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
-    std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
-    std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
-    */
-    
     }
     
-
-    return true;
-    
-    
-    }
-    else return false;
-}
-
+}      
 
 
 int analysis::mother_finder_pythia(int i, int PID){//i is index of a particle in an event record
 		if (abs(pythia->event[pythia->event[i].mother1()].id())==PID){
-			return mother_finder(pythia->event[i].mother1(), PID);
+			return mother_finder_pythia(pythia->event[i].mother1(), PID);
 		}
 		else {return pythia->event[i].mother1();}//return mother particle index
 }
 
-HepMC::GenEvent::particle_const_iterator analysis::mother_finder_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID){
-		HepMC::GenVertex::particle_iterator firstParent  = (*p)->begin_vertex()->particles_begin(HepMC::parents) ;
-		if (  (*firstParent)->pdg_id() == PID){
-			return mother_finder_hepmc(firstParent, PID);
-		}
-		else {return firstParent;}//return mother particle index
+
+int analysis::LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
+  if( (*p)->production_vertex() ){
+
+    int nLLP=0;
+    
+    
+    for ( HepMC::GenVertex::particle_iterator mother = (*p)->production_vertex()->particles_begin(HepMC::parents);
+	  mother != (*p)->production_vertex()->particles_end(HepMC::parents);++mother ) {
+      if( (*mother)->pdg_id() == PID ){
+	++nLLP;
+      }
+    }
+
+    return nLLP;
+		
+  }
+  return nLLP;
 }
+
 
 
 //AL3X proposal 1810.03636
@@ -803,12 +675,12 @@ double analysis::decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iter
     const double L_H = 4.15; //height of the detector is 4.15m  (as 4.15+0.85 = 5m, the outer radius)
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->e()/(mLLP);
-    double beta_z = (*p)->pz()/(*p)->e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->e(), 2));
-    double theta = (*p)->theta();            
-    double phi = (*p)->.phi();           
-    double eta = (*p)->.eta(); 
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
 
     if (tan(theta) == 0.0) {
         std::cout << "The impossible happened!" << std::endl;

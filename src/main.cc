@@ -138,7 +138,11 @@ int main(int argc, char* argv[]) {
         return 1;
     if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
         return 1;
-    if (!mychecker.runHepMC(nMC,MAPP1,MAPP2))
+
+    //JJJ: this must be user input
+    double ctau = 10;
+    
+    if (!mychecker.runHepMC(nMC, ctau,  MAPP1,MAPP2))
         return 1;
     return 0;
 }

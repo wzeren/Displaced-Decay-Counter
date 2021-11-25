@@ -49,7 +49,7 @@ public:
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
     
-    bool runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
+    bool runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2);
     
         
 private: 
@@ -70,8 +70,8 @@ private:
     double ProducedLLP;
     
     int mother_finder_pythia(int i, int PID);
-    int mother_finder_hepmc(int i, int PID);
-    
+
+    int LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
     int nLLP;
     
     
@@ -85,6 +85,7 @@ private:
     double decayProbabilityMAPP1(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMAPP2(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMATHUSLA(Pythia8::Particle XXX);  
-   
+    double decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p);
+  
 };
 #endif
