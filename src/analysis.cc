@@ -1,5 +1,251 @@
 #include "include/analysis.h"
 #include "include/functions.h"
+#include <iostream>
+#include <fstream>
+
+
+      // CylSeg class defining oriented segments in the cylindrical plane {z,y}
+
+class CylSeg{
+    double zA,yA,zB,yB,zeqn,yeqn,detv;  // {zA,yA} and {zB,yB} are the coordinates of the extreme points
+                                        // detv=zA*yB-zB*yA: detv=0 corresponds to an uninteresting segment,
+                                        //   either trivial or aligned with the interaction point
+                                        // points {z,y} in the segment satisfy the equation zeqn*z+yeqn*y=1.
+                                        //   the case zeqn*z+yeqn*y=0. is irrelevant (aligned with IP)
+    int flysign;                        // sign determining the orientation of the segment
+  public:
+    CylSeg(std::array<double,2>,std::array<double,2>,int);
+                                        // constructor from pointers to the coordinates of the extreme
+                                        //   points and the orientation
+    double DecProb(double,double);      // function computing the exponential factor from the angle of  
+                                        //   emission of the particle and effective flying distance
+};
+
+CylSeg::CylSeg (std::array<double,2> Azy,std::array<double,2> Bzy,int fls) {
+  zA=Azy[0];                            // reads the coordinates
+  yA=abs(Azy[1]);
+  zB=Bzy[0];
+  yB=abs(Bzy[1]);
+  flysign=1;                            // defines the orientation
+  if(fls<0){flysign=-1;}
+  detv=zA*yB-zB*yA;                     // checks the triviality
+  zeqn=0.;                              // defines the equation
+  yeqn=0.;
+  if(detv!=0.){
+   zeqn=(yB-yA)/detv;
+   yeqn=(zA-zB)/detv;
+  }
+}
+
+double CylSeg::DecProb (double th,double leff) {
+  const double Pi=4.*atan(1.);
+  double elInt=0.;                       // exponential contribution initialized to 0.
+  if(detv!=0 && th>=0 && th<=Pi && leff>0){      // no need to compute further in the trivial / undefined cases
+    double thA=acos(zA/sqrt(yA*yA+zA*zA));       // checks whether the emission angle falls between the
+    double thB=acos(zB/sqrt(yB*yB+zB*zB));       //   extreme points
+    if(std::min(thA,thB)<=th && std::max(thA,thB)>=th){    
+                                         // in case there is an intersection between trajectory and segment
+      double lInt=1e10;
+      if(abs(th-Pi/2.)>Pi/4.){           // identifies the inverse distance of the intersection from the IP
+        lInt=(zeqn+yeqn*tan(th))/sqrt(1.+tan(th)*tan(th));
+      } else if(abs(th-Pi/2.)<1e-10) {
+        lInt=yeqn;
+      } else {
+        lInt=(yeqn+zeqn/tan(th))/sqrt(1.+1./(tan(th)*tan(th)));
+      } 
+      if(lInt!=0 && leff>0){             // if the quantities are not trivial
+        lInt=1./abs(lInt);
+        elInt=exp(-lInt/leff)*flysign;   // compute the exponential contribution
+        if(th==thA || th==thB){ elInt=elInt/2.; }  // ponder by 1/2 for endpoints
+      }
+    }
+  }
+  return elInt;
+}
+
+      // class CylDetLayer defining a detector layer in cylindrical coordinates
+
+class CylDetLayer{
+    std::vector<CylSeg> CylSegList;   // built out of a list of oriented cylindrical segment
+    double weight;                    // weighing factor: phi-opening, luminosity, 
+                                      //                  efficiency for detection of the LLP decay products
+  public:
+    CylDetLayer(std::vector<CylSeg>,double);  // straightforward constructor
+    CylDetLayer(std::vector<std::array<double,2>>,double); // constructor from a list of coordinates in the {z,y} plane
+    double inDetDec(double,double);           // weighed decay probability within the detector layer
+};
+
+CylDetLayer::CylDetLayer(std::vector<CylSeg> Seglist,double wgh) {  // direct constructor
+  CylSegList=Seglist;
+  weight=wgh;
+}
+
+CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) {  // constructor from list of coordinates
+ // reset all y-values to positive
+    if(ptlist.size()>=1){
+     for(int i=0; i<ptlist.size(); i++){
+      if(ptlist[i][1]<0)ptlist[i][1]=-ptlist[i][1];
+     }
+    }
+ // check that the list contains three non-aligned points
+    bool nonalign=false;
+    double detcomp=0.;
+    if(ptlist.size()>=3){
+     for(int i=0; i<ptlist.size()-2; i++){
+      for(int j=i+1; j<ptlist.size()-1; j++){
+       if(abs(ptlist[j][0]-ptlist[i][0])>1e-5 || abs(ptlist[j][1]-ptlist[i][1])>1e-5) {
+        for(int k=j+1; k<ptlist.size(); k++){
+         detcomp=abs((ptlist[j][1]-ptlist[i][1])*(ptlist[k][0]-ptlist[i][0])-(ptlist[j][0]-ptlist[i][0])*(ptlist[k][1]-ptlist[i][1]));
+         if(detcomp>1e-10)nonalign=true;
+         if(nonalign)break;
+        }
+       }
+       if(nonalign)break;
+      }
+      if(nonalign)break;
+     }
+    }
+ // find the points with farthest and closest theta aperture
+      double thmax=0.,thmin=4.*atan(1.);
+      int imax=0,imin=0;
+     if(nonalign){
+      for(int i=0; i<ptlist.size(); i++){
+       if(abs(ptlist[i][0]*ptlist[i][0]+ptlist[i][1]*ptlist[i][1])>1e-10){
+        double th=acos(ptlist[i][0]/sqrt(ptlist[i][0]*ptlist[i][0]+ptlist[i][1]*ptlist[i][1]));
+        if(th>thmax){
+         thmax=th;
+         imax=i;
+        }
+        if(th==thmax && ptlist[i][0]*ptlist[i][0]+ptlist[i][1]*ptlist[i][1]>ptlist[imax][0]*ptlist[imax][0]+ptlist[imax][1]*ptlist[imax][1]){
+         thmax=th;
+         imax=i;
+        }
+        if(th<thmin){
+         thmin=th;
+         imin=i;
+        }
+        if(th==thmin && ptlist[i][0]*ptlist[i][0]+ptlist[i][1]*ptlist[i][1]<ptlist[imin][0]*ptlist[imin][0]+ptlist[imin][1]*ptlist[imin][1]){
+         thmin=th;
+         imin=i;
+        }
+       }
+      }
+      if(imax==imin){
+       nonalign=false;
+       std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
+      }
+     }
+ // build the external convex envelope
+      std::vector<int> ordlist,ordlist2;
+     if(nonalign){
+      ordlist.push_back(imax);
+      std::vector<int> adjpt;
+      int istart=imax;
+      int count=0;
+      do{
+      count=count+1;
+      adjpt.clear();
+      for(int i=0; i<ptlist.size(); i++){
+       bool conv=true;
+       if(i==istart || (abs(ptlist[istart][0]-ptlist[i][0])<1e-5 && abs(ptlist[istart][1]-ptlist[i][1])<1e-5))conv=false;
+       for(int j=0; j<ptlist.size(); j++){
+        if(!conv)break;
+        if(j==istart || j==i)continue;
+        detcomp=(ptlist[istart][0]-ptlist[i][0])*(ptlist[j][1]-ptlist[i][1])-(ptlist[istart][1]-ptlist[i][1])*(ptlist[j][0]-ptlist[i][0]);
+        if(detcomp<-1e-10)conv=false;
+        if(abs(detcomp)<1e-10 && (ptlist[istart][0]-ptlist[i][0])*(ptlist[istart][0]-ptlist[i][0])+(ptlist[istart][1]-ptlist[i][1])*(ptlist[istart][1]-ptlist[i][1])<(ptlist[istart][0]-ptlist[j][0])*(ptlist[istart][0]-ptlist[j][0])+(ptlist[istart][1]-ptlist[j][1])*(ptlist[istart][1]-ptlist[j][1]))conv=false; 
+       }
+       if(conv)adjpt.push_back(i);
+      }
+      if(adjpt.size()==1){
+       ordlist.push_back(adjpt[0]);
+       istart=adjpt[0];
+      } else {
+       std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
+      }
+      } while(ordlist[ordlist.size()-1]!=imin && count<=ptlist.size());
+      
+      count=0;
+      istart=imin;
+      ordlist2.push_back(imin);
+      do{
+      count=count+1;
+      adjpt.clear();
+      for(int i=0; i<ptlist.size(); i++){
+       bool conv=true;
+       if(i==istart || (abs(ptlist[istart][0]-ptlist[i][0])<1e-5 && abs(ptlist[istart][1]-ptlist[i][1])<1e-5))conv=false;
+       for(int j=0; j<ptlist.size(); j++){
+        if(!conv)break;
+        if(j==istart || j==i)continue;
+        detcomp=(ptlist[istart][0]-ptlist[i][0])*(ptlist[j][1]-ptlist[i][1])-(ptlist[istart][1]-ptlist[i][1])*(ptlist[j][0]-ptlist[i][0]);
+        if(detcomp<-1e-10)conv=false;
+        if(abs(detcomp)<1e-10 && (ptlist[istart][0]-ptlist[i][0])*(ptlist[istart][0]-ptlist[i][0])+(ptlist[istart][1]-ptlist[i][1])*(ptlist[istart][1]-ptlist[i][1])<(ptlist[istart][0]-ptlist[j][0])*(ptlist[istart][0]-ptlist[j][0])+(ptlist[istart][1]-ptlist[j][1])*(ptlist[istart][1]-ptlist[j][1]))conv=false; 
+       }
+       if(conv)adjpt.push_back(i);
+      }
+      if(adjpt.size()==1){
+       ordlist2.push_back(adjpt[0]);
+       istart=adjpt[0];
+      } else {
+       std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
+      }
+      } while(ordlist2[ordlist2.size()-1]!=imax && count<=ptlist.size());
+     }
+ // define the segments
+  CylSegList.clear();
+  if(ordlist.size()>1){
+   for(int i=0;i<ordlist.size()-1;i++){
+    CylSeg idSeg(ptlist[ordlist[i]],ptlist[ordlist[i+1]],-1);
+    CylSegList.push_back(idSeg);
+   }
+  } else {
+    std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
+  }
+  if(ordlist2.size()>1){
+   for(int i=0;i<ordlist2.size()-1;i++){
+    CylSeg idSeg(ptlist[ordlist2[i]],ptlist[ordlist2[i+1]],1);
+    CylSegList.push_back(idSeg);
+   }
+  } else {
+    std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
+  }
+  weight=wgh;
+}
+
+double CylDetLayer::inDetDec(double th,double leff) {  // sums decay probabilities from the listed cyl. segments
+  double Pdec=0.;                                      // and applies an overall weight
+  if(CylSegList.size()>0 && th>=0 && th<=4.*atan(1.) && leff>0){
+   for(int i=0; i<CylSegList.size(); i++) {
+    Pdec=Pdec+CylSegList[i].DecProb(th,leff);
+   }
+   Pdec=weight*Pdec;
+  }
+  return Pdec;
+}
+
+      // class Detector defining a full detector
+
+class Detector{
+    std::vector<CylDetLayer> CylLayList;  // built out of a list of detector layers
+  public:
+    Detector(std::vector<CylDetLayer>);   // straightforward constructor
+    double DetAcc(double,double);         // weighed decay probability within the detector layer
+};
+
+Detector::Detector(std::vector<CylDetLayer> LayList) {  // direct constructor
+  CylLayList=LayList;
+}
+
+double Detector::DetAcc(double th,double leff) {  // sums decay probabilities from the listed cyl. layers
+  double Pdec=0.;
+  if(CylLayList.size()>0 && th>=0 && th<=4.*atan(1.) && leff>0){
+   for(int i=0; i<CylLayList.size(); i++) {
+    Pdec=Pdec+CylLayList[i].inDetDec(th,leff);
+   }
+   Pdec=Pdec;
+  }
+  return Pdec;
+}
 
 
 
@@ -91,7 +337,20 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinMAPP1{};
     double observedLLPinMAPP2{};
     double observedLLPinMATHUSLA{};
-
+    
+    std::ofstream myfile;
+    myfile.open ("testres.txt", std::ios_base::app);
+    
+    std::array<double,2> AA={68.,60.},BB={168.,60.},CC={168.,85.},DD={68.,85.};
+ //   std::array<double,2> AA={68.,60.},BB={68.,60.},CC={68.,585.},DD={68.,85.};
+    std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+//    CylSeg mathusl1(AA,BB,1),mathusl2(BB,CC,-1),mathusl3(CC,DD,-1),mathusl4(DD,AA,1);
+//    std::vector<CylSeg> mathuslist={mathusl1,mathusl2,mathusl3,mathusl4};
+    double mathusweight=0.221142;
+//    CylDetLayer mathuslay(mathuslist,mathusweight);
+    CylDetLayer mathuslay(ptlist,mathusweight);
+    std::vector<CylDetLayer> MathuLayers={mathuslay};
+    Detector MATHUSLA0(MathuLayers);
 
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
@@ -123,12 +382,20 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
                         observedLLPinMAPP2      += decayProbabilityMAPP2(pythia->event[i],MAPP2);
                         observedLLPinMATHUSLA   += decayProbabilityMATHUSLA(pythia->event[i]);
                         
+    Pythia8::Particle XXX=pythia->event[i];
+    double gamma = XXX.e()/(mLLP);
+    double beta_z = XXX.pz()/XXX.e();
+    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double theta = XXX.p().theta();            
+    double phi = XXX.p().phi();           
+    double eta = XXX.p().eta(); 
+    myfile << "testres0: " << MATHUSLA0.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << "\n";
                         
                        }
                 }
             }
-        if(verbose)
-            pythia->stat();   
+ //       if(verbose)
+ //           pythia->stat();   
     }
     catch(std::exception& e) {
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
@@ -217,6 +484,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     		std::cout << '\n';
     }
     
+    myfile.close();
 
     return true;
 }
@@ -533,7 +801,7 @@ double analysis::decayProbabilityMATHUSLA(Pythia8::Particle XXX) {
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
-
+    
     if (tan(theta) == 0.0) {
         std::cout << "The impossible happened!" << std::endl;
         return 0;
@@ -547,7 +815,6 @@ double analysis::decayProbabilityMATHUSLA(Pythia8::Particle XXX) {
     // The probability that the neutralino would decay in the detector is then as follows (Decay law:        
     double  decayprobability{};
 	decayprobability=0.221142*exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); //For MATHUSLA at CMS   the azimuthal coverage is ArcTan[50/60]*2   /(2 \[Pi]) = 0.221142
-
 
     return  decayprobability;           
 }   
