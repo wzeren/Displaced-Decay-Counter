@@ -337,20 +337,68 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinMAPP1{};
     double observedLLPinMAPP2{};
     double observedLLPinMATHUSLA{};
+    double observedLLPinMATHUSLA0{};
+    double observedLLPinMATHUSLA1{};
     
     std::ofstream myfile;
     myfile.open ("testres.txt", std::ios_base::app);
     
+    // Uncle Simon's MATHUSLA
     std::array<double,2> AA={68.,60.},BB={168.,60.},CC={168.,85.},DD={68.,85.};
  //   std::array<double,2> AA={68.,60.},BB={68.,60.},CC={68.,585.},DD={68.,85.};
     std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
 //    CylSeg mathusl1(AA,BB,1),mathusl2(BB,CC,-1),mathusl3(CC,DD,-1),mathusl4(DD,AA,1);
 //    std::vector<CylSeg> mathuslist={mathusl1,mathusl2,mathusl3,mathusl4};
-    double mathusweight=0.221142;
+    double mathusweight=2.*atan(50./60.)/(8.*atan(1.));
 //    CylDetLayer mathuslay(mathuslist,mathusweight);
     CylDetLayer mathuslay(ptlist,mathusweight);
     std::vector<CylDetLayer> MathuLayers={mathuslay};
     Detector MATHUSLA0(MathuLayers);
+    
+    // Improved MATHUSLA
+ // First layer
+    AA={68.,61.4118},BB={168.,61.4118},CC={168.,87.},DD={68.,87.};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.608826/(8.*atan(1.));
+    CylDetLayer mathuslay1(ptlist,mathusweight);
+    std::vector<CylDetLayer> IMathuLayers={mathuslay1};
+ // Second layer
+    AA={68.,64.3714},BB={168.,64.3714},CC={168.,91.1928},DD={68.,91.1928};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.245427/(8.*atan(1.));
+    CylDetLayer mathuslay2(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay2);
+ // Third layer
+    AA={68.,67.4736},BB={168.,67.4736},CC={168.,95.5876},DD={68.,95.5876};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.183756/(8.*atan(1.));
+    CylDetLayer mathuslay3(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay3);
+ // Fourth layer
+    AA={68.,69.811},BB={168.,69.811},CC={168.,98.8988},DD={68.,98.8988};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.069278/(8.*atan(1.));
+    CylDetLayer mathuslay4(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay4);
+ // Fifth layer
+    AA={68.,71.7475},BB={168.,71.7475},CC={168.,91.2912},DD={68.,91.2912};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.104765/(8.*atan(1.));
+    CylDetLayer mathuslay5(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay5);
+ // Sixth layer
+    AA={68.,74.5886},BB={168.,74.5886},CC={168.,84.2688},DD={68.,84.2688};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.117983/(8.*atan(1.));
+    CylDetLayer mathuslay6(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay6);
+ // Seventh layer
+    AA={68.,77.1641},BB={168.,77.1641},CC={168.,79.5382},DD={68.,79.5382};
+    ptlist={AA,BB,CC,DD};
+    mathusweight=0.0594421/(8.*atan(1.));
+    CylDetLayer mathuslay7(ptlist,mathusweight);
+    MathuLayers.push_back(mathuslay7);
+    Detector MATHUSLA1(MathuLayers);
 
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
@@ -389,18 +437,20 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
-    myfile << "testres0: " << MATHUSLA0.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << "\n";
-                        
+ //   myfile << "testres0: " << MATHUSLA0.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLA1.DetAcc(theta,beta*gamma*ctau) << "\n";
+    observedLLPinMATHUSLA0   += MATHUSLA0.DetAcc(theta,beta*gamma*ctau); 
+    observedLLPinMATHUSLA1   += MATHUSLA1.DetAcc(theta,beta*gamma*ctau);
                        }
                 }
             }
  //       if(verbose)
  //           pythia->stat();   
-    }
+    }  
     catch(std::exception& e) {
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
         return false;
     }
+    myfile << "testres0: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << "\n";
 
  
     
