@@ -223,6 +223,37 @@ double CylDetLayer::inDetDec(double th,double leff) {  // sums decay probabiliti
   return Pdec;
 }
 
+ /* function CylBrick creating standard bricks in order to fill a volume along the line
+std::vector<CylDetLayer> LayerList;
+LayerList.clear();
+for(int zct=0; zct<zct0; zct++){
+ for(int hct=0; hct<hct0; hct++){
+  int count=0;
+  double zcoord=dl/2.+zct*dl, hcoord=dh/2.+hct*dh;
+  for(int phct=0; phct<phct0; phct++){
+   double phcoor=phct*dphi;
+   double xcoord=hcoord*cos(phcoor), ycoord=hcoord*sin(phcoord);   
+   if(zcoord>=zmin && zcoord<=zmax && ycoord>=ymin && ycoord<=ymax && xcoord>=xmin && xcoord<=xmax)count=count+1;
+  }
+  if(count!=0){
+   std::array<double,2> brkcoord={zcoord,hcoord};
+   CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,detwgh);
+   LayerList.push_back(newbrick);
+  }
+ }
+}
+Detector myDetector(LayerList); */
+CylDetLayer CylBrick(std::array<double,2> coord, double length, double height, double apphi, double wgh) { // 'brick' constructor
+  std::array<double,2> AA={coord[0]-length/2.,coord[1]-height/2.};
+  std::array<double,2> BB={coord[0]+length/2.,coord[1]-height/2.};
+  std::array<double,2> CC={coord[0]+length/2.,coord[1]+height/2.};
+  std::array<double,2> DD={coord[0]-length/2.,coord[1]+height/2.};
+  std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+  double wght=wgh*apphi/(8.*atan(1.0));
+  CylDetLayer brick(ptlist,wght);
+  return brick;
+}
+
       // class Detector defining a full detector
 
 class Detector{
@@ -339,6 +370,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinMATHUSLA{};
     double observedLLPinMATHUSLA0{};
     double observedLLPinMATHUSLA1{};
+    double observedLLPinMATHUSLA2{};
     
     std::ofstream myfile;
     myfile.open ("testres.txt", std::ios_base::app);
@@ -367,38 +399,69 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     ptlist={AA,BB,CC,DD};
     mathusweight=0.245427/(8.*atan(1.));
     CylDetLayer mathuslay2(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay2);
+    IMathuLayers.push_back(mathuslay2);
  // Third layer
     AA={68.,67.4736},BB={168.,67.4736},CC={168.,95.5876},DD={68.,95.5876};
     ptlist={AA,BB,CC,DD};
     mathusweight=0.183756/(8.*atan(1.));
     CylDetLayer mathuslay3(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay3);
+    IMathuLayers.push_back(mathuslay3);
  // Fourth layer
     AA={68.,69.811},BB={168.,69.811},CC={168.,98.8988},DD={68.,98.8988};
     ptlist={AA,BB,CC,DD};
     mathusweight=0.069278/(8.*atan(1.));
     CylDetLayer mathuslay4(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay4);
+    IMathuLayers.push_back(mathuslay4);
  // Fifth layer
     AA={68.,71.7475},BB={168.,71.7475},CC={168.,91.2912},DD={68.,91.2912};
     ptlist={AA,BB,CC,DD};
     mathusweight=0.104765/(8.*atan(1.));
     CylDetLayer mathuslay5(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay5);
+    IMathuLayers.push_back(mathuslay5);
  // Sixth layer
     AA={68.,74.5886},BB={168.,74.5886},CC={168.,84.2688},DD={68.,84.2688};
     ptlist={AA,BB,CC,DD};
     mathusweight=0.117983/(8.*atan(1.));
     CylDetLayer mathuslay6(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay6);
+    IMathuLayers.push_back(mathuslay6);
  // Seventh layer
     AA={68.,77.1641},BB={168.,77.1641},CC={168.,79.5382},DD={68.,79.5382};
     ptlist={AA,BB,CC,DD};
     mathusweight=0.0594421/(8.*atan(1.));
     CylDetLayer mathuslay7(ptlist,mathusweight);
-    MathuLayers.push_back(mathuslay7);
-    Detector MATHUSLA1(MathuLayers);
+    IMathuLayers.push_back(mathuslay7);
+    Detector MATHUSLA1(IMathuLayers);
+    
+    // Building MATHUSLA from 3m-high bricks
+    double xmin=-50., xmax=50., ymin=60., ymax=85., dh=3., dphi=0.00785398, zcoord=118., dl=100.;
+    std::vector<CylDetLayer> MathuBricks;
+    MathuBricks.clear();
+    std::vector<std::array<double,2>> TDcoord;
+    TDcoord.clear(); 
+    int hct0=25, phct0=200;
+    for(int hct=0; hct<hct0; hct++){
+     int count=0;
+     double hcoord=40.+hct*dh;
+     for(int phct=0; phct<phct0; phct++){
+      double phcoord=atan(1.)+phct*dphi;
+      double xcoord=-hcoord*cos(phcoord), ycoord=hcoord*sin(phcoord);   
+      if(ycoord>=ymin && ycoord<=ymax && xcoord>=xmin && xcoord<=xmax){
+       count=count+1;
+      }
+     }
+     if(count!=0){
+      std::array<double,2> brkcoord={zcoord,hcoord};
+       TDcoord.push_back(brkcoord);
+      CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,1.);
+      myfile << "dphi: " << count*dphi << "\n";
+      MathuBricks.push_back(newbrick);
+     }
+    }
+    Detector MATHUSLA2(MathuBricks);
+     myfile << "coord: " << TDcoord.size() << " , bricks: " << MathuBricks.size() << "\n";
+    for(int i=0;i<TDcoord.size();i++){
+     myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << "\n";
+    }
 
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
@@ -440,6 +503,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
  //   myfile << "testres0: " << MATHUSLA0.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLA1.DetAcc(theta,beta*gamma*ctau) << "\n";
     observedLLPinMATHUSLA0   += MATHUSLA0.DetAcc(theta,beta*gamma*ctau); 
     observedLLPinMATHUSLA1   += MATHUSLA1.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinMATHUSLA2   += MATHUSLA2.DetAcc(theta,beta*gamma*ctau);
                        }
                 }
             }
@@ -450,7 +514,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
         return false;
     }
-    myfile << "testres0: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << "\n";
+    myfile << "testres0: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
 
  
     
