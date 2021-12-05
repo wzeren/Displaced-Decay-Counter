@@ -8,18 +8,17 @@
 #include "include/analysis.h"
 #include "include/functions.h"
 #include "fstream"
-
-
-
+#include "include/main.h"
 
 int main(int argc, char* argv[]) {
+  try{
   //JJJ: clean up the initialisation
-  std::string parton_generation;
-  std::string input_path;
-  int LLPPID;
-  int nMC;
-  double k_factor;
-  double visibleBR;
+  std::string parton_generation{};
+  std::string input_path{};
+  int LLPPID{0};
+  int nMC{0};
+  double k_factor {1.};
+  double visibleBR {1.};
   
   if(argc == 7){
     parton_generation= charToString(argv[1]);  
@@ -32,23 +31,43 @@ int main(int argc, char* argv[]) {
   //JJJ: do sanity checks of the input
   //JJJ: throw exceptions!
   else if(argc == 2){
+    std::string temp{};
     std::string inputline;
     std::string filename(argv[1]);
     std::cout << "Reading input data from " + filename << '\n';
     
     std::ifstream inputfile(filename);
     if (inputfile.is_open()){
-      inputfile >> parton_generation;
+      temp.clear();
+      inputfile >> temp;
+      parton_generation = temp;
+      temp.clear();
       inputfile >> input_path;
-      inputfile >> LLPPID;
-      inputfile >> nMC;
-      inputfile >> k_factor;
-      inputfile >> visibleBR; 
+      temp.clear();
+      inputfile >> temp;
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
+	die("Input is invalid!");
+      LLPPID = atoi(temp.c_str());
+      temp.clear();
+      inputfile >> temp;
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
+	die("Input is invalid!");
+      nMC = atoi(temp.c_str());
+      temp.clear();
+      inputfile >> temp;
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
+	die("Input is invalid!");
+      k_factor = stod(temp);
+      temp.clear();
+      inputfile >> temp;
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
+	die("Input is invalid!");
+      visibleBR = stod(temp);     
       inputfile.close();
     }
     else{
       std::cout << filename + " cannot be opened.";
-      exit(1);
+      die("Input is invalid!");
     }
   }
   else{
@@ -139,4 +158,13 @@ int main(int argc, char* argv[]) {
     if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
         return 1;
     return 0;
+
+
+  }
+  catch (...)
+  {
+    std::cout << "Desaster!!! " << '\n';
+    return 1;
+  }
+  
 }
