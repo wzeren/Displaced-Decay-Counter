@@ -65,15 +65,12 @@ int main(int argc, char* argv[]) {
   }
   
   std::cout << "input file format: " << input_file_format << std::endl;   
-    std::cout << "input file path: " << input_path << std::endl;   
-    std::cout << "PID of the LLP: " << LLPPID << std::endl;
-    std::cout << "nMC: " << nMC << std::endl;   
-    std::cout << "K-factor: " << k_factor << std::endl; 
-    std::cout << "visible-BR: " << visibleBR << std::endl; 
+  std::cout << "input file path: " << input_path << std::endl;   
+  std::cout << "PID of the LLP: " << LLPPID << std::endl;
+  std::cout << "nMC: " << nMC << std::endl;   
+  std::cout << "K-factor: " << k_factor << std::endl; 
+  std::cout << "visible-BR: " << visibleBR << std::endl; 
     
-    
-   
-
 //MAPP1 and MAPP2 coordinates
     //Detector Initialization
     int amountOfCorners=4;
@@ -123,8 +120,6 @@ int main(int argc, char* argv[]) {
         
     CubicDetector MAPP2(frontCorners,backCorners,amountOfCorners);
 
-
-
     analysis mychecker;
     
     mychecker.setVerbose();
@@ -134,13 +129,19 @@ int main(int argc, char* argv[]) {
     mychecker.setKFACTOR(k_factor);
     mychecker.setVISIBLEBR(visibleBR);
 
-    if (!mychecker.initPythia())
-        return 1;
-    if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
-        return 1;
 
+    
+    if (!mychecker.initPythia())
+      return 1;
+
+    
+    if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
+          return 1;
+    
     //JJJ: this must be user input
-    double ctau = 10;
+    double ctau = 1.155;
+
+    //std::cout << "Zong" << std::endl;
     
     if (!mychecker.runHepMC(nMC, ctau,  MAPP1,MAPP2))
         return 1;

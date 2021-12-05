@@ -71,7 +71,8 @@ private:
     
     int mother_finder_pythia(int i, int PID);
 
-    int LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
+    //    int LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
+    bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
     int nLLP;
     
     
@@ -86,6 +87,15 @@ private:
     double decayProbabilityMAPP2(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMATHUSLA(Pythia8::Particle XXX);  
     double decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityANUBIS1_hepmc(HepMC::GenEvent::particle_const_iterator p);    
+    double decayProbabilityANUBIS2_hepmc(HepMC::GenEvent::particle_const_iterator p);    
+    double decayProbabilityANUBIS3_hepmc(HepMC::GenEvent::particle_const_iterator p);  
+    double decayProbabilityCODEXb_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityFASER1_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityFASER2_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityMAPP1_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector);
+    double decayProbabilityMAPP2_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector);
+    double decayProbabilityMATHUSLA_hepmc(HepMC::GenEvent::particle_const_iterator p);  
   
 };
 #endif
