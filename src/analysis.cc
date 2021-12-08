@@ -4,6 +4,10 @@
 #include <fstream>
 
 
+//**************	START: DETECTOR IMPLEMENTATION	***************
+
+//			PRELIMINARY: define objects
+
       // CylSeg class defining oriented segments in the cylindrical plane {z,y}
 
 class CylSeg{
@@ -38,17 +42,16 @@ CylSeg::CylSeg (std::array<double,2> Azy,std::array<double,2> Bzy,int fls) {
 }
 
 double CylSeg::DecProb (double th,double leff) {
-  const double Pi=4.*atan(1.);
   double elInt=0.;                       // exponential contribution initialized to 0.
-  if(detv!=0 && th>=0 && th<=Pi && leff>0){      // no need to compute further in the trivial / undefined cases
+  if(detv!=0 && th>=0 && th<=4.*atan(1.) && leff>0){      // no need to compute further in the trivial / undefined cases
     double thA=acos(zA/sqrt(yA*yA+zA*zA));       // checks whether the emission angle falls between the
     double thB=acos(zB/sqrt(yB*yB+zB*zB));       //   extreme points
     if(std::min(thA,thB)<=th && std::max(thA,thB)>=th){    
                                          // in case there is an intersection between trajectory and segment
       double lInt=1e10;
-      if(abs(th-Pi/2.)>Pi/4.){           // identifies the inverse distance of the intersection from the IP
+      if(abs(th-2.*atan(1.))>atan(1.)){           // identifies the inverse distance of the intersection from the IP
         lInt=(zeqn+yeqn*tan(th))/sqrt(1.+tan(th)*tan(th));
-      } else if(abs(th-Pi/2.)<1e-10) {
+      } else if(abs(th-2.*atan(1.))<1e-10) {
         lInt=yeqn;
       } else {
         lInt=(yeqn+zeqn/tan(th))/sqrt(1.+1./(tan(th)*tan(th)));
@@ -278,7 +281,204 @@ double Detector::DetAcc(double th,double leff) {  // sums decay probabilities fr
   return Pdec;
 }
 
+//			DETECTOR IMPLEMENTATION
 
+//	A: MATHUSLA
+
+    // Uncle Simon's MATHUSLA
+    
+Detector MATHUSLA0() {
+ std::array<double,2> AA={68.,60.},BB={168.,60.},CC={168.,85.},DD={68.,85.};       // Corner points
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+// CylSeg mathusl1(AA,BB,1),mathusl2(BB,CC,-1),mathusl3(CC,DD,-1),mathusl4(DD,AA,1);
+// std::vector<CylSeg> mathuslist={mathusl1,mathusl2,mathusl3,mathusl4};
+ double mathusweight=2.*atan(50./60.)/(8.*atan(1.));                               // Angular aperture
+//    CylDetLayer mathuslay(mathuslist,mathusweight);
+ CylDetLayer mathuslay(ptlist,mathusweight);
+ std::vector<CylDetLayer> MathuLayers={mathuslay};
+ Detector myMATHUSLA(MathuLayers);
+ return myMATHUSLA;
+}
+
+    // Improved MATHUSLA
+    
+Detector MATHUSLA1() {
+ // First layer
+ std::array<double,2> AA={68.,61.4118},BB={168.,61.4118},CC={168.,87.},DD={68.,87.};
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double mathusweight=0.608826/(8.*atan(1.));
+ CylDetLayer mathuslay1(ptlist,mathusweight);
+ std::vector<CylDetLayer> IMathuLayers={mathuslay1};
+ // Second layer
+ AA={68.,64.3714},BB={168.,64.3714},CC={168.,91.1928},DD={68.,91.1928};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.245427/(8.*atan(1.));
+ CylDetLayer mathuslay2(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay2);
+ // Third layer
+ AA={68.,67.4736},BB={168.,67.4736},CC={168.,95.5876},DD={68.,95.5876};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.183756/(8.*atan(1.));
+ CylDetLayer mathuslay3(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay3);
+ // Fourth layer
+ AA={68.,69.811},BB={168.,69.811},CC={168.,98.8988},DD={68.,98.8988};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.069278/(8.*atan(1.));
+ CylDetLayer mathuslay4(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay4);
+ // Fifth layer
+ AA={68.,71.7475},BB={168.,71.7475},CC={168.,91.2912},DD={68.,91.2912};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.104765/(8.*atan(1.));
+ CylDetLayer mathuslay5(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay5);
+ // Sixth layer
+ AA={68.,74.5886},BB={168.,74.5886},CC={168.,84.2688},DD={68.,84.2688};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.117983/(8.*atan(1.));
+ CylDetLayer mathuslay6(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay6);
+ // Seventh layer
+ AA={68.,77.1641},BB={168.,77.1641},CC={168.,79.5382},DD={68.,79.5382};
+ ptlist={AA,BB,CC,DD};
+ mathusweight=0.0594421/(8.*atan(1.));
+ CylDetLayer mathuslay7(ptlist,mathusweight);
+ IMathuLayers.push_back(mathuslay7);
+ Detector myMATHUSLA(IMathuLayers);
+ return myMATHUSLA;
+}
+
+    // Building MATHUSLA from 3m-high bricks
+    
+Detector MATHUSLA2() {
+ double xmin=-50., xmax=50., ymin=60., ymax=85., dh=3., dphi=0.00785398, zcoord=118., dl=100.;
+ std::vector<CylDetLayer> MathuBricks;
+ MathuBricks.clear();
+//    std::vector<std::array<double,2>> TDcoord;
+//    TDcoord.clear(); 
+ int hct0=25, phct0=200;
+ for(int hct=0; hct<hct0; hct++){
+  int count=0;
+  double hcoord=40.+hct*dh;
+  for(int phct=0; phct<phct0; phct++){
+   double phcoord=atan(1.)+phct*dphi;
+   double xcoord=-hcoord*cos(phcoord), ycoord=hcoord*sin(phcoord);   
+   if(ycoord>=ymin && ycoord<=ymax && xcoord>=xmin && xcoord<=xmax){
+    count=count+1;
+   }
+  }
+  if(count!=0){
+   std::array<double,2> brkcoord={zcoord,hcoord};
+//       TDcoord.push_back(brkcoord);
+   CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,1.);
+   MathuBricks.push_back(newbrick);
+  }
+ }
+//     myfile << "coord: " << TDcoord.size() << " , bricks: " << MathuBricks.size() << "\n";
+//    for(int i=0;i<TDcoord.size();i++){
+//     myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << "\n";
+//    }
+ Detector myMATHUSLA(MathuBricks);
+ return myMATHUSLA;
+}
+
+//	B: FASER
+
+    // FASER
+    
+Detector FASER1() {
+ std::array<double,2> AA={478.5,0.},BB={480.,0.},CC={480.,0.1},DD={478.5,0.1};       // Corner points
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double faserweight=150./3000.;                                                      // relative luminosity
+ CylDetLayer faserlay(ptlist,faserweight);
+ std::vector<CylDetLayer> faserLayers={faserlay};
+ Detector myFASER(faserLayers);
+ return myFASER;
+}
+
+    // FASER2
+    
+Detector FASER2() {
+ std::array<double,2> AA={475.,0.},BB={480.,0.},CC={480.,1.},DD={475.,1.};           // Corner points
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double faserweight=1.;                                                              // relative luminosity
+ CylDetLayer faserlay(ptlist,faserweight);
+ std::vector<CylDetLayer> faserLayers={faserlay};
+ Detector myFASER(faserLayers);
+ return myFASER;
+}
+
+//	C: ANUBIS
+
+    // Uncle Simon's ANUBIS
+    
+Detector ANUBIS0() {
+ // First layer
+ std::array<double,2> AA={5.,24.},BB={23.,24.},CC={23.,42.667},DD={5.,42.667};
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double anubisweight=2.*atan(9./33.333)/(8.*atan(1.));
+ CylDetLayer anubislay1(ptlist,anubisweight);
+ std::vector<CylDetLayer> anubisLayers={anubislay1};
+ // Second layer
+ AA={5.,42.667},BB={23.,42.667},CC={23.,61.333},DD={5.,61.333};
+ ptlist={AA,BB,CC,DD};
+ anubisweight=2.*atan(9./52.)/(8.*atan(1.));
+ CylDetLayer anubislay2(ptlist,anubisweight);
+ anubisLayers.push_back(anubislay2);
+ // Third layer
+ AA={5.,61.333},BB={23.,61.333},CC={23.,80.},DD={5.,80.};
+ ptlist={AA,BB,CC,DD};
+ anubisweight=2.*atan(9./70.667)/(8.*atan(1.));
+ CylDetLayer anubislay3(ptlist,anubisweight);
+ anubisLayers.push_back(anubislay3);
+ Detector myANUBIS(anubisLayers);
+ return myANUBIS;
+}
+
+    // Building ANUBIS from 1m-high, 1m-deep bricks
+    
+Detector ANUBIS1() {
+ double ymin=24., ymax=80., xcnt=0., zcnt=14., Rad=9., dphi=0.00392699, dl=1., dh=1.5;
+ std::vector<CylDetLayer> AnubisBricks;
+ AnubisBricks.clear();
+ //   std::vector<std::array<double,3>> TDcoord;
+ //   TDcoord.clear(); 
+ //   std::ofstream myfile;
+ //   myfile.open ("testres.txt", std::ios_base::app);
+ int hct0=44, zct0=20, phct0=200;
+ for(int hct=0; hct<hct0; hct++){
+  double hcoord=24.+hct*dh;
+  for(int zct=0; zct<zct0; zct++){
+   double zcoord=4.+dl*zct;
+   int count=0;
+   for(int phct=0; phct<phct0; phct++){
+    double phcoord=3./2.*atan(1.)+phct*dphi;
+    double xcoord=-hcoord*cos(phcoord), ycoord=hcoord*sin(phcoord);
+    double distcnt=sqrt((zcoord-zcnt)*(zcoord-zcnt)+(xcoord-xcnt)*(xcoord-xcnt));
+    if(ycoord>=ymin && ycoord<=ymax && distcnt<Rad){
+     count=count+1;
+    }
+   }
+   if(count!=0){
+    std::array<double,2> brkcoord={zcoord,hcoord};
+ //     std::array<double,3> testcoord={zcoord,hcoord,count};
+ //     TDcoord.push_back(testcoord);
+    CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,1.);
+    AnubisBricks.push_back(newbrick);
+   }
+  }
+ }
+ //   myfile << "coord: " << TDcoord.size() << " , bricks: " << AnubisBricks.size() << "\n";
+ //   for(int i=0;i<TDcoord.size();i++){
+ //    myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << " , count: " << TDcoord[i][2] << "\n";
+ //   }
+ //   myfile.close();
+ Detector myANUBIS(AnubisBricks);
+ return myANUBIS;
+}
+
+//**************	END: DETECTOR IMPLEMENTATION	***************
 
 analysis::analysis() {
     pythia = new Pythia8::Pythia("../xmldoc/", false);
@@ -371,97 +571,34 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinMATHUSLA0{};
     double observedLLPinMATHUSLA1{};
     double observedLLPinMATHUSLA2{};
+    double observedLLPinFASERI{};
+    double observedLLPinFASERII{};
+    double observedLLPinANUBIS0{};
+    double observedLLPinANUBIS1{};
     
     std::ofstream myfile;
     myfile.open ("testres.txt", std::ios_base::app);
     
     // Uncle Simon's MATHUSLA
-    std::array<double,2> AA={68.,60.},BB={168.,60.},CC={168.,85.},DD={68.,85.};
- //   std::array<double,2> AA={68.,60.},BB={68.,60.},CC={68.,585.},DD={68.,85.};
-    std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
-//    CylSeg mathusl1(AA,BB,1),mathusl2(BB,CC,-1),mathusl3(CC,DD,-1),mathusl4(DD,AA,1);
-//    std::vector<CylSeg> mathuslist={mathusl1,mathusl2,mathusl3,mathusl4};
-    double mathusweight=2.*atan(50./60.)/(8.*atan(1.));
-//    CylDetLayer mathuslay(mathuslist,mathusweight);
-    CylDetLayer mathuslay(ptlist,mathusweight);
-    std::vector<CylDetLayer> MathuLayers={mathuslay};
-    Detector MATHUSLA0(MathuLayers);
+    Detector MATHUSLAO=MATHUSLA0();
     
     // Improved MATHUSLA
- // First layer
-    AA={68.,61.4118},BB={168.,61.4118},CC={168.,87.},DD={68.,87.};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.608826/(8.*atan(1.));
-    CylDetLayer mathuslay1(ptlist,mathusweight);
-    std::vector<CylDetLayer> IMathuLayers={mathuslay1};
- // Second layer
-    AA={68.,64.3714},BB={168.,64.3714},CC={168.,91.1928},DD={68.,91.1928};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.245427/(8.*atan(1.));
-    CylDetLayer mathuslay2(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay2);
- // Third layer
-    AA={68.,67.4736},BB={168.,67.4736},CC={168.,95.5876},DD={68.,95.5876};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.183756/(8.*atan(1.));
-    CylDetLayer mathuslay3(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay3);
- // Fourth layer
-    AA={68.,69.811},BB={168.,69.811},CC={168.,98.8988},DD={68.,98.8988};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.069278/(8.*atan(1.));
-    CylDetLayer mathuslay4(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay4);
- // Fifth layer
-    AA={68.,71.7475},BB={168.,71.7475},CC={168.,91.2912},DD={68.,91.2912};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.104765/(8.*atan(1.));
-    CylDetLayer mathuslay5(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay5);
- // Sixth layer
-    AA={68.,74.5886},BB={168.,74.5886},CC={168.,84.2688},DD={68.,84.2688};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.117983/(8.*atan(1.));
-    CylDetLayer mathuslay6(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay6);
- // Seventh layer
-    AA={68.,77.1641},BB={168.,77.1641},CC={168.,79.5382},DD={68.,79.5382};
-    ptlist={AA,BB,CC,DD};
-    mathusweight=0.0594421/(8.*atan(1.));
-    CylDetLayer mathuslay7(ptlist,mathusweight);
-    IMathuLayers.push_back(mathuslay7);
-    Detector MATHUSLA1(IMathuLayers);
+    Detector MATHUSLAI=MATHUSLA1();
     
     // Building MATHUSLA from 3m-high bricks
-    double xmin=-50., xmax=50., ymin=60., ymax=85., dh=3., dphi=0.00785398, zcoord=118., dl=100.;
-    std::vector<CylDetLayer> MathuBricks;
-    MathuBricks.clear();
-    std::vector<std::array<double,2>> TDcoord;
-    TDcoord.clear(); 
-    int hct0=25, phct0=200;
-    for(int hct=0; hct<hct0; hct++){
-     int count=0;
-     double hcoord=40.+hct*dh;
-     for(int phct=0; phct<phct0; phct++){
-      double phcoord=atan(1.)+phct*dphi;
-      double xcoord=-hcoord*cos(phcoord), ycoord=hcoord*sin(phcoord);   
-      if(ycoord>=ymin && ycoord<=ymax && xcoord>=xmin && xcoord<=xmax){
-       count=count+1;
-      }
-     }
-     if(count!=0){
-      std::array<double,2> brkcoord={zcoord,hcoord};
-       TDcoord.push_back(brkcoord);
-      CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,1.);
-      myfile << "dphi: " << count*dphi << "\n";
-      MathuBricks.push_back(newbrick);
-     }
-    }
-    Detector MATHUSLA2(MathuBricks);
-     myfile << "coord: " << TDcoord.size() << " , bricks: " << MathuBricks.size() << "\n";
-    for(int i=0;i<TDcoord.size();i++){
-     myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << "\n";
-    }
+    Detector MATHUSLAB=MATHUSLA2();
+    
+    // FASER
+    Detector FASERI=FASER1();
+    
+    // FASER2
+    Detector FASERII=FASER2();
+    
+    // Uncle Simon's ANUBIS
+    Detector ANUBISO=ANUBIS0();
+    
+    // Building ANUBIS from 1m-high, 1m-deep bricks
+    Detector ANUBISB=ANUBIS1();
 
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
@@ -500,10 +637,14 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
- //   myfile << "testres0: " << MATHUSLA0.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLA1.DetAcc(theta,beta*gamma*ctau) << "\n";
-    observedLLPinMATHUSLA0   += MATHUSLA0.DetAcc(theta,beta*gamma*ctau); 
-    observedLLPinMATHUSLA1   += MATHUSLA1.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinMATHUSLA2   += MATHUSLA2.DetAcc(theta,beta*gamma*ctau);
+ //   myfile << "testres0: " << MATHUSLAO.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLAI.DetAcc(theta,beta*gamma*ctau) << "\n";
+    observedLLPinMATHUSLA0   += MATHUSLAO.DetAcc(theta,beta*gamma*ctau); 
+    observedLLPinMATHUSLA1   += MATHUSLAI.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinMATHUSLA2   += MATHUSLAB.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinFASERI   += FASERI.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinFASERII   += FASERII.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinANUBIS0   += ANUBISO.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinANUBIS1   += ANUBISB.DetAcc(theta,beta*gamma*ctau);
                        }
                 }
             }
@@ -514,7 +655,9 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
         return false;
     }
-    myfile << "testres0: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
+    myfile << "MATHUSLA: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
+    myfile << "FASER: " << observedLLPinFASERI << " , vs.: " << observedLLPinFASER1 << " , FASER2: " << observedLLPinFASERII << " , vs.: " << observedLLPinFASER2 << "\n";
+    myfile << "ANUBIS: " << observedLLPinANUBIS0 << " , vs.: " << observedLLPinANUBIS << " , vs: " << observedLLPinANUBIS1 << "\n";
 
  
     
