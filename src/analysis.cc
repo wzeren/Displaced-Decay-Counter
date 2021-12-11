@@ -478,6 +478,35 @@ Detector ANUBIS1() {
  return myANUBIS;
 }
 
+//	D: AL3X
+
+    // AL3X
+    
+Detector AL3X() {
+ std::array<double,2> AA={5.25,0.85},BB={17.25,0.85},CC={17.25,5.},DD={5.25,5.};       // Corner points
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double alexweight=250./3000.;                                   // relative luminosity
+ CylDetLayer alexlay(ptlist,alexweight);
+ std::vector<CylDetLayer> alexLayers={alexlay};
+ Detector myAL3X(alexLayers);
+ return myAL3X;
+}
+
+//	E: CODEXB
+
+    // Uncle Simon's CODEXB
+    
+Detector CODEXB0() {
+ std::array<double,2> AA={5.,26.},BB={15.,26.},CC={15.,36.},DD={5.,36.};       // Corner points
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double codexweight=2.*atan(5./26.)/(8.*atan(1.));            // Angular aperture
+ codexweight=codexweight*300./3000.;                          // relative luminosity
+ CylDetLayer codexlay(ptlist,codexweight);
+ std::vector<CylDetLayer> codexLayers={codexlay};
+ Detector myCODEXB(codexLayers);
+ return myCODEXB;
+}
+
 //**************	END: DETECTOR IMPLEMENTATION	***************
 
 analysis::analysis() {
@@ -575,6 +604,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinFASERII{};
     double observedLLPinANUBIS0{};
     double observedLLPinANUBIS1{};
+    double observedLLPinAL3X0{};
+    double observedLLPinCODEXB0{};
     
     std::ofstream myfile;
     myfile.open ("testres.txt", std::ios_base::app);
@@ -599,6 +630,12 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     
     // Building ANUBIS from 1m-high, 1m-deep bricks
     Detector ANUBISB=ANUBIS1();
+    
+    // Building AL3X
+    Detector AL3X0=AL3X();
+    
+    // Building a simple CODEXB
+    Detector CODEXBO=CODEXB0();
 
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
@@ -645,6 +682,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     observedLLPinFASERII   += FASERII.DetAcc(theta,beta*gamma*ctau);
     observedLLPinANUBIS0   += ANUBISO.DetAcc(theta,beta*gamma*ctau);
     observedLLPinANUBIS1   += ANUBISB.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinAL3X0   += AL3X0.DetAcc(theta,beta*gamma*ctau);
+    observedLLPinCODEXB0   += CODEXBO.DetAcc(theta,beta*gamma*ctau);
                        }
                 }
             }
@@ -658,6 +697,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     myfile << "MATHUSLA: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
     myfile << "FASER: " << observedLLPinFASERI << " , vs.: " << observedLLPinFASER1 << " , FASER2: " << observedLLPinFASERII << " , vs.: " << observedLLPinFASER2 << "\n";
     myfile << "ANUBIS: " << observedLLPinANUBIS0 << " , vs.: " << observedLLPinANUBIS << " , vs: " << observedLLPinANUBIS1 << "\n";
+    myfile << "AL3X: " << observedLLPinAL3X0 << " , vs.: " << observedLLPinAL3X << " , CODEXB: " << observedLLPinCODEXB0 << " , vs.: " << observedLLPinCODEXb << "\n";
 
  
     
