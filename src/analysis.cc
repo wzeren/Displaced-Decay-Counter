@@ -117,15 +117,6 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 			ctau = pythia->event[i].tau0()/1000.; //conver mm to m
                        ProducedLLP += 1;
                         
-                        //find the mother of the LLP
-                        int mother_index = mother_finder_pythia(i, LLPPID);
-                        //find nLLP:  number of LLPs in each event
-                        nLLP = 0;//initialize to zero at each event i in the loop
-                        for (int j = pythia->event[mother_index].daughter1(); j <= pythia->event[mother_index].daughter2(); j++ ){
-                        	if (abs(pythia->event[j].id())==LLPPID){
-                        		nLLP += 1;
-                        	}
-                        }
                         
                         
                         observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
@@ -155,7 +146,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double sigma = pythia->info.sigmaGen()*1e12; //in fb  
 
     double baseline_int_lumi{3000};// in fb^{-1}
-    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+    //double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+    double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(nEventsMC);
 
 
 
@@ -314,12 +306,6 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 }      
 
 
-int analysis::mother_finder_pythia(int i, int PID){//i is index of a particle in an event record
-		if (abs(pythia->event[pythia->event[i].mother1()].id())==PID){
-			return mother_finder_pythia(pythia->event[i].mother1(), PID);
-		}
-		else {return pythia->event[i].mother1();}//return mother particle index
-}
 
 
 int analysis::LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){

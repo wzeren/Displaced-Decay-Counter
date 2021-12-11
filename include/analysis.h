@@ -69,7 +69,6 @@ private:
     
     double ProducedLLP;
     
-    int mother_finder_pythia(int i, int PID);
 
     int LLPMotherCounter_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
     int nLLP;
