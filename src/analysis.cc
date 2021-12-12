@@ -222,7 +222,6 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 
     // Results
-    std::cout << "nLLP: " << nLLP << '\n';
     std::cout << "mLLP [GeV]: " << mLLP << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
@@ -362,7 +361,6 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
 
     // Results
-    std::cout << "nLLP: " << nLLP << '\n';
     std::cout << "mLLP [GeV]: " << mLLP << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
@@ -393,14 +391,6 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     }
     
 }      
-
-
-int analysis::mother_finder(int i, int PID){//i is index of a particle in an event record
-		if (abs(pythia->event[pythia->event[i].mother1()].id())==PID){
-			return mother_finder(pythia->event[i].mother1(), PID);
-		}
-		else {return pythia->event[i].mother1();}//return mother particle index
-}
 
 
 bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
