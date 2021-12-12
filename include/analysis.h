@@ -67,12 +67,13 @@ private:
     
     double ProducedLLP;
     
-    int mother_finder(int i, int PID);
+
     bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
-    int nLLP;
+
     
     
-    double decayProbabilityAL3X(Pythia8::Particle XXX);
+    //Decay probabilities for the detectors
+    double decayProbabilityAL3X(Pythia8::Particle XXX);//input: pythia particle object, output: decay probability, same below
     double decayProbabilityANUBIS1(Pythia8::Particle XXX);    
     double decayProbabilityANUBIS2(Pythia8::Particle XXX);    
     double decayProbabilityANUBIS3(Pythia8::Particle XXX);  
@@ -83,7 +84,8 @@ private:
     double decayProbabilityMAPP2(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMATHUSLA(Pythia8::Particle XXX);  
 
-    double decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    //Decay probabilities for the detectors
+    double decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p);//input: HepMC particle object, output: decay probability, same below
     double decayProbabilityANUBIS1_hepmc(HepMC::GenEvent::particle_const_iterator p);    
     double decayProbabilityANUBIS2_hepmc(HepMC::GenEvent::particle_const_iterator p);    
     double decayProbabilityANUBIS3_hepmc(HepMC::GenEvent::particle_const_iterator p);  

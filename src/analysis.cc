@@ -16,7 +16,6 @@ analysis::analysis() {
     LLPPID = 0;
     k_factor = 1;
     visibleBR = 1;
-    nLLP = 0;
     ProducedLLP = 0; //total number of produced LLP's in MC
 };    
 
