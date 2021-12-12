@@ -16,6 +16,10 @@
 #include "Pythia8/Pythia.h"
 #include "include/cornerpoint/cubic_detector.h"
 
+#include "HepMC/IO_GenEvent.h"
+#include "HepMC/GenEvent.h"
+//#include "HepMC/ParticleData.h"
+#include "HepMC/SimpleVector.h"
 
 /* This class serves as a generalised C++ framework to embed specific scenarios of 
  * RPV decay scenarios Meson -> Neutralino + X, Neutralino -> Meson + Y.
@@ -29,7 +33,8 @@ class analysis {
 public:
     analysis();
     ~analysis() {};    
-    
+
+    void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
     void setPARTONGENERATION(std::string parton_generation_in) {parton_generation = parton_generation_in;}; 
     void setINPUTPATH(std::string input_path_in) {input_path = input_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
@@ -40,7 +45,7 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
-    
+    bool runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2);
         
 private: 
     
@@ -52,6 +57,7 @@ private:
     double ctau;
     
     std::string parton_generation;
+    std::string input_file_format;
     std::string input_path; 
     int LLPPID; 
     double k_factor;
@@ -60,6 +66,7 @@ private:
     double ProducedLLP;
     
     int mother_finder(int i, int PID);
+    bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
     int nLLP;
     
     
@@ -73,6 +80,17 @@ private:
     double decayProbabilityMAPP1(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMAPP2(Pythia8::Particle XXX, CubicDetector detector);
     double decayProbabilityMATHUSLA(Pythia8::Particle XXX);  
-   
+
+    double decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityANUBIS1_hepmc(HepMC::GenEvent::particle_const_iterator p);    
+    double decayProbabilityANUBIS2_hepmc(HepMC::GenEvent::particle_const_iterator p);    
+    double decayProbabilityANUBIS3_hepmc(HepMC::GenEvent::particle_const_iterator p);  
+    double decayProbabilityCODEXb_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityFASER1_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityFASER2_hepmc(HepMC::GenEvent::particle_const_iterator p);
+    double decayProbabilityMAPP1_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector);
+    double decayProbabilityMAPP2_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector);
+    double decayProbabilityMATHUSLA_hepmc(HepMC::GenEvent::particle_const_iterator p);  
+
 };
 #endif

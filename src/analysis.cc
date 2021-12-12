@@ -526,13 +526,19 @@ analysis::analysis() {
 
 
 bool analysis::initPythia() {
-    try {
+
+  if (input_file_format != "LHE" &&  input_file_format != "cmnd")
+    return false;
+
+  try {
     
-        if (parton_generation == "MG5"){
+    //        if (parton_generation == "MG5"){
+        if (input_file_format == "LHE"){
         	pythia->readString("Beams:frameType = 4");
         	pythia->readString("Beams:LHEF = "+input_path);
         }
-        else if (parton_generation == "PY8"){
+	//        else if (parton_generation == "PY8"){
+	else if (input_file_format == "cmnd"){
   
   		pythia->readFile(input_path);
   	}
@@ -586,6 +592,9 @@ bool analysis::initPythia() {
 
 bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
 
+    if (input_file_format != "LHE" &&  input_file_format != "cmnd")
+      return false;
+  
     ProducedLLP = 0;
     
     
@@ -645,18 +654,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
                     if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {//count LLP  //requiring the last LLP in pythia event record
 			mLLP = pythia->event[i].m0();
 			ctau = pythia->event[i].tau0()/1000.; //conver mm to m
-                       ProducedLLP += 1;
-                        
-                        //find the mother of the LLP
-                        int mother_index = mother_finder(i, LLPPID);
-                        //find nLLP:  number of LLPs in each event
-                        nLLP = 0;//initialize to zero at each event i in the loop
-                        for (int j = pythia->event[mother_index].daughter1(); j <= pythia->event[mother_index].daughter2(); j++ ){
-                        	if (abs(pythia->event[j].id())==LLPPID){
-                        		nLLP += 1;
-                        	}
-                        }
-                        
+			ProducedLLP += 1;
                         
                         observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
                         observedLLPinANUBIS     += decayProbabilityANUBIS1(pythia->event[i])+decayProbabilityANUBIS2(pythia->event[i])+decayProbabilityANUBIS3(pythia->event[i]);
@@ -756,7 +754,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
     std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
     std::cout << '\n';
-    if (parton_generation == "MG5"){
+    if (input_file_format == "MG5"){
     		std::cout << "XS [fb]: " << sigma <<'\n';//in fb
     		std::cout << "visibleBR: " << visibleBR << '\n';
     		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
@@ -787,6 +785,162 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 }
 
 
+bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2) {
+  //JJJ: change to HepMC
+  if (input_file_format == "LHE"){  
+      std::cout << "Zong Pythia still LHE" << std::endl;
+
+    
+      ProducedLLP = 0;
+    
+      double observedLLPinAL3X{};
+      double observedLLPinANUBIS{};
+      double observedLLPinCODEXb{};
+      double observedLLPinFASER1{};
+      double observedLLPinFASER2{};
+      double observedLLPinMAPP1{};
+      double observedLLPinMAPP2{};
+      double observedLLPinMATHUSLA{};
+      
+
+      try{
+	
+	//read the input HepMC file
+	//	input_path = "../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/test.hepmc";
+	//	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
+
+	HepMC::IO_GenEvent ascii_in("/home/jsk/hepmc-llp/llp_all_detectors/example_input/py8/test.hepmc",std::ios::in);
+
+	
+	//select an event
+	HepMC::GenEvent* evt = ascii_in.read_next_event();
+
+
+	//loop over events of this HepMC file
+	while ( evt ){
+
+	  //loop over all partcles in the event evt
+	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
+	    //	    if ( (*p)->pdg_id() == LLPPID && (*p)->is_undecayed() == 1 ) {
+	    if ( (*p)->pdg_id() == LLPPID && (*p)->end_vertex() && (*p)->status() !=0 ) {
+	      mLLP = (*p)->momentum().m();
+	      //	    	ctau = (*p)->momentum().clifetime()/1000.; //convert mm to m
+	      //    ctau = (*p)->clifetime()/1000.; //convert mm to m
+	      	      ProducedLLP += 1;
+
+	      if(isLast_hepmc(p, LLPPID))
+		nLLP += 1;
+
+	      observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
+	      observedLLPinANUBIS     += decayProbabilityANUBIS1_hepmc(p)+decayProbabilityANUBIS2_hepmc(p)+decayProbabilityANUBIS3_hepmc(p);
+	      observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
+	      observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
+	      observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
+	      observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
+	      observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
+	      observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
+	    } //if
+	  } // for
+
+	  ascii_in >> evt;
+	} //while loop
+	
+	
+      }
+      
+      catch(std::exception& e) {
+	std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
+	return false;
+      }
+
+      //JJJ: where to get the cross section? It must be input for hepmc!
+      double sigma = pythia->info.sigmaGen()*1e12; //in fb  
+
+    double baseline_int_lumi{3000};// in fb^{-1}
+    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+
+
+
+    double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP;
+    double reallyobservedLLPinMATHUSLA	= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP;
+
+    double reallyvisibleLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+    double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
+
+
+
+
+
+    // Results
+    std::cout << "nLLP: " << nLLP << '\n';
+    std::cout << "mLLP [GeV]: " << mLLP << '\n';
+    std::cout << "ctau [m]: " << ctau << '\n';
+    std::cout << "produced LLP: " << ProducedLLP << '\n';  
+    std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
+    std::cout << '\n';
+    std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
+    std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
+    std::cout << "  observedLLPinCODEXb: " << observedLLPinCODEXb 	<< '\n';
+    std::cout << "  observedLLPinFASER1: " << observedLLPinFASER1 	<< '\n';
+    std::cout << "  observedLLPinFASER2: " << observedLLPinFASER2 	<< '\n';
+    std::cout << "   observedLLPinMAPP1: " << observedLLPinMAPP1 	<< '\n';
+    std::cout << "   observedLLPinMAPP2: " << observedLLPinMAPP2 	<< '\n';
+    std::cout << "observedLLPinMATHUSLA: " << observedLLPinMATHUSLA	<< '\n';
+    std::cout << '\n';
+    std::cout << "    acceptanceAL3X: " << observedLLPinAL3X / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceANUBIS: " << observedLLPinANUBIS / ProducedLLP	<< '\n';
+    std::cout << "  acceptanceCODEXb: " << observedLLPinCODEXb / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceFASER1: " << observedLLPinFASER1 / ProducedLLP 	<< '\n';
+    std::cout << "  acceptanceFASER2: " << observedLLPinFASER2 / ProducedLLP 	<< '\n';
+    std::cout << "   acceptanceMAPP1: " << observedLLPinMAPP1 / ProducedLLP 	<< '\n';
+    std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
+    std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
+    std::cout << '\n';
+
+    /*  if (input_file_format == "MG5"){
+    		std::cout << "XS [fb]: " << sigma <<'\n';//in fb
+    		std::cout << "visibleBR: " << visibleBR << '\n';
+    		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
+        	std::cout << '\n';
+		std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
+    		std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
+    		std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
+    		std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
+    		std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
+    		std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
+    		std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
+    		std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
+        	std::cout << '\n';
+		std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
+    		std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
+    		std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
+    		std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
+    		std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
+    		std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
+    		std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
+    		std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
+    		std::cout << '\n';
+    }
+    */
+ 
+      return true;
+
+
+    }
+    
+}      
 
 
 int analysis::mother_finder(int i, int PID){//i is index of a particle in an event record
@@ -794,6 +948,26 @@ int analysis::mother_finder(int i, int PID){//i is index of a particle in an eve
 			return mother_finder(pythia->event[i].mother1(), PID);
 		}
 		else {return pythia->event[i].mother1();}//return mother particle index
+}
+
+
+bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
+  if( (*p)->end_vertex() ){
+    
+    //    for ( HepMC::GenVertex::particle_iterator daughters =(*p)->end_vertex()->particles_begin(HepMC::descendants);daughters != (*p)->end_vertex()->particles_end(HepMC::descendants);++daughters ) {
+
+    HepMC::GenVertex::particle_iterator daughters =(*p)->end_vertex()->particles_begin(HepMC::descendants);
+    if(daughters != (*p)->end_vertex()->particles_end(HepMC::descendants) )
+    {
+      if((*daughters)->pdg_id() !=PID){
+	return true;
+      }
+      else
+	return false;
+    }
+    return false;
+  }
+  return false;
 }
 
 
@@ -1118,4 +1292,343 @@ double analysis::decayProbabilityMATHUSLA(Pythia8::Particle XXX) {
 
 
 
+
+//------------------------------------------
+// now the hepmc implementations
+// JJJ: you must check the units MM or CM and GEV or MEV for hepmc
+
+//AL3X proposal 1810.03636
+double analysis::decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double L_D = 5.25;//horizontal distance from the IP to the detector: 5.25m (4.25+1 = 5.25m)
+    const double L_L = 0.85;//vertical distance from the IP to the detector: 0.85m. (the inner radius)
+    const double L_d = 12.; // length of the detector is 12m.
+    const double L_H = 4.15; //height of the detector is 4.15m  (as 4.15+0.85 = 5m, the outer radius)
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }   
+    double L1 = std::min(std::max(L_D,L_L/tan(theta)), L_D + L_d);
+    double L2 = std::min(std::max(L_D,(L_L + L_H)/tan(theta)), L_D + L_d) - L1;
+    if (L_L/tan(theta) >= L_D+L_d) // theta too small, neutralino flying too lowly
+        return 0;
+    if ((L_L + L_H)/tan(theta) <= L_D) //theta too large, neutralino flying too highly
+        return 0;
+ 
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:            
+    double decayprobability{};
+	decayprobability=250./3000.*exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); 
+
+    return  decayprobability;
+}   
+
+
+
+double analysis::decayProbabilityANUBIS1_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double dh = 5.0;//horizontal distance from the IP to the detector
+    const double dv = 24.0;//vertical distance from the IP to the detector
+    const double lh = 18.0; // width/length of the detector
+    const double lv = 56.0; //height of the detector
+    const double lvseg = lv/3.0;//height of each of the three equal segments of the detector
+
+
+    // Identify the kinematic properties of the neutralino
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }      
+    double L1 = std::min(std::max(dh,dv/tan(theta)), dh + lh);
+    double L2 = std::min(std::max(dh,(dv + lvseg)/tan(theta)), dh + lh) - L1;
+    if (dv/tan(theta) >= dh+lh) // theta too small, neutralino flying too lowly
+        return 0;
+    if ((dv + lvseg)/tan(theta) <= dh) //theta too large, neutralino flying too highly
+        return 0;
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:         
+    double decayprobability{};   
+	decayprobability=0.083942 * exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); //2*ArcTan[(lh/2)/(lvseg*1/2 + dv)]/(2 \[Pi]) = 0.083942
+
+
+    return  decayprobability; 
+}
+
+
+double analysis::decayProbabilityANUBIS2_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double dh = 5.0;//horizontal distance from the IP to the detector
+    const double dv = 24.0;//vertical distance from the IP to the detector
+    const double lh = 18.0; // width/length of the detector
+    const double lv = 56.0; //height of the detector
+    const double lvseg = lv/3.0;//height of each of the three equal segments of the detector
+
+
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }      
+    double L1 = std::min(std::max(dh,(dv + lvseg)/tan(theta)), dh + lh);
+    double L2 = std::min(std::max(dh,(dv + 2.0*lvseg)/tan(theta)), dh + lh) - L1;
+    if ((dv + lvseg)/tan(theta) >= dh+lh) // theta too small, neutralino flying too lowly
+        return 0;
+    if ((dv + 2.0*lvseg)/tan(theta) <= dh) //theta too large, neutralino flying too highly
+        return 0;
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:         
+    double decayprobability{};
+	decayprobability=0.0545517 * exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); //2*ArcTan[(lh/2)/(lvseg*3/2 + dv)]/(2 \[Pi]) = 0.0545517
+
+
+    return  decayprobability;          
+}
+
+double analysis::decayProbabilityANUBIS3_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double dh = 5.0;//horizontal distance from the IP to the detector
+    const double dv = 24.0;//vertical distance from the IP to the detector
+    const double lh = 18.0; // width/length of the detector
+    const double lv = 56.0; //height of the detector
+    const double lvseg = lv/3.0;//height of each of the three equal segments of the detector
+
+
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }      
+    double L1 = std::min(std::max(dh,(dv + 2.0*lvseg)/tan(theta)), dh + lh);
+    double L2 = std::min(std::max(dh,(dv + 3.0*lvseg)/tan(theta)), dh + lh) - L1;
+    if ((dv + 2.0*lvseg)/tan(theta) >= dh+lh) // theta too small, neutralino flying too lowly
+        return 0;
+    if ((dv + 3.0*lvseg)/tan(theta) <= dh) //theta too large, neutralino flying too highly
+        return 0;
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:        
+    double  decayprobability{};
+	decayprobability=0.0403224 * exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); //2*ArcTan[(lh/2)/(lvseg*5/2 + dv)]/(2 \[Pi]) = 0.0403224
+
+
+    return  decayprobability;           
+}
+
+
+//CODEX-b proposal paper: 1708.09395. Layout illustrated in Fig.1.
+double analysis::decayProbabilityCODEXb_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+
+
+  const double L_D = 25.; //distance from the IP to the detector is ~25m
+    const double L_d = 10.; //length of the detector is ~10m.  Not very much exact, but it is the way the original paper handles the probability.
+
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }   
+    if ( (eta < 0.2) || (eta > 0.6) )   //coverage of the pesudo-rapidity of CODEX-b is [0.2,0.6]. 
+        return 0;
+   
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:        
+    double  decayprobability{};
+	decayprobability=300./3000.*0.4/3.1415926/2. * exp(-L_D/(beta*gamma*ctau)) * (1. - exp(-L_d/(beta*gamma*ctau))); //  0.4/3.1415926/2 comes from phi coverage: 0.4 / 2pi. Here we use beta instead of beta_z, as we treat the detector as a cone whose tip sits at the IP.//300/3000 for 300/fb / 3000/fb int lumi at LHCb
+
+    return  decayprobability;           
+}
+
+
+//FASER: PhysRevD.99.095011
+double analysis::decayProbabilityFASER1_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double D_TARG_DET = 478.5; // distance from the IP to the near end of FASER2
+    const double L_DET = 1.5; //length of detector
+    const double Radius = 0.1; //radius
+    
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    
+    double z_esc_det = Radius/tan(theta);
+
+    // New conservative guess: The LLP must fly right into the detector to be reconstructed
+    if(z_esc_det < D_TARG_DET + L_DET)
+      return 0;
+
+    // The probability that the LLP would decay in the detector is then as follows (Decay law:            
+    double  decayprobability{};
+	decayprobability=150./3000.*exp(-D_TARG_DET/(beta_z*gamma*ctau)) * (1. - exp(-L_DET/(beta_z*gamma*ctau))); //150 /fb int lumi
+
+    return  decayprobability;       
+}
+
+double analysis::decayProbabilityFASER2_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double D_TARG_DET = 475.; // distance from the IP to the near end of FASER2
+    const double L_DET = 5.; //length of detector
+    const double Radius = 1.; //radius: 1m
+    
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+    double z_esc_det = Radius/tan(theta);
+    // New conservative guess: The LLP must fly right into the detector to be reconstructed
+    if(z_esc_det < D_TARG_DET + L_DET)
+      return 0;
+
+    // The probability that the LLP would decay in the detector is then as follows (Decay law:               
+    double  decayprobability{};
+	decayprobability=exp(-D_TARG_DET/(beta_z*gamma*ctau)) * (1. - exp(-L_DET/(beta_z*gamma*ctau)));
+
+    return  decayprobability;    
+}
+
+
+
+double analysis::decayProbabilityMAPP1_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector) {
+    /*
+    const double L_D = 25.*widthCalculator::me; //distance from the IP to the detector is ~25m
+    const double L_d = 10.*widthCalculator::me; //length of the detector is ~10m.  Not very much exact, but it is the way the original paper handles the probability.
+    */
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    Vertex interactionPoint(0.0,0.0,0.0, "Cartesian");
+    Vertex eventDirection(1.0, theta, phi ,"Spherical");
+    Line eventLine(interactionPoint,eventDirection);
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }
+    if ( !detector.isDetectorHit(eventLine) )
+        return 0;
+
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:       
+    double  decayprobability{};
+	decayprobability= 30./3000.*exp(-detector.lengthToDetector(eventLine)/(beta*gamma*ctau)) * (1. - exp(-detector.lengthInDetector(eventLine)/(beta*gamma*ctau)));//30/fb
+    
+    return  decayprobability;
+    
+}
+
+double analysis::decayProbabilityMAPP2_hepmc(HepMC::GenEvent::particle_const_iterator p, CubicDetector detector) {
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    
+    Vertex interactionPoint(0.0,0.0,0.0, "Cartesian");
+    Vertex eventDirection(1.0, theta, phi ,"Spherical");
+    Line eventLine(interactionPoint,eventDirection); 
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }   
+    if ( !detector.isDetectorHit(eventLine) )  
+        return 0;
+   
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:        
+    double  decayprobability{};
+	decayprobability=300./3000.*exp(-detector.lengthToDetector(eventLine)/(beta*gamma*ctau)) * (1. - exp(-detector.lengthInDetector(eventLine)/(beta*gamma*ctau))); //300/fb
+
+    return  decayprobability;           
+}
+
+
+//MATHUSLA  2009.01693
+double analysis::decayProbabilityMATHUSLA_hepmc(HepMC::GenEvent::particle_const_iterator p) {
+    const double L_D = 68.;//horizontal distance from the IP to the detector
+    const double L_L = 60.;//vertical distance from the IP to the detector
+    const double L_d = 100.; // length of the detector
+    const double L_H = 25.; //height of the detector
+    // Identify the kinematic properties of the neutralino
+    //Pythia always calculates in GeV
+
+    double gamma = (*p)->momentum().e()/(mLLP);
+    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+    double phi = (*p)->momentum().phi();           
+    double eta = (*p)->momentum().eta(); 
+
+    if (tan(theta) == 0.0) {
+        std::cout << "The impossible happened!" << std::endl;
+        return 0;
+    }   
+    double L1 = std::min(std::max(L_D,L_L/tan(theta)), L_D + L_d);
+    double L2 = std::min(std::max(L_D,(L_L + L_H)/tan(theta)), L_D + L_d) - L1;
+    if (L_L/tan(theta) >= L_D+L_d) // theta too small, neutralino flying too lowly
+        return 0;
+    if ((L_L + L_H)/tan(theta) <= L_D) //theta too large, neutralino flying too highly
+        return 0;
+    // The probability that the neutralino would decay in the detector is then as follows (Decay law:        
+    double  decayprobability{};
+	decayprobability=0.221142*exp(-L1/(beta_z*gamma*ctau)) * (1. - exp(-L2/(beta_z*gamma*ctau))); //For MATHUSLA at CMS   the azimuthal coverage is ArcTan[50/60]*2   /(2 \[Pi]) = 0.221142
+
+
+    return  decayprobability;           
+}   
+
+
+//hepmc decay probability functions:
 

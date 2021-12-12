@@ -13,7 +13,8 @@
 int main(int argc, char* argv[]) {
   try{
   //JJJ: clean up the initialisation
-  std::string parton_generation{};
+  std::string input_file_format;
+  //std::string parton_generation{};
   std::string input_path{};
   int LLPPID{0};
   int nMC{0};
@@ -21,7 +22,8 @@ int main(int argc, char* argv[]) {
   double visibleBR {1.};
   
   if(argc == 7){
-    parton_generation= charToString(argv[1]);  
+    //parton_generation= charToString(argv[1]);
+    input_file_format= charToString(argv[1]);
     input_path= charToString(argv[2]);  
     LLPPID = atof(argv[3]); 
     nMC = atof(argv[4]); 
@@ -40,7 +42,8 @@ int main(int argc, char* argv[]) {
     if (inputfile.is_open()){
       temp.clear();
       inputfile >> temp;
-      parton_generation = temp;
+      //      parton_generation = temp;
+      input_file_format = temp;
       temp.clear();
       inputfile >> input_path;
       temp.clear();
@@ -83,7 +86,8 @@ int main(int argc, char* argv[]) {
       exit(1);
   }
   
-  std::cout << "parton event generation: " << parton_generation << std::endl;   
+  //std::cout << "parton event generation: " << parton_generation << std::endl;
+   std::cout << "input file format: " << input_file_format << std::endl;   
     std::cout << "input file path: " << input_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
     std::cout << "nMC: " << nMC << std::endl;   
@@ -147,7 +151,8 @@ int main(int argc, char* argv[]) {
     analysis mychecker;
     
     mychecker.setVerbose();
-    mychecker.setPARTONGENERATION(parton_generation);
+    //    mychecker.setPARTONGENERATION(parton_generation);
+    mychecker.setINPUTFILEFORMAT(input_file_format);
     mychecker.setINPUTPATH(input_path);
     mychecker.setLLPPID(LLPPID);
     mychecker.setKFACTOR(k_factor);
@@ -157,13 +162,22 @@ int main(int argc, char* argv[]) {
         return 1;
     if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
         return 1;
+
+     //JJJ: this must be user input
+    double ctau = 1.155;
+
+    //std::cout << "Zong" << std::endl;
+    
+    if (!mychecker.runHepMC(nMC, ctau,  MAPP1,MAPP2))
+        return 1;
+    
     return 0;
 
 
   }
   catch (...)
   {
-    std::cout << "Desaster!!! " << '\n';
+    std::cout << "Disaster!!! " << '\n';
     return 1;
   }
   
