@@ -787,9 +787,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2) {
   //JJJ: change to HepMC
-  if (input_file_format == "LHE"){  
-      std::cout << "Zong Pythia still LHE" << std::endl;
-
+  if (input_file_format == "HEPMC"){  
     
       ProducedLLP = 0;
     
@@ -821,31 +819,23 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 
 	  //loop over all partcles in the event evt
 	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
-	    //	    if ( (*p)->pdg_id() == LLPPID && (*p)->is_undecayed() == 1 ) {
-	    if ( (*p)->pdg_id() == LLPPID && (*p)->end_vertex() && (*p)->status() !=0 ) {
+	    if(isLast_hepmc(p, LLPPID)){
 	      mLLP = (*p)->momentum().m();
-	      //	    	ctau = (*p)->momentum().clifetime()/1000.; //convert mm to m
-	      //    ctau = (*p)->clifetime()/1000.; //convert mm to m
-	      	      ProducedLLP += 1;
-
-	      if(isLast_hepmc(p, LLPPID))
-		nLLP += 1;
-
-	      observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
-	      observedLLPinANUBIS     += decayProbabilityANUBIS1_hepmc(p)+decayProbabilityANUBIS2_hepmc(p)+decayProbabilityANUBIS3_hepmc(p);
-	      observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
-	      observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
-	      observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
-	      observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
-	      observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
-	      observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
-	    } //if
+	      ProducedLLP += 1;
+	    }
+	      
+	    observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
+	    observedLLPinANUBIS     += decayProbabilityANUBIS1_hepmc(p)+decayProbabilityANUBIS2_hepmc(p)+decayProbabilityANUBIS3_hepmc(p);
+	    observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
+	    observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
+	    observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
+	    observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
+	    observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
+	    observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
 	  } // for
 
 	  ascii_in >> evt;
 	} //while loop
-	
-	
       }
       
       catch(std::exception& e) {
