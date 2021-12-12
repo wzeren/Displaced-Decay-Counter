@@ -74,9 +74,9 @@ int main(int argc, char* argv[]) {
     }
   }
   else{
-    std::cout << "./main parton-event-generation input-path LLPPID nMC K-factor visible-BR" << std::endl;
-    std::cout << "   - parton-event-generation: MG5 or PY8" << std::endl;        
-    std::cout << "   - input-path: LHE file for MG5, cmnd file for PY8" << std::endl;        
+    std::cout << "./main event-generation-method input-path LLPPID nMC K-factor visible-BR" << std::endl;
+    std::cout << "   - event-generation-method: LHE, HEPMC or PY8" << std::endl;        
+    std::cout << "   - input-path: LHE/HEPMC file for LHE/HEPMC, cmnd file for PY8" << std::endl;        
     std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
     std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
     std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
