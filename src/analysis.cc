@@ -703,7 +703,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double sigma = pythia->info.sigmaGen()*1e12; //in fb  
 
     double baseline_int_lumi{3000};// in fb^{-1}
-    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+    //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+    double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(nEventsMC);
 
 
 
@@ -813,10 +814,10 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	//select an event
 	HepMC::GenEvent* evt = ascii_in.read_next_event();
 
-
+	nEventsMC = 0;
 	//loop over events of this HepMC file
 	while ( evt ){
-
+	  ++nEventsMC;
 	  //loop over all partcles in the event evt
 	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
 	    if(isLast_hepmc(p, LLPPID)){
@@ -847,8 +848,8 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
       double sigma = pythia->info.sigmaGen()*1e12; //in fb  
 
     double baseline_int_lumi{3000};// in fb^{-1}
-    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
-
+    //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
+    double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(nEventsMC);
 
 
     double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
