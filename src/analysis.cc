@@ -178,8 +178,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
                        }
                 }
             }
- //       if(verbose)
- //           pythia->stat();   
+       if(verbose)
+            pythia->stat();   
     }  
     catch(std::exception& e) {
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
@@ -231,7 +231,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "mass [GeV]: " << mass << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
-    std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
+    std::cout << "produced LLP/NMC: " << ProducedLLP/double(std::min(nEvent,nEventsMC)) << '\n';
     std::cout << '\n';
     std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
     std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
@@ -379,7 +379,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     std::cout << "mass [GeV]: " << mass << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
-    std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
+    std::cout << "produced LLP/NMC: " << ProducedLLP/double(std::min(iEvent,nEventsMC)) << '\n';
     std::cout << '\n';
     std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
     std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
