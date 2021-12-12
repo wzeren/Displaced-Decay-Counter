@@ -10,10 +10,14 @@
 #include "fstream"
 #include "include/main.h"
 
+class myexception defaultEx;
 
+int die(std::string output){
+  std::cout << output << std::endl;
+  throw defaultEx;
+}
 
 //./main  input_file_format    input_file_path    LLPPID    mass    ctau     sigma     BR_vis      NMC
-
 
 int main(int argc, char* argv[]) {
   try{
