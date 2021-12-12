@@ -4,10 +4,10 @@
 #include "include/CCylDetLayer.h"
 #include "include/CDetector.h"
 #include "include/detectors.h"
+#include "include/main.h"
 #include <iostream>
 #include <fstream>
 
-//#include "include/main.h"
 
 analysis::analysis() {
     pythia = new Pythia8::Pythia("../xmldoc/", false);
@@ -200,7 +200,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     
     int nEvent = pythia->mode("Main:numberOfEvents");//number of events contained in the sample
     if (nEvent < nEventsMC){
-    	//die("Event sample containts fewer events than given by user!");
+    	die("Event sample containts fewer events than given by user!");
     }
     double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(std::min(nEvent,nEventsMC));
 
@@ -351,7 +351,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
     
     if (iEvent < nEventsMC){
-    	//die("Event sample containts fewer events than given by user!");
+    	die("Event sample containts fewer events than given by user!");
     }
     double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(std::min(iEvent,nEventsMC));
     
