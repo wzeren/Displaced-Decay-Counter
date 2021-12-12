@@ -7,31 +7,33 @@
 #include <iostream>
 #include <fstream>
 
+//#include "include/main.h"
 
 analysis::analysis() {
     pythia = new Pythia8::Pythia("../xmldoc/", false);
     verbose = false;
-    mLLP = 0;  //LLP mass in GeV 
+    mass = 0;  //LLP mass in GeV 
     ctau = 0;//LLP ctau in m
     LLPPID = 0;
-    k_factor = 1;
+    sigma = 1;
     visibleBR = 1;
+    nMC = 0;
     ProducedLLP = 0; //total number of produced LLP's in MC
 };    
 
 bool analysis::initPythia() {
 
-  if (input_file_format != "LHE" &&  input_file_format != "cmnd")
+  if (input_file_format != "LHE" &&  input_file_format != "CMND")
     return false;
 
   try {
         if (input_file_format == "LHE"){
         	pythia->readString("Beams:frameType = 4");
-        	pythia->readString("Beams:LHEF = "+input_path);
+        	pythia->readString("Beams:LHEF = "+input_file_path);
         }
-	else if (input_file_format == "cmnd"){
+	else if (input_file_format == "CMND"){
   
-  		pythia->readFile(input_path);
+  		pythia->readFile(input_file_path);
   	}
   	//allow for very long-lived particles
   	pythia->readString("ResonanceWidths:minWidth = 1.97e-30");
@@ -82,7 +84,7 @@ bool analysis::initPythia() {
 
 bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
 
-    if (input_file_format != "LHE" &&  input_file_format != "cmnd")
+    if (input_file_format != "LHE" &&  input_file_format != "CMND")
       return false;
   
     ProducedLLP = 0;
@@ -135,15 +137,16 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     
     // Building a simple CODEXB
     Detector CODEXBO=CODEXB0();
-
+  
+  
     try{
         for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
                 if (!pythia->next()) continue;
                 // Check the list of final state particles
                 for (int i = 0; i < pythia->event.size(); ++i) {
                     if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {//count LLP  //requiring the last LLP in pythia event record
-			mLLP = pythia->event[i].m0();
-			ctau = pythia->event[i].tau0()/1000.; //conver mm to m
+			//mass = pythia->event[i].m0();
+			//ctau = pythia->event[i].tau0()/1000.; //conver mm to m
 			ProducedLLP += 1;
                         
                         observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
@@ -156,9 +159,9 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
                         observedLLPinMATHUSLA   += decayProbabilityMATHUSLA(pythia->event[i]);
                         
     Pythia8::Particle XXX=pythia->event[i];
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
@@ -182,6 +185,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
         std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
         return false;
     }
+    
     myfile << "MATHUSLA: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
     myfile << "FASER: " << observedLLPinFASERI << " , vs.: " << observedLLPinFASER1 << " , FASER2: " << observedLLPinFASERII << " , vs.: " << observedLLPinFASER2 << "\n";
     myfile << "ANUBIS: " << observedLLPinANUBIS0 << " , vs.: " << observedLLPinANUBIS << " , vs: " << observedLLPinANUBIS1 << "\n";
@@ -190,12 +194,15 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
  
     
 
-    double sigma = pythia->info.sigmaGen()*1e12; //in fb  
+    //double sigma = pythia->info.sigmaGen()*1e12; //in fb  
 
     double baseline_int_lumi{3000};// in fb^{-1}
-    //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
-    double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(nEventsMC);
-
+    
+    int nEvent = pythia->mode("Main:numberOfEvents");//number of events contained in the sample
+    if (nEvent < nEventsMC){
+    	//die("Event sample containts fewer events than given by user!");
+    }
+    double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(std::min(nEvent,nEventsMC));
 
 
     double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
@@ -221,7 +228,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 
     // Results
-    std::cout << "mLLP [GeV]: " << mLLP << '\n';
+    std::cout << "mass [GeV]: " << mass << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';
@@ -244,7 +251,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
     std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
     std::cout << '\n';
-    if (input_file_format == "MG5"){
+    if (input_file_format == "LHE"){
     		std::cout << "XS [fb]: " << sigma <<'\n';//in fb
     		std::cout << "visibleBR: " << visibleBR << '\n';
     		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
@@ -291,6 +298,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
       double observedLLPinMATHUSLA{};
       
 
+      int iEvent = 0;//count number of events in the sample
       try{
 	
 	//read the input HepMC file
@@ -298,19 +306,19 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	//	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
 
 	//	HepMC::IO_GenEvent ascii_in("/home/jsk/hepmc-llp/llp_all_detectors/example_input/py8/test.hepmc",std::ios::in);
-	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
+	HepMC::IO_GenEvent ascii_in(input_file_path,std::ios::in);
 	
 	//select an event
 	HepMC::GenEvent* evt = ascii_in.read_next_event();
 
-	nEventsMC = 0;
+
 	//loop over events of this HepMC file
 	while ( evt ){
-	  ++nEventsMC;
+	iEvent++;
 	  //loop over all partcles in the event evt
 	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
 	    if(isLast_hepmc(p, LLPPID)){
-	      mLLP = (*p)->momentum().m();
+	      //mass = (*p)->momentum().m();
 	      ProducedLLP += 1;
 	    }
 	      
@@ -325,6 +333,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	  } // for
 
 	  ascii_in >> evt;
+	  if  (iEvent < nEventsMC) break;
 	} //while loop
       }
       
@@ -334,12 +343,19 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
       }
 
       //JJJ: where to get the cross section? It must be input for hepmc!
-      double sigma = pythia->info.sigmaGen()*1e12; //in fb  
+      //double sigma = pythia->info.sigmaGen()*1e12; //in fb  
+      
+      
 
     double baseline_int_lumi{3000};// in fb^{-1}
     //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
-    double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(nEventsMC);
-
+    
+    if (iEvent < nEventsMC){
+    	//die("Event sample containts fewer events than given by user!");
+    }
+    double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(std::min(iEvent,nEventsMC));
+    
+    
 
     double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
     double reallyobservedLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP;
@@ -360,7 +376,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
 
     // Results
-    std::cout << "mLLP [GeV]: " << mLLP << '\n';
+    std::cout << "mass [GeV]: " << mass << '\n';
     std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(nEventsMC) << '\n';

@@ -23,12 +23,9 @@
 //#include "HepMC/ParticleData.h"
 #include "HepMC/SimpleVector.h"
 
-/* This class serves as a generalised C++ framework to embed specific scenarios of 
- * RPV decay scenarios Meson -> Neutralino + X, Neutralino -> Meson + Y.
- * The user just dictates the scenario to be considered and this class collects the respective
- * masses, decay constants, calculates the respective partial widths and lifetimes and runs Pythia to 
- * numerically find the number of observable neutralino decays.
- */
+
+
+ 
 
 
 class analysis {
@@ -37,10 +34,11 @@ public:
     ~analysis() {};    
 
     void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
-    void setPARTONGENERATION(std::string parton_generation_in) {parton_generation = parton_generation_in;}; 
-    void setINPUTPATH(std::string input_path_in) {input_path = input_path_in;}; 
+    void setINPUTFILEPATH(std::string input_file_path_in) {input_file_path = input_file_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
-    void setKFACTOR(double k_factor_in) {k_factor = k_factor_in;};
+    void setMASS(double mass_in) {mass = mass_in;};
+    void setCTAU(double ctau_in) {ctau = ctau_in;};
+    void setSIGMA(double sigma_in) {sigma = sigma_in;};
     void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
     void setVerbose() {verbose = true;};
     
@@ -55,20 +53,21 @@ private:
     Pythia8::Pythia* pythia; 
     bool verbose; //< declares amount of Information Pythia writes
     
-    double mLLP; // given in GeV
-    double ctau;
+
     
-    std::string parton_generation;
     std::string input_file_format;
-    std::string input_path; 
+    std::string input_file_path; 
     int LLPPID; 
-    double k_factor;
+    int nMC;
+    double mass;
+    double ctau;
+    double sigma;
     double visibleBR;
     
     double ProducedLLP;
     
 
-    bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);
+    bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);//input: HepMC particle and PID, output: check if the input is the last particle that "decays to itself"
 
     
     

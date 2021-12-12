@@ -8,9 +8,9 @@ double analysis::decayProbabilityAL3X(Pythia8::Particle XXX) {
     const double L_H = 4.15; //height of the detector is 4.15m  (as 4.15+0.85 = 5m, the outer radius)
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
@@ -44,9 +44,9 @@ double analysis::decayProbabilityANUBIS1(Pythia8::Particle XXX) {
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = fabs(XXX.pz()/XXX.e());
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
 
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();     
@@ -80,9 +80,9 @@ double analysis::decayProbabilityANUBIS2(Pythia8::Particle XXX) {
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = fabs(XXX.pz()/XXX.e());
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
 
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();     
@@ -115,9 +115,9 @@ double analysis::decayProbabilityANUBIS3(Pythia8::Particle XXX) {
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = fabs(XXX.pz()/XXX.e());
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
 
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();     
@@ -148,9 +148,9 @@ double analysis::decayProbabilityCODEXb(Pythia8::Particle XXX) {
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta();      
@@ -178,9 +178,9 @@ double analysis::decayProbabilityFASER1(Pythia8::Particle XXX) {
     
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta();      
@@ -204,9 +204,9 @@ double analysis::decayProbabilityFASER2(Pythia8::Particle XXX) {
     
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta();      
@@ -232,9 +232,9 @@ double analysis::decayProbabilityMAPP1(Pythia8::Particle XXX, CubicDetector dete
     */
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
@@ -261,9 +261,9 @@ double analysis::decayProbabilityMAPP1(Pythia8::Particle XXX, CubicDetector dete
 double analysis::decayProbabilityMAPP2(Pythia8::Particle XXX, CubicDetector detector) {
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta();   
@@ -295,9 +295,9 @@ double analysis::decayProbabilityMATHUSLA(Pythia8::Particle XXX) {
     const double L_H = 25.; //height of the detector
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = XXX.e()/(mLLP);
+    double gamma = XXX.e()/(mass);
     double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mLLP/XXX.e(), 2));
+    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
     double theta = XXX.p().theta();            
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 

@@ -10,25 +10,33 @@
 #include "fstream"
 #include "include/main.h"
 
+
+
+//./main  input_file_format    input_file_path    LLPPID    mass    ctau     sigma     BR_vis      NMC
+
+
 int main(int argc, char* argv[]) {
   try{
   //JJJ: clean up the initialisation
-  std::string input_file_format;
+  std::string input_file_format{};
   //std::string parton_generation{};
-  std::string input_path{};
-  int LLPPID{0};
-  int nMC{0};
-  double k_factor {1.};
+  std::string input_file_path{};
+  int LLPPID{};
+  double mass{};
+  double ctau{};
+  double sigma{};
   double visibleBR {1.};
+  int nMC{};
   
-  if(argc == 7){
-    //parton_generation= charToString(argv[1]);
+  if(argc == 9){
     input_file_format= charToString(argv[1]);
-    input_path= charToString(argv[2]);  
+    input_file_path= charToString(argv[2]);  
     LLPPID = atof(argv[3]); 
-    nMC = atof(argv[4]); 
-    k_factor = atof(argv[5]); 
-    visibleBR = atof(argv[6]); 
+    mass = atof(argv[4]);
+    ctau = atof(argv[5]);
+    sigma = atof(argv[6]); 
+    visibleBR = atof(argv[7]); 
+    nMC = atof(argv[8]); 
   }
   //JJJ: do sanity checks of the input
   //JJJ: throw exceptions!
@@ -42,10 +50,9 @@ int main(int argc, char* argv[]) {
     if (inputfile.is_open()){
       temp.clear();
       inputfile >> temp;
-      //      parton_generation = temp;
       input_file_format = temp;
       temp.clear();
-      inputfile >> input_path;
+      inputfile >> input_file_path;
       temp.clear();
       inputfile >> temp;
       if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
@@ -53,20 +60,30 @@ int main(int argc, char* argv[]) {
       LLPPID = atoi(temp.c_str());
       temp.clear();
       inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
 	die("Input is invalid!");
-      nMC = atoi(temp.c_str());
+      mass = stod(temp);
       temp.clear();
       inputfile >> temp;
       if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
 	die("Input is invalid!");
-      k_factor = stod(temp);
+      ctau = stod(temp);
+      temp.clear();
+      inputfile >> temp;
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
+	die("Input is invalid!");
+      sigma = stod(temp);
       temp.clear();
       inputfile >> temp;
       if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
 	die("Input is invalid!");
       visibleBR = stod(temp);     
       inputfile.close();
+      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
+	die("Input is invalid!");
+      nMC = atoi(temp.c_str());
+      temp.clear();
+      inputfile >> temp;
     }
     else{
       std::cout << filename + " cannot be opened.";
@@ -74,25 +91,29 @@ int main(int argc, char* argv[]) {
     }
   }
   else{
-    std::cout << "./main event-generation-method input-path LLPPID nMC K-factor visible-BR" << std::endl;
-    std::cout << "   - event-generation-method: LHE, HEPMC or PY8" << std::endl;        
-    std::cout << "   - input-path: LHE/HEPMC file for LHE/HEPMC, cmnd file for PY8" << std::endl;        
-    std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;  
+    std::cout << "./main input_file_format input_file_path LLPPID mass ctau sigma BR_vis NMC" << std::endl;
+    std::cout << "   - input_file_format: LHE, HEPMC or CMND" << std::endl;        
+    std::cout << "   - input_file_path: LHE/HEPMC file for LHE/HEPMC, cmnd file for PY8" << std::endl;        
+    std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;   
+    std::cout << "   - mass: LLP mass in GeV" << std::endl;   
+    std::cout << "   - ctau: LLP ctau in meter" << std::endl;  
+    std::cout << "   - sigma: production cross section in fb" << std::endl;  
+    std::cout << "   - BR_vis: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
     std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
-    std::cout << "   - K-factor: rescaling the production cross section according to higher-order computation or experimental measurement" << std::endl;
-    std::cout << "   - visible-BR: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
     std::cout << std::endl << std::endl;
     std::cout << "./main input.dat" << std::endl;
       exit(1);
   }
   
   //std::cout << "parton event generation: " << parton_generation << std::endl;
-   std::cout << "input file format: " << input_file_format << std::endl;   
-    std::cout << "input file path: " << input_path << std::endl;   
+   std::cout <<  "input_file_format: " << input_file_format << std::endl;   
+    std::cout << "input_file_path: " << input_file_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
+    std::cout << "mass: " << mass << std::endl;
+    std::cout << "ctau: " << ctau << std::endl;
+    std::cout << "sigma: " << sigma << std::endl;
+    std::cout << "BR_vis: " << visibleBR << std::endl; 
     std::cout << "nMC: " << nMC << std::endl;   
-    std::cout << "K-factor: " << k_factor << std::endl; 
-    std::cout << "visible-BR: " << visibleBR << std::endl; 
     
     
    
@@ -151,11 +172,12 @@ int main(int argc, char* argv[]) {
     analysis mychecker;
     
     mychecker.setVerbose();
-    //    mychecker.setPARTONGENERATION(parton_generation);
     mychecker.setINPUTFILEFORMAT(input_file_format);
-    mychecker.setINPUTPATH(input_path);
+    mychecker.setINPUTFILEPATH(input_file_path);
     mychecker.setLLPPID(LLPPID);
-    mychecker.setKFACTOR(k_factor);
+    mychecker.setMASS(mass);
+    mychecker.setCTAU(ctau);
+    mychecker.setSIGMA(sigma);
     mychecker.setVISIBLEBR(visibleBR);
 
     if (!mychecker.initPythia())
@@ -163,8 +185,7 @@ int main(int argc, char* argv[]) {
     if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
         return 1;
 
-     //JJJ: this must be user input
-    double ctau = 1.155;
+
 
     //std::cout << "Zong" << std::endl;
     

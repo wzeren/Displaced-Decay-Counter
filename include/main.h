@@ -1,3 +1,8 @@
+#ifndef _MAIN
+#define _MAIN
+
+
+#include <iostream>
 #include <string>
 #include <exception>
 
@@ -14,3 +19,6 @@ int die(std::string output){
   throw defaultEx;
 }
 //empty file, required for successful compilation
+
+
+#endif

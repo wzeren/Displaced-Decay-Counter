@@ -17,9 +17,9 @@ double analysis::decayProbabilityAL3X_hepmc(HepMC::GenEvent::particle_const_iter
     const double L_H = 4.15; //height of the detector is 4.15m  (as 4.15+0.85 = 5m, the outer radius)
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -53,9 +53,9 @@ double analysis::decayProbabilityANUBIS1_hepmc(HepMC::GenEvent::particle_const_i
 
 
     // Identify the kinematic properties of the neutralino
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -90,9 +90,9 @@ double analysis::decayProbabilityANUBIS2_hepmc(HepMC::GenEvent::particle_const_i
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -126,9 +126,9 @@ double analysis::decayProbabilityANUBIS3_hepmc(HepMC::GenEvent::particle_const_i
 
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -163,9 +163,9 @@ double analysis::decayProbabilityCODEXb_hepmc(HepMC::GenEvent::particle_const_it
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
 
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -194,9 +194,9 @@ double analysis::decayProbabilityFASER1_hepmc(HepMC::GenEvent::particle_const_it
     
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -222,9 +222,9 @@ double analysis::decayProbabilityFASER2_hepmc(HepMC::GenEvent::particle_const_it
     
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -250,9 +250,9 @@ double analysis::decayProbabilityMAPP1_hepmc(HepMC::GenEvent::particle_const_ite
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
 
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -280,9 +280,9 @@ double analysis::decayProbabilityMAPP2_hepmc(HepMC::GenEvent::particle_const_ite
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
 
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
@@ -316,9 +316,9 @@ double analysis::decayProbabilityMATHUSLA_hepmc(HepMC::GenEvent::particle_const_
     // Identify the kinematic properties of the neutralino
     //Pythia always calculates in GeV
 
-    double gamma = (*p)->momentum().e()/(mLLP);
+    double gamma = (*p)->momentum().e()/(mass);
     double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-    double beta = sqrt(1. - pow(mLLP/(*p)->momentum().e(), 2));
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
     double theta = (*p)->momentum().theta();            
     double phi = (*p)->momentum().phi();           
     double eta = (*p)->momentum().eta(); 
