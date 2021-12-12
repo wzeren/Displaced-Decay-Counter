@@ -808,8 +808,8 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	//	input_path = "../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/test.hepmc";
 	//	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
 
-	HepMC::IO_GenEvent ascii_in("/home/jsk/hepmc-llp/llp_all_detectors/example_input/py8/test.hepmc",std::ios::in);
-
+	//	HepMC::IO_GenEvent ascii_in("/home/jsk/hepmc-llp/llp_all_detectors/example_input/py8/test.hepmc",std::ios::in);
+	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
 	
 	//select an event
 	HepMC::GenEvent* evt = ascii_in.read_next_event();
