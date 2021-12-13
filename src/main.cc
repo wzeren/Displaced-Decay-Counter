@@ -113,9 +113,9 @@ int main(int argc, char* argv[]) {
    std::cout <<  "input_file_format: " << input_file_format << std::endl;   
     std::cout << "input_file_path: " << input_file_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
-    std::cout << "mass: " << mass << std::endl;
-    std::cout << "ctau: " << ctau << std::endl;
-    std::cout << "sigma: " << sigma << std::endl;
+    std::cout << "mass [GeV]: " << mass << std::endl;
+    std::cout << "ctau [m]: " << ctau << std::endl;
+    std::cout << "sigma [fb]: " << sigma << std::endl;
     std::cout << "BR_vis: " << visibleBR << std::endl; 
     std::cout << "nMC: " << nMC << std::endl;   
     
