@@ -202,7 +202,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double baseline_int_lumi{3000};// in fb^{-1}
     
     int nEvent = pythia->mode("Main:numberOfEvents");//number of events contained in the sample
-    if (nEvent < nEventsMC){
+    if (nEvent < nEvent){
+        std::cout << "The event sample contains " << nEvent << " events, but the user requires " << nEvent << " events!" << '\n';
     	die("Event sample containts fewer events than given by user!");
     }
     
@@ -302,7 +303,7 @@ bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) 
       
 
 
-     std::cout << "test!!" << '\n';
+
      
       int iEvent = 0;//count number of events in the sample
       try{
@@ -324,21 +325,22 @@ bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) 
 	  iEvent++;
 	  //loop over all partcles in the event evt
 	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
-	    if(isLast_hepmc(p, LLPPID)){
-	      //mass = (*p)->momentum().m();
-	      ProducedLLP += 1;
-	    }
-	      
-	    observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
-	    observedLLPinANUBIS     += decayProbabilityANUBIS1_hepmc(p)+decayProbabilityANUBIS2_hepmc(p)+decayProbabilityANUBIS3_hepmc(p);
-	    observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
-	    observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
-	    observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
-	    observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
-	    observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
-	    observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
-	  } // for
 
+	  	if(isLast_hepmc(p, LLPPID)){
+	        	//mass = (*p)->momentum().m();
+	        	ProducedLLP += 1;
+	    
+	      
+	    		observedLLPinAL3X       += decayProbabilityAL3X_hepmc(p);
+	    		observedLLPinANUBIS     += decayProbabilityANUBIS1_hepmc(p)+decayProbabilityANUBIS2_hepmc(p)+decayProbabilityANUBIS3_hepmc(p);
+	    		observedLLPinCODEXb     += decayProbabilityCODEXb_hepmc(p);
+	    		observedLLPinFASER1     += decayProbabilityFASER1_hepmc(p);
+	    		observedLLPinFASER2     += decayProbabilityFASER2_hepmc(p);
+	    		observedLLPinMAPP1      += decayProbabilityMAPP1_hepmc(p,MAPP1);
+	    		observedLLPinMAPP2      += decayProbabilityMAPP2_hepmc(p,MAPP2);
+	    		observedLLPinMATHUSLA   += decayProbabilityMATHUSLA_hepmc(p);
+	  } // for
+}
 	  ascii_in >> evt;
 	  if  (iEvent >= nEventsMC) break;
 	} //while loop
@@ -356,8 +358,10 @@ bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) 
     //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
     
     if (iEvent < nEventsMC){
+        std::cout << "The event sample contains " << iEvent << " events, but the user requires " << nEventsMC << " events!" << '\n';
     	die("Event sample containts fewer events than given by user!");
     }
+    std::cout <<"iEvent: " << iEvent << '\n';
     //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
     //sigma = HepMC::getPythiaCrossSection()*1e12; //in fb  //not working at the moment
     double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(std::min(iEvent,nEventsMC));
@@ -436,17 +440,23 @@ bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) 
 
 bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
 
-    bool daughter_the_same;
+
+    bool daughter_the_same=false;
 
     
     if( (*p)->end_vertex() ){
      	for ( HepMC::GenVertex::particle_iterator daughters =(*p)->end_vertex()->particles_begin(HepMC::descendants);daughters != (*p)->end_vertex()->particles_end(HepMC::descendants);++daughters ) {
      		if ( (*daughters)->pdg_id() == PID ){
-     			daughter_the_same = true; break;
+     			daughter_the_same = true; 
+     			break;
      		}
+     		
+
      	}
      	
-        if (  (*p)->pdg_id() == PID &&   daughter_the_same == false  ){
+     	
+     	
+        if (  (*p)->pdg_id() == PID &&   (!daughter_the_same)  ){
         	return true;
         }
         else return false;
