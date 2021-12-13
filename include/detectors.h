@@ -17,6 +17,7 @@ Detector ANUBIS0();
 Detector ANUBIS1();
 Detector AL3X();
 Detector CODEXB0();
-
+Detector CODEXB1();
+std::vector<Detector> CreateDetectors(std::vector<std::string>);
 
 #endif

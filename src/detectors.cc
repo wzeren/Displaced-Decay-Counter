@@ -31,7 +31,8 @@ Detector MATHUSLA0() {
 //    CylDetLayer mathuslay(mathuslist,mathusweight);g
  CylDetLayer mathuslay(ptlist,mathusweight);
  std::vector<CylDetLayer> MathuLayers={mathuslay};
- Detector myMATHUSLA(MathuLayers);
+ std::string Dname="MATHUSLA0";
+ Detector myMATHUSLA(Dname,MathuLayers);
  return myMATHUSLA;
 }
 
@@ -80,7 +81,8 @@ Detector MATHUSLA1() {
  mathusweight=0.0594421/(8.*atan(1.));
  CylDetLayer mathuslay7(ptlist,mathusweight);
  IMathuLayers.push_back(mathuslay7);
- Detector myMATHUSLA(IMathuLayers);
+ std::string Dname="MATHUSLA1";
+ Detector myMATHUSLA(Dname,IMathuLayers);
  return myMATHUSLA;
 }
 
@@ -114,7 +116,8 @@ Detector MATHUSLA2() {
 //    for(int i=0;i<TDcoord.size();i++){
 //     myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << "\n";
 //    }
- Detector myMATHUSLA(MathuBricks);
+ std::string Dname="MATHUSLA2";
+ Detector myMATHUSLA(Dname,MathuBricks);
  return myMATHUSLA;
 }
 
@@ -128,7 +131,8 @@ Detector FASER1() {
  double faserweight=150./3000.;                                                      // relative luminosity
  CylDetLayer faserlay(ptlist,faserweight);
  std::vector<CylDetLayer> faserLayers={faserlay};
- Detector myFASER(faserLayers);
+ std::string Dname="FASER";
+ Detector myFASER(Dname,faserLayers);
  return myFASER;
 }
 
@@ -140,7 +144,8 @@ Detector FASER2() {
  double faserweight=1.;                                                              // relative luminosity
  CylDetLayer faserlay(ptlist,faserweight);
  std::vector<CylDetLayer> faserLayers={faserlay};
- Detector myFASER(faserLayers);
+ std::string Dname="FASER2";
+ Detector myFASER(Dname,faserLayers);
  return myFASER;
 }
 
@@ -167,7 +172,8 @@ Detector ANUBIS0() {
  anubisweight=2.*atan(9./70.667)/(8.*atan(1.));
  CylDetLayer anubislay3(ptlist,anubisweight);
  anubisLayers.push_back(anubislay3);
- Detector myANUBIS(anubisLayers);
+ std::string Dname="ANUBIS0";
+ Detector myANUBIS(Dname,anubisLayers);
  return myANUBIS;
 }
 
@@ -209,7 +215,8 @@ Detector ANUBIS1() {
  //    myfile << "z: " << TDcoord[i][0] << " , h: " << TDcoord[i][1] << " , count: " << TDcoord[i][2] << "\n";
  //   }
  //   myfile.close();
- Detector myANUBIS(AnubisBricks);
+ std::string Dname="ANUBIS1";
+ Detector myANUBIS(Dname,AnubisBricks);
  return myANUBIS;
 }
 
@@ -223,7 +230,8 @@ Detector AL3X() {
  double alexweight=250./3000.;                                   // relative luminosity
  CylDetLayer alexlay(ptlist,alexweight);
  std::vector<CylDetLayer> alexLayers={alexlay};
- Detector myAL3X(alexLayers);
+ std::string Dname="AL3X";
+ Detector myAL3X(Dname,alexLayers);
  return myAL3X;
 }
 
@@ -234,12 +242,157 @@ Detector AL3X() {
 Detector CODEXB0() {
  std::array<double,2> AA={5.,26.},BB={15.,26.},CC={15.,36.},DD={5.,36.};       // Corner points
  std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
- double codexweight=2.*atan(5./26.)/(8.*atan(1.));            // Angular aperture
+ double codexweight=2.*atan(5./31.)/(8.*atan(1.));            // Angular aperture
  codexweight=codexweight*300./3000.;                          // relative luminosity
  CylDetLayer codexlay(ptlist,codexweight);
  std::vector<CylDetLayer> codexLayers={codexlay};
- Detector myCODEXB(codexLayers);
+ std::string Dname="CODEXB0";
+ Detector myCODEXB(Dname,codexLayers);
  return myCODEXB;
+}
+
+    // Improved CODEXB
+    
+Detector CODEXB1() {
+ // First layer
+ std::array<double,2> AA={5.,26.051358},BB={5.,36.0711111},CC={15.,36.0711111},DD={15.,26.051358};
+ std::vector<std::array<double,2>> ptlist={AA,BB,CC,DD};
+ double codexweight=0.17766086/(8.*atan(1.));            // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay1(ptlist,codexweight);
+ std::vector<CylDetLayer> ICodexLayers={codexlay1};
+ // Second layer
+ AA={5.,26.118785},BB={5.,31.56222},CC={15.,31.56222},DD={15.,26.118785};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.0127311073/(8.*atan(1.));                 // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay2(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay2);
+ // Third layer
+ AA={5.,26.146760},BB={5.,28.3784804},CC={15.,28.3784804},DD={15.,26.146760};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.008702541/(8.*atan(1.));                  // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay3(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay3);
+ // Fourth layer
+ AA={5.,26.2479356},BB={5.,36.3432954},CC={15.,36.3432954},DD={15.,26.2479356};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.084295998/(8.*atan(1.));                  // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay4(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay4);
+ // Fifth layer
+ AA={5.,26.455781},BB={5.,36.6310814},CC={15.,36.6310814},DD={15.,26.455781};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.024716089/(8.*atan(1.));                  // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay5(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay5);
+ // Sixth layer
+ AA={5.,26.549617},BB={5.,34.596021},CC={15.,34.596021},DD={15.,26.549617};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.011806297/(8.*atan(1.));                  // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay6(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay6);
+ // Seventh layer
+ AA={5.,26.618576},BB={5.,32.674020},CC={15.,32.674020},DD={15.,26.618576};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.012533236/(8.*atan(1.));                  // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay7(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay7);
+ // Eighth layer
+ AA={5.,26.696529},BB={5.,30.858797},CC={15.,30.858797},DD={15.,26.696529};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.0133093/(8.*atan(1.));                    // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay8(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay8);
+ // Nineth layer
+ AA={5.,26.784744},BB={5.,29.144419},CC={15.,29.144419},DD={15.,26.784744};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.01413877/(8.*atan(1.));                   // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay9(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay9);
+ // Tenth layer
+ AA={5.,26.863778},BB={5.,27.832842},CC={15.,27.832842},DD={15.,26.863778};
+ ptlist={AA,BB,CC,DD};
+ codexweight=0.00920773/(8.*atan(1.));                   // Angular aperture
+ codexweight=codexweight*300./3000.;                     // relative luminosity
+ CylDetLayer codexlay10(ptlist,codexweight);
+ ICodexLayers.push_back(codexlay10);
+ std::string Dname="CODEXB1";
+ Detector myCODEXB(Dname,ICodexLayers);
+ return myCODEXB;
+}
+
+//                   LIST OF DETECTORS
+
+std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
+ std::vector<Detector> myList,knownDet;
+ myList.clear();
+ knownDet.clear();
+ 
+//   KNOWN DETECTORS
+     // Uncle Simon's MATHUSLA
+ Detector MATHUSLAO=MATHUSLA0();
+ knownDet.push_back(MATHUSLAO);
+    
+    // Improved MATHUSLA
+ Detector MATHUSLAI=MATHUSLA1();
+ knownDet.push_back(MATHUSLAI);
+    
+    // Building MATHUSLA from 3m-high bricks
+ Detector MATHUSLAB=MATHUSLA2();
+ knownDet.push_back(MATHUSLAB);
+    
+    // FASER
+ Detector FASERI=FASER1();
+ knownDet.push_back(FASERI);
+    
+    // FASER2
+ Detector FASERII=FASER2();
+ knownDet.push_back(FASERII);
+    
+    // Uncle Simon's ANUBIS
+ Detector ANUBISO=ANUBIS0();
+ knownDet.push_back(ANUBISO);
+    
+    // Building ANUBIS from 1m-high, 1m-deep bricks
+ Detector ANUBISB=ANUBIS1();
+ knownDet.push_back(ANUBISB);
+    
+    // Building AL3X
+ Detector AL3X0=AL3X();
+ knownDet.push_back(AL3X0);
+    
+    // Building a simple CODEXB
+ Detector CODEXBO=CODEXB0();
+ knownDet.push_back(CODEXBO);
+    
+    // Building an improved CODEXB
+ Detector CODEXBI=CODEXB1();
+ knownDet.push_back(CODEXBI);
+ 
+//   BUILDING THE LIST OF STUDIED DETECTORS
+ 
+ for(int i=0;i<nameList.size();i++){
+  std::string searchname=nameList[i];
+  bool foundDet=false;
+  for(int j=0;j<knownDet.size();j++){
+   std::string foundname=knownDet[j].readname();
+   if(foundname==searchname){
+    if(!foundDet)myList.push_back(knownDet[j]);
+    if(foundDet)std::cout << "Warning! Detector " << searchname << " seems to be defined twice!" << std::endl;
+   }
+   if(!foundDet)std::cout << "Warning! Detector " << searchname << " does not seem to be declared!" << std::endl;
+  }
+ }
+ 
+ return myList;
 }
 
 //**************	END: DETECTOR IMPLEMENTATION	***************

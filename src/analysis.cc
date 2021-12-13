@@ -101,45 +101,20 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double observedLLPinMAPP1{};
     double observedLLPinMAPP2{};
     double observedLLPinMATHUSLA{};
-    double observedLLPinMATHUSLA0{};
-    double observedLLPinMATHUSLA1{};
-    double observedLLPinMATHUSLA2{};
-    double observedLLPinFASERI{};
-    double observedLLPinFASERII{};
-    double observedLLPinANUBIS0{};
-    double observedLLPinANUBIS1{};
-    double observedLLPinAL3X0{};
-    double observedLLPinCODEXB0{};
     
     std::ofstream myfile;
-    myfile.open ("testres.txt", std::ios_base::app);
+    myfile.open ("testres.txt"); //, std::ios_base::app);
     
-    // Uncle Simon's MATHUSLA
-    Detector MATHUSLAO=MATHUSLA0();
+    // Creating detector list
     
-    // Improved MATHUSLA
-    Detector MATHUSLAI=MATHUSLA1();
-    
-    // Building MATHUSLA from 3m-high bricks
-    Detector MATHUSLAB=MATHUSLA2();
-    
-    // FASER
-    Detector FASERI=FASER1();
-    
-    // FASER2
-    Detector FASERII=FASER2();
-    
-    // Uncle Simon's ANUBIS
-    Detector ANUBISO=ANUBIS0();
-    
-    // Building ANUBIS from 1m-high, 1m-deep bricks
-    Detector ANUBISB=ANUBIS1();
-    
-    // Building AL3X
-    Detector AL3X0=AL3X();
-    
-    // Building a simple CODEXB
-    Detector CODEXBO=CODEXB0();
+    std::vector<std::string> studiedDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","AL3X","CODEXB0","CODEXB1"};
+    std::vector<Detector> DetList=CreateDetectors(studiedDet);
+    int detTot=DetList.size();
+    std::vector<double> observedLLPevents;
+    observedLLPevents.clear();
+    for(int detInd=0; detInd<detTot; detInd++){
+     observedLLPevents.push_back(0.);
+    }
   
   
     try{
@@ -169,15 +144,9 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     double phi = XXX.p().phi();           
     double eta = XXX.p().eta(); 
  //   myfile << "testres0: " << MATHUSLAO.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLAI.DetAcc(theta,beta*gamma*ctau) << "\n";
-    observedLLPinMATHUSLA0   += MATHUSLAO.DetAcc(theta,beta*gamma*ctau); 
-    observedLLPinMATHUSLA1   += MATHUSLAI.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinMATHUSLA2   += MATHUSLAB.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinFASERI   += FASERI.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinFASERII   += FASERII.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinANUBIS0   += ANUBISO.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinANUBIS1   += ANUBISB.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinAL3X0   += AL3X0.DetAcc(theta,beta*gamma*ctau);
-    observedLLPinCODEXB0   += CODEXBO.DetAcc(theta,beta*gamma*ctau);
+    for(int detInd=0; detInd<detTot; detInd++){
+     observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+    }
                        }
                 }
             }
@@ -189,10 +158,15 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
         return false;
     }
     
-    myfile << "MATHUSLA: " << observedLLPinMATHUSLA0 << " , vs.: " << observedLLPinMATHUSLA << " , vs.: " << observedLLPinMATHUSLA1 << " , vs.: " << observedLLPinMATHUSLA2 << "\n";
-    myfile << "FASER: " << observedLLPinFASERI << " , vs.: " << observedLLPinFASER1 << " , FASER2: " << observedLLPinFASERII << " , vs.: " << observedLLPinFASER2 << "\n";
-    myfile << "ANUBIS: " << observedLLPinANUBIS0 << " , vs.: " << observedLLPinANUBIS << " , vs: " << observedLLPinANUBIS1 << "\n";
-    myfile << "AL3X: " << observedLLPinAL3X0 << " , vs.: " << observedLLPinAL3X << " , CODEXB: " << observedLLPinCODEXB0 << " , vs.: " << observedLLPinCODEXb << "\n";
+    for(int detInd=0; detInd<detTot; detInd++){
+     myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd] << "\n";
+    }
+    
+    myfile << "USMATHUSLA: " << observedLLPinMATHUSLA << "\n";
+    myfile << "USFASER: " << observedLLPinFASER1 << " , USFASER2: " << observedLLPinFASER2 << "\n";
+    myfile << "USANUBIS: " << observedLLPinANUBIS << "\n";
+    myfile << "USAL3X: " << observedLLPinAL3X << "\n";
+    myfile << "USCODEXB: " << observedLLPinCODEXb << "\n";
 
  
     
