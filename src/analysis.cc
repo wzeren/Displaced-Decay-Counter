@@ -23,8 +23,9 @@ analysis::analysis() {
 
 bool analysis::initPythia() {
 
-  if (input_file_format != "LHE" &&  input_file_format != "CMND")
+  if (input_file_format != "LHE" &&  input_file_format != "CMND"){
     return false;
+    }
 
   try {
         if (input_file_format == "LHE"){
@@ -60,7 +61,7 @@ bool analysis::initPythia() {
             pythia->readString("Init:showProcesses = on");
             pythia->readString("Print:quiet = off");
             pythia->readString("Init:showChangedParticleData = on");
-            pythia->readString("Next:numberCount = 100000");
+            pythia->readString("Next:numberCount = 10000");
         }
         else {
             pythia->readString("Init:showProcesses = off");
@@ -84,9 +85,11 @@ bool analysis::initPythia() {
 
 bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
 
-    if (input_file_format != "LHE" &&  input_file_format != "CMND")
+    if (input_file_format != "LHE" &&  input_file_format != "CMND"){
       return false;
+    }
   
+    //number of LLPs to be analyzed
     ProducedLLP = 0;
     
     
@@ -194,7 +197,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
  
     
 
-    //double sigma = pythia->info.sigmaGen()*1e12; //in fb  
+
 
     double baseline_int_lumi{3000};// in fb^{-1}
     
@@ -202,6 +205,10 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     if (nEvent < nEventsMC){
     	die("Event sample containts fewer events than given by user!");
     }
+    
+    //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
+    //sigma = pythia->info.sigmaGen()*1e12; //in fb  
+    
     double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(std::min(nEvent,nEventsMC));
 
 
@@ -228,8 +235,6 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 
 
     // Results
-    std::cout << "mass [GeV]: " << mass << '\n';
-    std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(std::min(nEvent,nEventsMC)) << '\n';
     std::cout << '\n';
@@ -251,30 +256,28 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
     std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
     std::cout << '\n';
-    if (input_file_format == "LHE"){
-    		std::cout << "XS [fb]: " << sigma <<'\n';//in fb
-    		std::cout << "visibleBR: " << visibleBR << '\n';
-    		std::cout << "ReallyProducedLLP: " << ReallyProducedLLP  << '\n';
-        	std::cout << '\n';
-		std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
-    		std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
-    		std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
-    		std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
-    		std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
-    		std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
-    		std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
-    		std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
-        	std::cout << '\n';
-		std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
-    		std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
-    		std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
-    		std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
-    		std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
-    		std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
-    		std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
-    		std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
-    		std::cout << '\n';
-    }
+    std::cout << "XS [fb]: " << sigma <<'\n';//in fb
+    std::cout << "ReallyProducedLLP for 3/ab: " << ReallyProducedLLP  << '\n';
+    std::cout << '\n';
+    std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
+    std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
+    std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
+    std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
+    std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
+    std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
+    std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
+    std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
+    std::cout << '\n';
+    std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
+    std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
+    std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
+    std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
+    std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
+    std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
+    std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
+    std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
+    std::cout << '\n';
+    
     
     myfile.close();
 
@@ -282,7 +285,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 }
 
 
-bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2) {
+bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
   //JJJ: change to HepMC
   if (input_file_format == "HEPMC"){  
     
@@ -298,6 +301,9 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
       double observedLLPinMATHUSLA{};
       
 
+
+     std::cout << "test!!" << '\n';
+     
       int iEvent = 0;//count number of events in the sample
       try{
 	
@@ -312,9 +318,10 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	HepMC::GenEvent* evt = ascii_in.read_next_event();
 
 
+
 	//loop over events of this HepMC file
 	while ( evt ){
-	iEvent++;
+	  iEvent++;
 	  //loop over all partcles in the event evt
 	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
 	    if(isLast_hepmc(p, LLPPID)){
@@ -333,8 +340,9 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	  } // for
 
 	  ascii_in >> evt;
-	  if  (iEvent < nEventsMC) break;
+	  if  (iEvent >= nEventsMC) break;
 	} //while loop
+	  
       }
       
       catch(std::exception& e) {
@@ -342,10 +350,7 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 	return false;
       }
 
-      //JJJ: where to get the cross section? It must be input for hepmc!
-      //double sigma = pythia->info.sigmaGen()*1e12; //in fb  
-      
-      
+
 
     double baseline_int_lumi{3000};// in fb^{-1}
     //    double ReallyProducedLLP = nLLP * baseline_int_lumi * sigma * k_factor;
@@ -353,6 +358,8 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     if (iEvent < nEventsMC){
     	die("Event sample containts fewer events than given by user!");
     }
+    //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
+    //sigma = HepMC::getPythiaCrossSection()*1e12; //in fb  //not working at the moment
     double ReallyProducedLLP = baseline_int_lumi * sigma * ProducedLLP/double(std::min(iEvent,nEventsMC));
     
     
@@ -376,8 +383,6 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
 
     // Results
-    std::cout << "mass [GeV]: " << mass << '\n';
-    std::cout << "ctau [m]: " << ctau << '\n';
     std::cout << "produced LLP: " << ProducedLLP << '\n';  
     std::cout << "produced LLP/NMC: " << ProducedLLP/double(std::min(iEvent,nEventsMC)) << '\n';
     std::cout << '\n';
@@ -399,6 +404,27 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
     std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
     std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
     std::cout << '\n';
+    std::cout << "XS [fb]: " << sigma <<'\n';//in fb
+    std::cout << "ReallyProducedLLP for 3/ab: " << ReallyProducedLLP  << '\n';
+    std::cout << '\n';
+    std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
+    std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
+    std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
+    std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
+    std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
+    std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
+    std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
+    std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
+    std::cout << '\n';
+    std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
+    std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
+    std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
+    std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
+    std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
+    std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
+    std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
+    std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
+    std::cout << '\n';
 
     return true;
 
@@ -409,6 +435,36 @@ bool analysis::runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDet
 
 
 bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
+
+    bool daughter_the_same;
+
+    
+    if( (*p)->end_vertex() ){
+     	for ( HepMC::GenVertex::particle_iterator daughters =(*p)->end_vertex()->particles_begin(HepMC::descendants);daughters != (*p)->end_vertex()->particles_end(HepMC::descendants);++daughters ) {
+     		if ( (*daughters)->pdg_id() == PID ){
+     			daughter_the_same = true; break;
+     		}
+     	}
+     	
+        if (  (*p)->pdg_id() == PID &&   daughter_the_same == false  ){
+        	return true;
+        }
+        else return false;
+    }
+     
+    else {
+    	if (  (*p)->pdg_id()==PID ){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    }
+    
+
+
+/*
+    
   if( (*p)->end_vertex() ){
     
     //    for ( HepMC::GenVertex::particle_iterator daughters =(*p)->end_vertex()->particles_begin(HepMC::descendants);daughters != (*p)->end_vertex()->particles_end(HepMC::descendants);++daughters ) {
@@ -425,6 +481,11 @@ bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID)
     return false;
   }
   return false;
+
+*/
+
+
+
 }
 
 

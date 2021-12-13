@@ -184,17 +184,18 @@ int main(int argc, char* argv[]) {
     mychecker.setSIGMA(sigma);
     mychecker.setVISIBLEBR(visibleBR);
 
-    if (!mychecker.initPythia())
-        return 1;
-    if (!mychecker.runPythia(nMC,MAPP1,MAPP2))
-        return 1;
-
-
-
-    //std::cout << "Zong" << std::endl;
+    if (input_file_format == "LHE" || input_file_format == "CMND"){
+    	if (!mychecker.initPythia()) return 1;
+	if (!mychecker.runPythia(nMC,MAPP1,MAPP2))  return 1;
+    	
+    }
     
-    if (!mychecker.runHepMC(nMC, ctau,  MAPP1,MAPP2))
-        return 1;
+    else if (input_file_format == "HEPMC"){   
+       
+    	//std::cout << "Zong" << std::endl;
+    
+    	if (!mychecker.runHepMC(nMC, MAPP1,MAPP2)) return 1;
+    }
     
     return 0;
 

@@ -45,7 +45,7 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
-    bool runHepMC(int nEventsMC, double ctau, CubicDetector MAPP1,CubicDetector MAPP2);
+    bool runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2);
         
 private: 
     
