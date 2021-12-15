@@ -110,10 +110,15 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     std::vector<std::string> studiedDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","AL3X","CODEXB0","CODEXB1"};
     std::vector<Detector> DetList=CreateDetectors(studiedDet);
     int detTot=DetList.size();
+    std::vector<double> defaultLumis;
     std::vector<double> observedLLPevents;
     observedLLPevents.clear();
+    defaultLumis.clear();
+    double foundLumi=0.;
     for(int detInd=0; detInd<detTot; detInd++){
      observedLLPevents.push_back(0.);
+     foundLumi=DetList[detInd].readLumi();
+     defaultLumis.push_back(foundLumi);
     }
   
   
@@ -159,7 +164,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     }
     
     for(int detInd=0; detInd<detTot; detInd++){
-     myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd] << "\n";
+     myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*defaultLumis[detInd]/3000. << "\n";
     }
     
     myfile << "USMATHUSLA: " << observedLLPinMATHUSLA << "\n";

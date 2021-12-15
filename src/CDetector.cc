@@ -1,8 +1,9 @@
 #include "include/CDetector.h"
 
 
-Detector::Detector(std::string myDet,std::vector<CylDetLayer> LayList) {  // direct constructor
+Detector::Detector(std::string myDet,double myLumi,std::vector<CylDetLayer> LayList) {  // direct constructor
   Detname=myDet;
+  DetLumi=myLumi;
   CylLayList=LayList;
 }
 
@@ -19,4 +20,8 @@ double Detector::DetAcc(double th,double leff) {  // sums decay probabilities fr
 
 std::string Detector::readname() {
  return Detname;
+}
+
+double Detector::readLumi() {
+ return DetLumi;
 }
