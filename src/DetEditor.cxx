@@ -55,7 +55,7 @@ int main(){
  std::getline(std::cin,DetName);
 
 /* Maybe have a storage file 'knowndet.txt' where the names of all known detectors are listed, read this file / import this list in std::vector<std::string> KnownDet;*/
- std::vector<std::string> KnownDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","CODEXB0","CODEXB1","AL3X","MAPP2"};
+ std::vector<std::string> KnownDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","CODEXB0","CODEXB1","AL3X","MAPP1","MAPP2","FACET"};
  bool nameistaken=false;
  for(int i=0;i<KnownDet.size();i++){
   if(KnownDet[i]==DetName)nameistaken=true;

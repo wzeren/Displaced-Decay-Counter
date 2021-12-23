@@ -56,6 +56,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector MAPP2X=MAPP2();
  knownDet.push_back(MAPP2X);
  
+    // Building FACET
+ Detector FACETX=FACET();
+ knownDet.push_back(FACETX);
+ 
 //   BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

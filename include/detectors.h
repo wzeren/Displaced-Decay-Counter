@@ -13,6 +13,7 @@
 #include "include/Detectors/ANUBIS1.h"
 #include "include/Detectors/MAPP1.h"
 #include "include/Detectors/MAPP2.h"
+#include "include/Detectors/FACET.h"
 
 std::vector<Detector> CreateDetectors(std::vector<std::string>);
 
