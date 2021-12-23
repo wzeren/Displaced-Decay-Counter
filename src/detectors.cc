@@ -47,6 +47,14 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
     // Building an improved CODEXB
  Detector CODEXBI=CODEXB1();
  knownDet.push_back(CODEXBI);
+
+    // Building MAPP1
+ Detector MAPP1X=MAPP1();
+ knownDet.push_back(MAPP1X);
+    
+    // Building MAPP2
+ Detector MAPP2X=MAPP2();
+ knownDet.push_back(MAPP2X);
  
 //   BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;

@@ -8,8 +8,11 @@ void CopyNewDet(std::string myName){
  
 /* Open file src/Detectors/<myName>.cc and insert this text there: */
  myfile.open ("Detectors/" + myName + ".cc");
+ myfile << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
+ myfile << "\n";
  myfile << "Detector " << myName << "() {" << "\n";
- myfile << " std::vector<CylDetLayer> myDetLayers.clear();" << "\n";
+ myfile << " std::vector<CylDetLayer> myDetLayers;" << "\n";
+ myfile << " myDetLayers.clear();" << "\n";
  myfile << " std::string Dname=\"" << myName << "\";" << "\n";
  myfile << " double DLumi=0.;" << "\n";
  myfile << " Detector myDetector(Dname,DLumi,myDetLayers);" << "\n";
@@ -52,7 +55,7 @@ int main(){
  std::getline(std::cin,DetName);
 
 /* Maybe have a storage file 'knowndet.txt' where the names of all known detectors are listed, read this file / import this list in std::vector<std::string> KnownDet;*/
- std::vector<std::string> KnownDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","CODEXB0","CODEXB1","AL3X"};
+ std::vector<std::string> KnownDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","CODEXB0","CODEXB1","AL3X","MAPP2"};
  bool nameistaken=false;
  for(int i=0;i<KnownDet.size();i++){
   if(KnownDet[i]==DetName)nameistaken=true;

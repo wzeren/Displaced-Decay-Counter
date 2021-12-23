@@ -107,7 +107,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     
     // Creating detector list
     
-    std::vector<std::string> studiedDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","AL3X","CODEXB0","CODEXB1"};
+    std::vector<std::string> studiedDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","AL3X","CODEXB0","CODEXB1","MAPP1","MAPP2"};
     std::vector<Detector> DetList=CreateDetectors(studiedDet);
     int detTot=DetList.size();
     std::vector<double> defaultLumis;
@@ -172,6 +172,8 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     myfile << "USANUBIS: " << observedLLPinANUBIS << "\n";
     myfile << "USAL3X: " << observedLLPinAL3X << "\n";
     myfile << "USCODEXB: " << observedLLPinCODEXb << "\n";
+    myfile << "USMAPP1: " << observedLLPinMAPP1 << "\n";
+    myfile << "USMAPP2: " << observedLLPinMAPP2 << "\n";
 
  
     
