@@ -1,23 +1,17 @@
 #ifndef _DETECTORS_
 #define _DETECTORS_
 
+#include "include/Detectors/MATHUSLA0.h"
+#include "include/Detectors/MATHUSLA1.h"
+#include "include/Detectors/MATHUSLA2.h"
+#include "include/Detectors/FASER1.h"
+#include "include/Detectors/FASER2.h"
+#include "include/Detectors/AL3X.h"
+#include "include/Detectors/CODEXB0.h"
+#include "include/Detectors/CODEXB1.h"
+#include "include/Detectors/ANUBIS0.h"
+#include "include/Detectors/ANUBIS1.h"
 
-#include "include/CCylSeg.h"
-#include "include/CCylDetLayer.h"
-#include "include/CDetector.h"
-
-CylDetLayer CylBrick(std::array<double,2> coord, double length, double height, double apphi, double wgh);
-
-/*Detector MATHUSLA0();
-Detector MATHUSLA1();
-Detector MATHUSLA2();
-Detector FASER1();
-Detector FASER2();
-Detector ANUBIS0();
-Detector ANUBIS1();
-Detector AL3X();
-Detector CODEXB0();
-Detector CODEXB1();*/
 std::vector<Detector> CreateDetectors(std::vector<std::string>);
 
 #endif

@@ -2,8 +2,7 @@
 #ifndef _CCDetector_
 #define _CCDetector_
 
-#include <vector>
-#include "include/CCylSeg.h"
+#include <string>
 #include "include/CCylDetLayer.h"
 
 
@@ -17,5 +16,7 @@ class Detector{
     std::string readname();                    // reads the detector's name
     double readLumi();                         // reads the detector's luminosity
 };
+
+CylDetLayer CylBrick(std::array<double,2> coord, double length, double height, double apphi, double wgh);
 
 #endif
