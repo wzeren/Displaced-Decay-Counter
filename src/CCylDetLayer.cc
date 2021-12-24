@@ -1,19 +1,28 @@
 #include "include/CCylDetLayer.h"
 #include "include/CCylSeg.h"
 
-CylDetLayer::CylDetLayer(std::vector<CylSeg> Seglist,double wgh) {  // direct constructor
+ /* The straightforward constructor of the CylDetLayer class directly takes a vector
+     of oriented cylindrical segments and a weight as input.
+    We do not encourage its use. */
+
+CylDetLayer::CylDetLayer(std::vector<CylSeg> Seglist,double wgh) { 
   CylSegList=Seglist;
   weight=wgh;
 }
 
-CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) {  // constructor from list of coordinates
- // reset all y-values to positive
+ /* The 'advanced' constructor reads a list of coordinates (a vector of 2-dim. arrays) 
+     in the cylindrical plane {z,h}, together with the weighing factor.
+    It then builds the convex polygonal envelope associated with the coordinates,
+     automatically detecting the orientation of segments with respect to the IP. */
+ 
+CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
+ //  reset all y-values to positive.
     if(ptlist.size()>=1){
      for(int i=0; i<ptlist.size(); i++){
       if(ptlist[i][1]<0)ptlist[i][1]=-ptlist[i][1];
      }
     }
- // check that the list contains three non-aligned points
+ //  check that the list contains three non-aligned points.
     bool nonalign=false;
     double detcomp=0.;
     if(ptlist.size()>=3){
@@ -31,7 +40,7 @@ CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
       if(nonalign)break;
      }
     }
- // find the points with farthest and closest theta aperture
+ //  find the points with farthest and closest theta aperture.
       double thmax=0.,thmin=4.*atan(1.);
       int imax=0,imin=0;
      if(nonalign){
@@ -61,7 +70,7 @@ CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
        std::cout << "Warning! Something is wrong with the CylDetLayer constructor." << std::endl;
       }
      }
- // build the external convex envelope
+ //  build the external convex envelope.
       std::vector<int> ordlist,ordlist2;
      if(nonalign){
       ordlist.push_back(imax);
@@ -117,7 +126,7 @@ CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
       }
       } while(ordlist2[ordlist2.size()-1]!=imax && count<=ptlist.size());
      }
- // define the segments
+ // define the oriented cylindrical segments.
   CylSegList.clear();
   if(ordlist.size()>1){
    for(int i=0;i<ordlist.size()-1;i++){
@@ -138,8 +147,13 @@ CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
   weight=wgh;
 }
 
-double CylDetLayer::inDetDec(double th,double leff) {  // sums decay probabilities from the listed cyl. segments
-  double Pdec=0.;                                      // and applies an overall weight
+ /* The inDetDec class function computes the weighed decay probability 
+     within the detector layer. 
+    It simply sums decay probabilities from the listed cyl. segments 
+     and applies an overall weight. */
+ 
+double CylDetLayer::inDetDec(double th,double leff) {
+  double Pdec=0.;
   if(CylSegList.size()>0 && th>=0 && th<=4.*atan(1.) && leff>0){
    for(int i=0; i<CylSegList.size(); i++) {
     Pdec=Pdec+CylSegList[i].DecProb(th,leff);
@@ -148,24 +162,3 @@ double CylDetLayer::inDetDec(double th,double leff) {  // sums decay probabiliti
   }
   return Pdec;
 }
-
- /* function CylBrick creating standard bricks in order to fill a volume along the line
-std::vector<CylDetLayer> LayerList;
-LayerList.clear();
-for(int zct=0; zct<zct0; zct++){
- for(int hct=0; hct<hct0; hct++){
-  int count=0;
-  double zcoord=dl/2.+zct*dl, hcoord=dh/2.+hct*dh;
-  for(int phct=0; phct<phct0; phct++){
-   double phcoor=phct*dphi;
-   double xcoord=hcoord*cos(phcoor), ycoord=hcoord*sin(phcoord);   
-   if(zcoord>=zmin && zcoord<=zmax && ycoord>=ymin && ycoord<=ymax && xcoord>=xmin && xcoord<=xmax)count=count+1;
-  }
-  if(count!=0){
-   std::array<double,2> brkcoord={zcoord,hcoord};
-   CylDetLayer newbrick=CylBrick(brkcoord,dl,dh,count*dphi,detwgh);
-   LayerList.push_back(newbrick);
-  }
- }
-}
-Detector myDetector(LayerList); */

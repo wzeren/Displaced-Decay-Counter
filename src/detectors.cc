@@ -1,5 +1,14 @@
 #include "include/detectors.h"
 
+/* The CreateDetectors function looks for the detectors from a list (vector) of
+    identifiers (strings) and returns a vector of detectors that can be tested
+    against MC events.
+   It first declares all known detectors, adding them to the knownDet vector.
+    Then it looks at the inputed 'wish-list', compares its elements to the identifiers
+    of the known detectors and builds the desired list.
+   A log file is copied to bin/Detectors/Detector_log.txt , 
+    detailing the success or problems in establishing the list. */
+
 //                   LIST OF DETECTORS
 
 std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {

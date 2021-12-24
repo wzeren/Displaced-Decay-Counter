@@ -3,24 +3,22 @@
 
 #include <vector>
 #include "include/CCylSeg.h"
-#include <math.h>
 #include <iostream>
 #include <fstream>
 
 
-// class CylDetLayer defining a detector layer in cylindrical coordinates
+ // The class CylDetLayer defines a detector layer in cylindrical coordinates.
+ //  It consists of a list (vector) of oriented cylindrical segments,
+ //  together with a weighing factor, primarily representing the angular aperture
+ //  around the cylindrical axis (Dphi).
+ //  An average sensitivity to the decay products could also be included.
+
 class CylDetLayer{
     std::vector<CylSeg> CylSegList;
- // built out of a list of oriented cylindrical segment
-    double weight; 
- // weighing factor: phi-opening, luminosity, 
- // efficiency for detection of the LLP decay products
+    double weight;
   public:
     CylDetLayer(std::vector<CylSeg>,double);
- // straightforward constructor
     CylDetLayer(std::vector<std::array<double,2>>,double);
- // constructor from a list of coordinates in the {z,y} plane
     double inDetDec(double,double);
- // weighed decay probability within the detector layer
 };
 #endif
