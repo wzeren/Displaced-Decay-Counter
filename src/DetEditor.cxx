@@ -120,7 +120,7 @@ int main(){
 
   try{
     fs::path currentPath(fs::current_path());
-    fs::path inputPath = currentPath / "../example_input/knowndet.txt";
+    fs::path inputPath = currentPath / "../bin/knowndet.txt";
 
     if(!fs::exists(inputPath))
       throw "knowndet.txt does not exist.";
