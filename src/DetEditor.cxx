@@ -46,7 +46,9 @@ void modifyDetectorsSource(const std::string myName, const std::string lookForEx
     std::ofstream outputFile(inputPath);
     outputFile << content;
     outputFile.close();
- }
+  }
+  else
+    throw inputPath.string() + " content is invalid. New detector cannot be added!";
 }
 
 
