@@ -29,9 +29,6 @@ SRC=$(shell find . -name '*.cc')
 TMP=$(subst $(SRCDIR),$(LIBDIR), $(SRC))
 OBJ=$(patsubst %.cc,%.o,$(TMP))
 
-DetEditor: $(SRCDIR)/DetEditor.cxx
-	$(CC) -o DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
-
 all: $(BIN)
 
 main: $(OBJ)
@@ -41,5 +38,8 @@ main: $(OBJ)
 $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 	@[ ! -d $(dir $@) ] & mkdir -p $(dir $@)
 	$(CC) -o $@ -c $^ $(INCLUDE) $(CFLAGS)
+
+DetEditor: $(SRCDIR)/DetEditor.cxx
+	$(CC) -o $(BINDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
 
 .PHONY = clean 
