@@ -15,7 +15,7 @@ void modifyDetectorsSource(const std::string myName, const std::string lookForEx
   fs::path currentPath(fs::current_path());
   fs::path inputPath;
   if(fileExtension.compare("cc") == 0)
-    inputPath = currentPath / "detectors.cc";
+    inputPath = currentPath / "../src/detectors.cc";
   else
     inputPath = currentPath / "../include/detectors.h";
   
@@ -33,7 +33,6 @@ void modifyDetectorsSource(const std::string myName, const std::string lookForEx
   const std::size_t& size = fs::file_size(inputPath);
   std::string content(size, '\0');
   file.read(content.data(), size);
-  std::cout << content << std::endl;
   file.close();
   
   size_t strPosition = content.find(lookForExpr);
@@ -56,7 +55,7 @@ void CopyNewDet(std::string myName){
  
 /* Opens file src/Detectors/<myName>.cc and inserts the text defining a trivial
     detector with the new identifier: */
- myfile.open ("Detectors/" + myName + ".cc");
+ myfile.open ("../src/Detectors/" + myName + ".cc");
  myfile << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
  myfile << "\n";
  myfile << "Detector " << myName << "() {" << "\n";
