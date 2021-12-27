@@ -1,8 +1,1 @@
-MG5
-../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe.gz
-9900012
-5
-1
-1.66274
-1
-1000
+{"LLP":{"LLPPID":9900012,"ctau":1,"mass":5,"visibleBR":1},"input":{"input_file_format":"MG5","input_file_path":"../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe.gz","nMC":1000,"sigma":1.66274}}

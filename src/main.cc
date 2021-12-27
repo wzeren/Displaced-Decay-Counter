@@ -9,6 +9,12 @@
 #include "include/functions.h"
 #include "fstream"
 #include "include/main.h"
+#include "nlohmann/json.hpp"
+#include <unordered_map>
+#include <map>
+#include <utility>
+
+using json = nlohmann::json;
 
 class myexception defaultEx;
 
@@ -21,79 +27,96 @@ int die(std::string output){
 
 int main(int argc, char* argv[]) {
   try{
-  //JJJ: clean up the initialisation
-  std::string input_file_format{};
-  //std::string parton_generation{};
-  std::string input_file_path{};
-  int LLPPID{};
-  double mass{};
-  double ctau{};
-  double sigma{};
-  double visibleBR {1.};
-  int nMC{};
-  
-  if(argc == 9){
-    input_file_format= charToString(argv[1]);
-    input_file_path= charToString(argv[2]);  
-    LLPPID = atof(argv[3]); 
-    mass = atof(argv[4]);
-    ctau = atof(argv[5]);
-    sigma = atof(argv[6]); 
-    visibleBR = atof(argv[7]); 
-    nMC = atof(argv[8]); 
-  }
-  //JJJ: do sanity checks of the input
-  //JJJ: throw exceptions!
-  else if(argc == 2){
-    std::string temp{};
-    std::string inputline;
-    std::string filename(argv[1]);
-    std::cout << "Reading input data from " + filename << '\n';
+    bool storeDefault = false;
     
-    std::ifstream inputfile(filename);
-    if (inputfile.is_open()){
-      temp.clear();
-      inputfile >> temp;
-      input_file_format = temp;
-      temp.clear();
-      inputfile >> input_file_path;
-      temp.clear();
-      inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
-	die("Input is invalid!");
-      LLPPID = atoi(temp.c_str());
-      temp.clear();
-      inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
-	die("Input is invalid!");
-      mass = stod(temp);
-      temp.clear();
-      inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
-	die("Input is invalid!");
-      ctau = stod(temp);
-      temp.clear();
-      inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
-	die("Input is invalid!");
-      sigma = stod(temp);
-      temp.clear();
-      inputfile >> temp;
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch) || std::ispunct(ch));}))
-	die("Input is invalid!");
-      visibleBR = stod(temp);     
-      inputfile.close();
-      if(!std::all_of(temp.begin(), temp.end(), [](char ch) {return (std::isdigit(ch));}))
-	die("Input is invalid!");
-      nMC = atoi(temp.c_str());
-      temp.clear();
-      inputfile >> temp;
+    json input;
+    std::map<std::string, std::array<int,2>> defaultDetectors, detectors;
+    json inputTest(detectors);
+    std::string input_file_format, input_file_path;
+    float sigma{};
+    int nMC{};
+    
+    int LLPPID{};
+    double mass{};
+    double ctau{};
+    double visibleBR {1.};
+    
+    if(storeDefault){
+      defaultDetectors.insert({{"MATHUSLA1",{1,3000}}});
+      defaultDetectors.insert({{"MATHUSLA2",{1,3000}}});
+      defaultDetectors.insert({{"FASER",{1,3000}}});
+      defaultDetectors.insert({{"FASER2",{1,3000}}});
+      defaultDetectors.insert({{"ANUBIS0",{1,3000}}});
+      defaultDetectors.insert({{"ANUBIS1",{1,3000}}});
+      defaultDetectors.insert({{"AL3X",{1,3000}}});
+      defaultDetectors.insert({{"CODEXB0",{1,3000}}});
+      defaultDetectors.insert({{"CODEXB1",{1,3000}}});
+      defaultDetectors.insert({{"MAPP1",{1,3000}}});
+      defaultDetectors.insert({{"MAPP2",{1,3000}}});
+      defaultDetectors.insert({{"FACET",{1,3000}}});
+      json m1(defaultDetectors);
+      std::ofstream("detectors.dat") << m1;
+    }	  
+    
+    if(storeDefault){
+      input =
+	{
+	  {
+	    "input",{
+	      {"input_file_format","MG5"},
+	      {"input_file_path","../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe.gz"},
+	      {"sigma",1.66274},
+	      {"nMC",1000}
+	    }
+	  },
+	  
+	  {
+	    "LLP",{
+	      {"LLPPID",9900012},
+	      {"mass",5},
+	      {"ctau",1},
+	      {"visibleBR",1}
+	    }
+	  }
+	};
+      std::ofstream("input.dat") << input;
     }
-    else{
-      std::cout << filename + " cannot be opened.";
-      die("Input is invalid!");
+
+    
+    if(argc == 2){
+      std::string filename(argv[1]);
+      std::cout << "Reading input data from " + filename << '\n';
+
+      std::ifstream inputfile(filename);
+      if (!inputfile.is_open()){
+      	std::cout << filename + " cannot be opened.";
+      	die("Input is invalid!");
+      }
+
+      inputfile >> input;
+
+      input["input"]["input_file_format"].get_to(input_file_format);
+      input["input"]["input_file_path"].get_to(input_file_path);
+      input["input"]["sigma"].get_to(sigma);
+      input["input"]["nMC"].get_to(nMC);
+      
+      input["LLP"]["LLPPID"].get_to(LLPPID);
+      input["LLP"]["mass"].get_to(mass);
+      input["LLP"]["ctau"].get_to(ctau);
+      input["LLP"]["visibleBR"].get_to(visibleBR);
+      
     }
-  }
+    else if(argc == 9){
+      input_file_format= charToString(argv[1]);
+      input_file_path= charToString(argv[2]);  
+      LLPPID = atof(argv[3]); 
+      mass = atof(argv[4]);
+      ctau = atof(argv[5]);
+      sigma = atof(argv[6]); 
+      visibleBR = atof(argv[7]); 
+      nMC = atof(argv[8]); 
+    }
+  
   else{
     std::cout << "./main input_file_format input_file_path LLPPID mass ctau sigma BR_vis NMC" << std::endl;
     std::cout << "   - input_file_format: LHE, HEPMC or CMND" << std::endl;        
@@ -110,7 +133,7 @@ int main(int argc, char* argv[]) {
   }
   
   //std::cout << "parton event generation: " << parton_generation << std::endl;
-   std::cout <<  "input_file_format: " << input_file_format << std::endl;   
+    std::cout <<  "input_file_format: " << input_file_format << std::endl;   
     std::cout << "input_file_path: " << input_file_path << std::endl;   
     std::cout << "PID of the LLP: " << LLPPID << std::endl;
     std::cout << "mass [GeV]: " << mass << std::endl;
@@ -118,8 +141,18 @@ int main(int argc, char* argv[]) {
     std::cout << "sigma [fb]: " << sigma << std::endl;
     std::cout << "BR_vis: " << visibleBR << std::endl; 
     std::cout << "nMC: " << nMC << std::endl;   
+    std::cout << "***************************************************************" << std::endl;   
     
-    
+    //Read detector settings    
+    std::ifstream("detectors.dat") >> inputTest;
+    for (auto& x : json::iterator_wrapper(inputTest)){
+      //      std::cout << "Detector: " << x.key() << ", Activated: " << x.value()[0] << ", Lumi: " << x.value()[1] << '\n';
+      detectors.insert({{(std::string)x.key(),{(int)x.value()[0],(int)x.value()[1]}}});
+    }
+
+    for(auto it = detectors.begin(); it != detectors.end(); ++it){
+      std::cout << it->first << " " << it->second[0] << " " << it->second[1] << std::endl;
+    }
    
 
 //MAPP1 and MAPP2 coordinates

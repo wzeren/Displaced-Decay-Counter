@@ -9,8 +9,11 @@ HEPMC=/home/jsk/hepmc
 HEPMCLIB=$(HEPMC)/lib
 HEPMCINC=$(HEPMC)/include
 
+#JSON DIRECTORIES
+JSON=/home/jsk/llp_all_detectors/thirdParty/json-develop
+JSONINC=$(JSON)/single_include
 
-INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC)
+INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC) -I$(JSONINC)
 LDLIBS=-Wl,--no-as-needed -ldl
 
 CC=g++
