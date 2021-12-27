@@ -15,6 +15,8 @@
 #include "include/Detectors/MAPP2.h"
 #include "include/Detectors/FACET.h"
 
+// END OF INCLUDE DEFINITIONS
+
 /* The CreateDetectors function looks for the detectors from a list (vector) of identifiers
     (strings) and returns a vector of detectors that can be tested against MC events. */
 

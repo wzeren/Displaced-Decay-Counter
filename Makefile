@@ -14,7 +14,7 @@ INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC)
 LDLIBS=-Wl,--no-as-needed -ldl
 
 CC=g++
-CFLAGS=-std=c++11
+CFLAGS=-std=c++17
 #LDFLAGS= -lpythia8 -L$(PYTHIALIB) -lz -L$(LDLIBS) -Wl,-rpath,
 #LDFLAGS= -lpythia8 -L$(PYTHIALIB) -L$(LDLIBS) -Wl,-rpath,
 LDFLAGS=  -L$(PYTHIALIB) -L$(HEPMCLIB) -Wl,-R$(HEPMCLIB) -L$(LDLIBS)  -lpythia8 -ldl -lz  -lHepMC  #-rpath,
@@ -29,6 +29,8 @@ SRC=$(shell find . -name '*.cc')
 TMP=$(subst $(SRCDIR),$(LIBDIR), $(SRC))
 OBJ=$(patsubst %.cc,%.o,$(TMP))
 
+DetEditor: $(SRCDIR)/DetEditor.cxx
+	$(CC) -o DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
 
 all: $(BIN)
 

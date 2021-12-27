@@ -2,8 +2,54 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <experimental/filesystem>
+#include <algorithm>
+#include <iterator>
+
+namespace fs = std::experimental::filesystem;
 
 /* Function Copying the code associated with the new detector */
+
+void modifyDetectorsSource(const std::string myName, const std::string lookForExpr, const std::string input, const std::string fileExtension){
+
+  fs::path currentPath(fs::current_path());
+  fs::path inputPath;
+  if(fileExtension.compare("cc") == 0)
+    inputPath = currentPath / "detectors.cc";
+  else
+    inputPath = currentPath / "../include/detectors.h";
+  
+  if(!fs::exists(inputPath))
+    throw inputPath.string() + " does not exist.";
+  
+  if (!fs::is_regular_file(inputPath))
+    throw inputPath.string() + " is not a regular file.";
+ 
+  std::ifstream file(inputPath, std::ios::in);
+  if (!file.is_open())
+        throw inputPath.string() + " cannot be opened.";
+
+ 
+  const std::size_t& size = fs::file_size(inputPath);
+  std::string content(size, '\0');
+  file.read(content.data(), size);
+  std::cout << content << std::endl;
+  file.close();
+  
+  size_t strPosition = content.find(lookForExpr);
+ 
+  if(strPosition != std::string::npos){
+
+    content.insert(strPosition-1,input);
+    
+    fs::remove_all(inputPath);
+    
+    std::ofstream outputFile(inputPath);
+    outputFile << content;
+    outputFile.close();
+ }
+}
+
 
 void CopyNewDet(std::string myName){
  std::ofstream myfile;
@@ -37,20 +83,34 @@ void CopyNewDet(std::string myName){
 
 /* TO DO: open src/detectors.cc and go to the line before "BUILDING THE LIST OF STUDIED DETECTORS" and insert:
   Copy by hand for now. */
- myfile.open ("testprint.txt", std::ios_base::app);
- myfile << "\n";
- myfile << " Detector " << myName << "X=" << myName << "();" << "\n";
- myfile << " knownDet.push_back(" << myName << "X);" << "\n";
+// myfile.open ("testprint.txt", std::ios_base::app);
+// myfile << "\n";
+// myfile << " Detector " << myName << "X=" << myName << "();" << "\n";
+// myfile << " knownDet.push_back(" << myName << "X);" << "\n";
 
+    std::stringstream input;    
+    input << "\n";
+    input << " // Building " << myName << "\n";
+    input << " Detector " << myName << "X=" << myName << "();" << "\n";
+    input << " knownDet.push_back(" << myName << "X);" << "\n";
+    std::string lookForExpr = "// BUILDING THE LIST OF STUDIED DETECTORS";
+    modifyDetectorsSource(myName, lookForExpr, input.str(),"cc");
+    
 /* TO DO: open include/detectors.h and go to the line before "std::vector<Detector> CreateDetectors(std::vector<std::string>);" and insert:
   Copy by hand for now. */
- myfile << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
- myfile.close();
- 
+//    myfile << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
+//    myfile.close();
+
+    lookForExpr = "// END OF INCLUDE DEFINITIONS";
+    input.str("");    
+    input << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
+    modifyDetectorsSource(myName, lookForExpr, input.str(),"h");
+    
+ //JSK: siehe main function
 /* Also copy the detector's name 'myName' in the storage file 'knowndet.txt' */
- myfile.open ("knowndet.txt", std::ios_base::app);
- myfile << myName << "\n";
- myfile.close();
+// myfile.open ("knowndet.txt", std::ios_base::app);
+// myfile << myName << "\n";
+// myfile.close();
  
 }
 
@@ -58,26 +118,66 @@ void CopyNewDet(std::string myName){
     then calling the editing function. */
 
 int main(){
- std::string DetName;
- std::cout << "Please enter the name of the new detector:" << '\n'; // Prompt.
- std::getline(std::cin,DetName);
 
-/* TO DO: check the storage file 'knowndet.txt' where the names of all known detectors are listed, read this file / import this list in std::vector<std::string> KnownDet;
-  Vector edited by hand for now. */
- std::vector<std::string> KnownDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","CODEXB0","CODEXB1","AL3X","MAPP1","MAPP2","FACET"};
- bool nameistaken=false;
- for(int i=0;i<KnownDet.size();i++){
-  if(KnownDet[i]==DetName)nameistaken=true;    // Checking usage of the desired name.
- }
- if(nameistaken){
-  std::cout << "Sorry: this name is already in use! Aborting." << '\n';
- } else {
-  std::cout << "This name is available. Producing the skeleton code." << '\n';
-  std::cout << "You may now edit " << DetName << ".cc in src/Detectors/." << '\n';
- }
- if(!nameistaken){                             // Calling the editing function.
-  CopyNewDet(DetName);
- }
+  try{
+    fs::path currentPath(fs::current_path());
+    fs::path inputPath = currentPath / "../example_input/knowndet.txt";
+
+    if(!fs::exists(inputPath))
+      throw "knowndet.txt does not exist.";
+
+    if (!fs::is_regular_file(inputPath))
+      throw "knowndet.txt is not a regular file.";
+
+    std::ifstream file(inputPath, std::ios::in);
+    if (!file.is_open())
+      return { };
+
+    std::string str;
+    std::vector<std::string> KnownDet;
+      
+    while (std::getline(file, str)){
+      if(str.size() > 0)
+	KnownDet.push_back(str);
+    }
+
+    std::cout << "List of implemented detectors:" << std::endl;
+    for(auto str : KnownDet)
+      std::cout << str << std::endl;
+         
+    std::string DetName;
+    std::cout << "Please enter the name of the new detector:" << '\n'; // Prompt.
+    std::getline(std::cin,DetName);
+    
+    auto itKnownDet = std::find_if(KnownDet.begin(), KnownDet.end(),[&DetName](std::string name){return name.compare(DetName) == 0;});
+    
+    if(itKnownDet != KnownDet.end()){
+      std::cout << "Sorry: this name is already in use! Aborting." << '\n';
+    } else {
+      std::cout << "This name is available. Producing the skeleton code." << '\n';
+      std::cout << "You may now edit " << DetName << ".cc in src/Detectors/." << '\n';
+    }
+    if(itKnownDet == KnownDet.end()){                             // Calling the editing function.
+      CopyNewDet(DetName);
+      KnownDet.push_back(DetName);
+      fs::remove_all(inputPath);
+      
+      std::ofstream output_file(inputPath);
+      std::ostream_iterator<std::string> output_iterator(output_file, "\n");
+      std::copy(KnownDet.begin(), KnownDet.end(), output_iterator);
+      output_file.close();
+    }
+    
+  }
+  catch(const fs::filesystem_error &ex){
+    std::cerr << ex.what() << std::endl;
+  }
+  catch(const char * str){
+    std::cerr << str << std::endl;
+  }
+  catch(...){
+    std::cerr << "something else is wrong" << std::endl;
+  }
 
 return 0;
 }

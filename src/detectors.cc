@@ -69,7 +69,7 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector FACETX=FACET();
  knownDet.push_back(FACETX);
  
-//   BUILDING THE LIST OF STUDIED DETECTORS
+// BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 
    std::ofstream myfile;
