@@ -40,6 +40,7 @@ public:
     void setCTAU(double ctau_in) {ctau = ctau_in;};
     void setSIGMA(double sigma_in) {sigma = sigma_in;};
     void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
+    void setDETECTORS(std::vector <std::tuple<std::string,double>> myDetectorList_in) {myDetectorList = myDetectorList_in;};
     void setVerbose() {verbose = true;};
     
     bool doCalculations(); //< evaluates widths 
@@ -63,6 +64,7 @@ private:
     double ctau;
     double sigma;
     double visibleBR;
+    std::vector <std::tuple<std::string,double>> myDetectorList;
     
     double ProducedLLP;
     

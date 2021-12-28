@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
 	{
 	  {
 	    "input",{
-	      {"input_file_format","MG5"},
+	      {"input_file_format","LHE"},
 	      {"input_file_path","../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe.gz"},
 	      {"sigma",1.66274},
 	      {"nMC",1000}
@@ -150,8 +150,16 @@ int main(int argc, char* argv[]) {
       detectors.insert({{(std::string)x.key(),{(int)x.value()[0],(int)x.value()[1]}}});
     }
 
+    std::vector <std::tuple<std::string,double>> myDetectorList;
+    myDetectorList.clear();
+
+    std::cout << "You have called the following detectors (name,on/off,Lumi fb^-1):" << std::endl;
     for(auto it = detectors.begin(); it != detectors.end(); ++it){
-      std::cout << it->first << " " << it->second[0] << " " << it->second[1] << std::endl;
+     std::cout << it->first << " " << it->second[0] << " " << it->second[1] << std::endl;
+     if((it->second[0])==1){
+      std::tuple<std::string,double> newDet(it->first, it->second[1]);
+      myDetectorList.push_back(newDet);
+     } 
     }
    
 
@@ -216,6 +224,7 @@ int main(int argc, char* argv[]) {
     mychecker.setCTAU(ctau);
     mychecker.setSIGMA(sigma);
     mychecker.setVISIBLEBR(visibleBR);
+    mychecker.setDETECTORS(myDetectorList);
 
     if (input_file_format == "LHE" || input_file_format == "CMND"){
     	if (!mychecker.initPythia()) return 1;

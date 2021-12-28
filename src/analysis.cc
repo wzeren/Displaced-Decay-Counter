@@ -101,175 +101,86 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
     //number of LLPs to be analyzed
     ProducedLLP = 0;
     
-    
-    double observedLLPinAL3X{};
-    double observedLLPinANUBIS{};
-    double observedLLPinCODEXb{};
-    double observedLLPinFASER1{};
-    double observedLLPinFASER2{};
-    double observedLLPinMAPP1{};
-    double observedLLPinMAPP2{};
-    double observedLLPinMATHUSLA{};
-    
-    std::ofstream myfile;
-    myfile.open ("testres.txt"); //, std::ios_base::app);
-    
     // Creating detector list
-    
-    std::vector<std::string> studiedDet={"MATHUSLA0","MATHUSLA1","MATHUSLA2","FASER","FASER2","ANUBIS0","ANUBIS1","AL3X","CODEXB0","CODEXB1","MAPP1","MAPP2","FACET"};
-    std::vector<Detector> DetList=CreateDetectors(studiedDet);
-    int detTot=DetList.size();
-    std::vector<double> defaultLumis;
+    int detTot=myDetectorList.size();
+    std::vector<std::string> studiedDet;
+    studiedDet.clear();
+    std::vector<double> employedLumis;
+    employedLumis.clear();
     std::vector<double> observedLLPevents;
     observedLLPevents.clear();
-    defaultLumis.clear();
+    
+    for(int detInd=0;detInd<detTot;detInd++){
+     studiedDet.push_back(std::get<0>(myDetectorList[detInd]));
+     employedLumis.push_back(std::get<1>(myDetectorList[detInd]));
+    }
+    std::vector<Detector> DetList=CreateDetectors(studiedDet);
+
     double foundLumi=0.;
     for(int detInd=0; detInd<detTot; detInd++){
      observedLLPevents.push_back(0.);
-     foundLumi=DetList[detInd].readLumi();
-     defaultLumis.push_back(foundLumi);
+     if(employedLumis[detInd]<=0){
+      foundLumi=DetList[detInd].readLumi();
+      employedLumis[detInd]=foundLumi;
+     }
     }
-  
-  
+    
+    // Loop over Pythia events
     try{
-        for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
-                if (!pythia->next()) continue;
-                // Check the list of final state particles
-                for (int i = 0; i < pythia->event.size(); ++i) {
-                    if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {//count LLP  //requiring the last LLP in pythia event record
-			//mass = pythia->event[i].m0();
-			//ctau = pythia->event[i].tau0()/1000.; //conver mm to m
-			ProducedLLP += 1;
+     for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
+      if (!pythia->next()) continue;
+      // Check the list of final state particles
+      for (int i = 0; i < pythia->event.size(); ++i) {
+       if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {
+       //search LLPs not decaying into themselves
+       //mass = pythia->event[i].m0();
+       //ctau = pythia->event[i].tau0()/1000.; //conver mm to m
+        ProducedLLP += 1; // count produced LLPs
                         
-                        observedLLPinAL3X       += decayProbabilityAL3X(pythia->event[i]);
-                        observedLLPinANUBIS     += decayProbabilityANUBIS1(pythia->event[i])+decayProbabilityANUBIS2(pythia->event[i])+decayProbabilityANUBIS3(pythia->event[i]);
-                        observedLLPinCODEXb     += decayProbabilityCODEXb(pythia->event[i]);
-                        observedLLPinFASER1     += decayProbabilityFASER1(pythia->event[i]);
-                        observedLLPinFASER2     += decayProbabilityFASER2(pythia->event[i]);
-                        observedLLPinMAPP1      += decayProbabilityMAPP1(pythia->event[i],MAPP1);
-                        observedLLPinMAPP2      += decayProbabilityMAPP2(pythia->event[i],MAPP2);
-                        observedLLPinMATHUSLA   += decayProbabilityMATHUSLA(pythia->event[i]);
-                        
-    Pythia8::Particle XXX=pythia->event[i];
-    double gamma = XXX.e()/(mass);
-    double beta_z = XXX.pz()/XXX.e();
-    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
-    double theta = XXX.p().theta();            
-    double phi = XXX.p().phi();           
-    double eta = XXX.p().eta(); 
- //   myfile << "testres0: " << MATHUSLAO.DetAcc(theta,beta*gamma*ctau) << " , vs.: " << decayProbabilityMATHUSLA(pythia->event[i]) << " , vs.: " << MATHUSLAI.DetAcc(theta,beta*gamma*ctau) << "\n";
-    for(int detInd=0; detInd<detTot; detInd++){
-     observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-    }
-                       }
-                }
-            }
-       if(verbose)
-            pythia->stat();   
+        Pythia8::Particle XXX=pythia->event[i];
+        double gamma = XXX.e()/(mass);
+//        double beta_z = XXX.pz()/XXX.e();
+        double beta = sqrt(1. - pow(mass/XXX.e(), 2));
+        double theta = XXX.p().theta();            
+//       double phi = XXX.p().phi();           
+//       double eta = XXX.p().eta(); 
+        for(int detInd=0; detInd<detTot; detInd++){
+         observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+        }
+       }
+      }
+     }
+     if(verbose) pythia->stat();   
     }  
     catch(std::exception& e) {
-        std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
-        return false;
+     std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
+     return false;
     }
     
+/*  std::ofstream myfile;
+    myfile.open ("testres.txt"); //, std::ios_base::app);
     for(int detInd=0; detInd<detTot; detInd++){
-     myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*defaultLumis[detInd]/3000. << "\n";
-    }
+     myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*employedLumis[detInd]/3000. << "\n";
+    }*/
     
-    myfile << "USMATHUSLA: " << observedLLPinMATHUSLA << "\n";
-    myfile << "USFASER: " << observedLLPinFASER1 << " , USFASER2: " << observedLLPinFASER2 << "\n";
-    myfile << "USANUBIS: " << observedLLPinANUBIS << "\n";
-    myfile << "USAL3X: " << observedLLPinAL3X << "\n";
-    myfile << "USCODEXB: " << observedLLPinCODEXb << "\n";
-    myfile << "USMAPP1: " << observedLLPinMAPP1 << "\n";
-    myfile << "USMAPP2: " << observedLLPinMAPP2 << "\n";
-
- 
-    
-
-
-
-    double baseline_int_lumi{3000};// in fb^{-1}
-    
-    int nEvent = pythia->mode("Main:numberOfEvents");//number of events contained in the sample
-    if (nEvent < nEvent){
-        std::cout << "The event sample contains " << nEvent << " events, but the user requires " << nEvent << " events!" << '\n';
-    	die("Event sample containts fewer events than given by user!");
+    int nEvent = pythia->mode("Main:numberOfEvents");
+    //number of events contained in the sample
+    if (nEvent < nEventsMC){
+     std::cout << "Warning! You have requested the analysis of " << nEventsMC << " events. But the sample contains only " << nEvent << " events. Resetting the number of events to " << nEvent << " events." << '\n';
     }
     
     //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
     //sigma = pythia->info.sigmaGen()*1e12; //in fb  
     
-    double ReallyProducedLLP =  baseline_int_lumi * sigma * ProducedLLP/double(std::min(nEvent,nEventsMC));
-
-
-    double reallyobservedLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP;
-    double reallyobservedLLPinMATHUSLA	= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP;
-
-    double reallyvisibleLLPinAL3X		= observedLLPinAL3X  	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinANUBIS		= observedLLPinANUBIS	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinCODEXb		= observedLLPinCODEXb	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinFASER1		= observedLLPinFASER1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinFASER2		= observedLLPinFASER2    / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMAPP1		= observedLLPinMAPP1	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMAPP2		= observedLLPinMAPP2	  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-    double reallyvisibleLLPinMATHUSLA		= observedLLPinMATHUSLA  / ProducedLLP	* ReallyProducedLLP * visibleBR;
-
-
-
-
-
-    // Results
-    std::cout << "produced LLP: " << ProducedLLP << '\n';  
-    std::cout << "produced LLP/NMC: " << ProducedLLP/double(std::min(nEvent,nEventsMC)) << '\n';
-    std::cout << '\n';
-    std::cout << "    observedLLPinAL3X: " << observedLLPinAL3X 	<< '\n';
-    std::cout << "  observedLLPinANUBIS: " << observedLLPinANUBIS 	<< '\n';
-    std::cout << "  observedLLPinCODEXb: " << observedLLPinCODEXb 	<< '\n';
-    std::cout << "  observedLLPinFASER1: " << observedLLPinFASER1 	<< '\n';
-    std::cout << "  observedLLPinFASER2: " << observedLLPinFASER2 	<< '\n';
-    std::cout << "   observedLLPinMAPP1: " << observedLLPinMAPP1 	<< '\n';
-    std::cout << "   observedLLPinMAPP2: " << observedLLPinMAPP2 	<< '\n';
-    std::cout << "observedLLPinMATHUSLA: " << observedLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
-    std::cout << "    acceptanceAL3X: " << observedLLPinAL3X / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceANUBIS: " << observedLLPinANUBIS / ProducedLLP	<< '\n';
-    std::cout << "  acceptanceCODEXb: " << observedLLPinCODEXb / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceFASER1: " << observedLLPinFASER1 / ProducedLLP 	<< '\n';
-    std::cout << "  acceptanceFASER2: " << observedLLPinFASER2 / ProducedLLP 	<< '\n';
-    std::cout << "   acceptanceMAPP1: " << observedLLPinMAPP1 / ProducedLLP 	<< '\n';
-    std::cout << "   acceptanceMAPP2: " << observedLLPinMAPP2 / ProducedLLP 	<< '\n';
-    std::cout << "acceptanceMATHUSLA: " << observedLLPinMATHUSLA / ProducedLLP	<< '\n';
-    std::cout << '\n';
-    std::cout << "XS [fb]: " << sigma <<'\n';//in fb
-    std::cout << "ReallyProducedLLP for 3/ab: " << ReallyProducedLLP  << '\n';
-    std::cout << '\n';
-    std::cout << "    reallyobservedLLPinAL3X: " << reallyobservedLLPinAL3X 	<< '\n';
-    std::cout << "  reallyobservedLLPinANUBIS: " << reallyobservedLLPinANUBIS 	<< '\n';
-    std::cout << "  reallyobservedLLPinCODEXb: " << reallyobservedLLPinCODEXb 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER1: " << reallyobservedLLPinFASER1 	<< '\n';
-    std::cout << "  reallyobservedLLPinFASER2: " << reallyobservedLLPinFASER2 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP1: " << reallyobservedLLPinMAPP1 	<< '\n';
-    std::cout << "   reallyobservedLLPinMAPP2: " << reallyobservedLLPinMAPP2 	<< '\n';
-    std::cout << "reallyobservedLLPinMATHUSLA: " << reallyobservedLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
-    std::cout << "    reallyvisibleLLPinAL3X: " << reallyvisibleLLPinAL3X 	<< '\n';
-    std::cout << "  reallyvisibleLLPinANUBIS: " << reallyvisibleLLPinANUBIS 	<< '\n';
-    std::cout << "  reallyvisibleLLPinCODEXb: " << reallyvisibleLLPinCODEXb 	<< '\n';
-    std::cout << "  reallyvisibleLLPinFASER1: " << reallyvisibleLLPinFASER1 	<< '\n';
-    std::cout << "  reallyvisibleLLPinFASER2: " << reallyvisibleLLPinFASER2 	<< '\n';
-    std::cout << "   reallyvisibleLLPinMAPP1: " << reallyvisibleLLPinMAPP1 	<< '\n';
-    std::cout << "   reallyvisibleLLPinMAPP2: " << reallyvisibleLLPinMAPP2 	<< '\n';
-    std::cout << "reallyvisibleLLPinMATHUSLA: " << reallyvisibleLLPinMATHUSLA	<< '\n';
-    std::cout << '\n';
+    std::ofstream myfile;
+    myfile.open ("testres.txt"); //, std::ios_base::app);
+    myfile << "Number of visible LLP events in the detectors." << "\n";
+    for(int detInd=0; detInd<detTot; detInd++){
+     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / double(std::min(nEvent,nEventsMC));
+     myfile << DetList[detInd].readname() << " : " << VisibleLLPs << "\n";
+    }
     
-    
+    std::cout << "Find the results in testres.txt" <<'\n';
     myfile.close();
 
     return true;
