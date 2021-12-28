@@ -29,17 +29,8 @@ bool analysis::initPythia() {
 
   try {
         if (input_file_format == "LHE"){
-        	pythia->readString("Beams:frameType = 4");
-        	pythia->readString("Beams:LHEF = "+input_file_path);
-		pythia->readString("Init:showProcesses = off");
-            pythia->readString("Init:showChangedSettings = off");
-            //pythia->readString("Main:showChangedSettings = off");
-            pythia->readString("Stat:showProcessLevel = off");
-            pythia->readString("Stat:showErrors = off");
-            pythia->readString("Init:showProcesses = off");
-            pythia->readString("Print:quiet = off");
-            pythia->readString("Init:showChangedParticleData = off");
-            pythia->readString("Next:numberCount = 10000");
+	  pythia->readString("Beams:frameType = 4");
+	  pythia->readString("Beams:LHEF = "+input_file_path);
         }
 	else if (input_file_format == "CMND"){
   

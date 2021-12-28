@@ -216,7 +216,7 @@ int main(int argc, char* argv[]) {
 
     analysis mychecker;
     
-    mychecker.setVerbose();
+    //mychecker.setVerbose();
     mychecker.setINPUTFILEFORMAT(input_file_format);
     mychecker.setINPUTFILEPATH(input_file_path);
     mychecker.setLLPPID(LLPPID);
