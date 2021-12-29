@@ -83,7 +83,7 @@ bool analysis::initPythia() {
     return true;
 }
 
-bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
+bool analysis::runPythia(int nEventsMC) {
 
     if (input_file_format != "LHE" &&  input_file_format != "CMND"){
       return false;
@@ -178,7 +178,7 @@ bool analysis::runPythia(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2)
 }
 
 
-bool analysis::runHepMC(int nEventsMC, CubicDetector MAPP1,CubicDetector MAPP2) {
+bool analysis::runHepMC(int nEventsMC) {
   //JJJ: change to HepMC
   if (input_file_format == "HEPMC"){  
     
