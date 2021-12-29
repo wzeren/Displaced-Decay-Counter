@@ -42,6 +42,7 @@ int main(int argc, char* argv[]) {
     double visibleBR {1.};
     
     if(storeDefault){
+      defaultDetectors.insert({{"MATHUSLA0",{1,3000}}});
       defaultDetectors.insert({{"MATHUSLA1",{1,3000}}});
       defaultDetectors.insert({{"MATHUSLA2",{1,3000}}});
       defaultDetectors.insert({{"FASER",{1,3000}}});
@@ -85,7 +86,13 @@ int main(int argc, char* argv[]) {
     
     if(argc == 2){
       std::string filename(argv[1]);
-      std::cout << "Reading input data from " + filename << '\n';
+      std::cout << '\n';
+      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
+      std::cout << "           >>> WELCOME TO UNCLE JONG SOO'S WONDROUS LLP SIMULATOR <<<" << '\n';
+      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
+      std::cout << '\n';
+      std::cout << "************* Reading input data from " + filename << " *************" << '\n';
+      std::cout << '\n';
 
       std::ifstream inputfile(filename);
       if (!inputfile.is_open()){
@@ -133,15 +140,31 @@ int main(int argc, char* argv[]) {
   }
   
   //std::cout << "parton event generation: " << parton_generation << std::endl;
-    std::cout <<  "input_file_format: " << input_file_format << std::endl;   
-    std::cout << "input_file_path: " << input_file_path << std::endl;   
-    std::cout << "PID of the LLP: " << LLPPID << std::endl;
-    std::cout << "mass [GeV]: " << mass << std::endl;
-    std::cout << "ctau [m]: " << ctau << std::endl;
-    std::cout << "sigma [fb]: " << sigma << std::endl;
-    std::cout << "BR_vis: " << visibleBR << std::endl; 
-    std::cout << "nMC: " << nMC << std::endl;   
-    std::cout << "***************************************************************" << std::endl;   
+  std::ofstream myfile;
+  myfile.open ("Logs/input_summary.txt");
+    
+  myfile << "***************************************************************" << "\n";
+  myfile << "***************** WELCOME TO THE INPUT SUMMARY ****************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "	LLP characteristics:" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << " - PID:		" << LLPPID << "\n";
+  myfile << " - mass [GeV]:	" << mass << "\n";
+  myfile << " - ctau [m]:	" << ctau << "\n";
+  myfile << " - \"visible\" BR:	" << visibleBR << "\n";  
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "	Cross-section / event information:" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << " - input file format:	" << input_file_format << "\n";   
+  myfile << " - input file path:	" << input_file_path << "\n";   
+  myfile << " - number of MC events:	" << nMC << "\n";  
+  myfile << " - normalization XS [fb]:	" << sigma << "\n";  
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
     
     //Read detector settings    
     std::ifstream("detectors.dat") >> inputTest;
@@ -153,14 +176,22 @@ int main(int argc, char* argv[]) {
     std::vector <std::tuple<std::string,double>> myDetectorList;
     myDetectorList.clear();
 
-    std::cout << "You have called the following detectors (name,on/off,Lumi fb^-1):" << std::endl;
+  myfile << "***************************************************************" << "\n";
+  myfile << "	Detector information (name, on/off, Int. Lumi. in fb^-1):" << "\n";
+  myfile << "***************************************************************" << "\n";
     for(auto it = detectors.begin(); it != detectors.end(); ++it){
-     std::cout << it->first << " " << it->second[0] << " " << it->second[1] << std::endl;
+  myfile << it->first << ":	" << it->second[0] << ",	" << it->second[1] << std::endl;
      if((it->second[0])==1){
       std::tuple<std::string,double> newDet(it->first, it->second[1]);
       myDetectorList.push_back(newDet);
      } 
     }
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "******************** END OF INPUT SUMMARY *********************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile.close();
 
 
 
@@ -188,6 +219,10 @@ int main(int argc, char* argv[]) {
     
     	if (!mychecker.runHepMC(nMC)) return 1;
     }
+      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
+      std::cout << "   >>> UNCLE JONG SOO'S WONDROUS LLP SIMULATOR is coming to a happy end! <<<" << '\n';
+      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
+      std::cout << '\n';
     
     return 0;
 

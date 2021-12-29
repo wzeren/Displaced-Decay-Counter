@@ -163,16 +163,30 @@ bool analysis::runPythia(int nEventsMC) {
     //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
     //sigma = pythia->info.sigmaGen()*1e12; //in fb  
     
-    std::ofstream myfile;
-    myfile.open ("testres.txt"); //, std::ios_base::app);
-    myfile << "Number of visible LLP events in the detectors." << "\n";
+  std::ofstream myfile;
+  myfile.open ("Logs/results.txt");
+  myfile << "***************************************************************" << "\n";
+  myfile << "***************** WELCOME TO THE RESULT FILE ******************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "	Number of visible LLP events in the detectors." << "\n";
+  myfile << "Detector: simulated acceptance, number of events:" << "\n";
+  myfile << "***************************************************************" << "\n";
     for(int detInd=0; detInd<detTot; detInd++){
-     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / double(std::min(nEvent,nEventsMC));
-     myfile << DetList[detInd].readname() << " : " << VisibleLLPs << "\n";
+     double acceptance = observedLLPevents[detInd] / std::max(1.,double(ProducedLLP));
+     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent,nEventsMC)));
+  myfile << DetList[detInd].readname() << " :	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "******************** END OF THE RESULT FILE *******************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile.close();
     
-    std::cout << "Find the results in testres.txt" <<'\n';
-    myfile.close();
+    std::cout << '\n';
+    std::cout << "************* Read the results in bin/Logs/results.txt **************" <<'\n';
+    std::cout << '\n';
 
     return true;
 }
@@ -268,16 +282,30 @@ bool analysis::runHepMC(int nEventsMC) {
     //sigma = HepMC::getPythiaCrossSection()*1e12; //in fb  //not working at the moment
 
     
-    std::ofstream myfile;
-    myfile.open ("testres.txt"); //, std::ios_base::app);
-    myfile << "Number of visible LLP events in the detectors." << "\n";
+  std::ofstream myfile;
+  myfile.open ("Logs/results.txt");
+  myfile << "***************************************************************" << "\n";
+  myfile << "***************** WELCOME TO THE RESULT FILE ******************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "	Number of visible LLP events in the detectors." << "\n";
+  myfile << "Detector: simulated acceptance, number of events:" << "\n";
+  myfile << "***************************************************************" << "\n";
     for(int detInd=0; detInd<detTot; detInd++){
-     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / double(std::min(iEvent,nEventsMC));
-     myfile << DetList[detInd].readname() << " : " << VisibleLLPs << "\n";
+     double acceptance = observedLLPevents[detInd] / std::max(1.,double(ProducedLLP));
+     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(iEvent,nEventsMC)));
+  myfile << DetList[detInd].readname() << " :	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "******************** END OF THE RESULT FILE *******************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile.close();
     
-    std::cout << "Find the results in testres.txt" <<'\n';
-    myfile.close();
+    std::cout << '\n';
+    std::cout << "************* Read the results in bin/Logs/results.txt **************" <<'\n';
+    std::cout << '\n';
 
     return true;
 

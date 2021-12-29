@@ -73,17 +73,25 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 
    std::ofstream myfile;
-   myfile.open ("Detectors/Detector_log.txt");
-   myfile << "Checking the availability of detectors." << "\n";
+  myfile.open ("Logs/Detector_log.txt");
+  myfile << "***************************************************************" << "\n";
+  myfile << "***************** WELCOME TO THE DETECTOR LOG *****************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "Checking the availability of detectors..." << "\n";
+  myfile << "\n";
  
  for(int i=0;i<nameList.size();i++){
   std::string searchname=nameList[i];
   bool foundDet=false;
+  myfile << "***************************************************************" << "\n";
+  myfile << "	Requested detector:	" << searchname << "\n";
+  myfile << "***************************************************************" << "\n";
   for(int j=0;j<knownDet.size();j++){
    std::string foundname=knownDet[j].readname();
    if(foundname==searchname){
     if(foundDet){
-     myfile << "Warning! Detector " << searchname << " seems to be defined twice!" << "\n";
+  myfile << "Warning! Detector " << searchname << " seems to be defined twice!" << "\n";
     }
     if(!foundDet){
      myList.push_back(knownDet[j]);
@@ -92,13 +100,19 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
    }
   }
   if(foundDet){
-   myfile << "Detector " << searchname << " was found." << "\n";
+  myfile << "Detector " << searchname << " was found." << "\n";
   }
   if(!foundDet){
-   myfile << "Warning! Detector " << searchname << " does not seem to be declared!" << "\n";
+  myfile << "Warning! Detector " << searchname << " does not seem to be declared!" << "\n";
   }
+  myfile << "\n";
  }
-   myfile.close();
+  myfile << "***************************************************************" << "\n";
+  myfile << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile << "******************* END OF THE DETECTOR LOG *******************" << "\n";
+  myfile << "***************************************************************" << "\n";
+  myfile.close();
  
  return myList;
 }
