@@ -1,16 +1,21 @@
+#Home Directory
+HOME = /home/jsk
+
+
 #Pythia Directories
-PYTHIA8=/home/jsk/pythia8245
+PYTHIA8=$(HOME)/pythia8245
 PYTHIALIB=$(PYTHIA8)/lib
 PYTHIAINC=$(PYTHIA8)/include
 PYTHIAINCPYTHIA8=$(PYTHIA8)/include/Pythia8
 
 #HepMC Directories
-HEPMC=/home/jsk/hepmc
+HEPMC=$(HOME)/hepmc
 HEPMCLIB=$(HEPMC)/lib
 HEPMCINC=$(HEPMC)/include
 
 #JSON DIRECTORIES
-JSON=/home/jsk/llp_all_detectors/thirdParty/json-develop
+CURRDIR := $(shell pwd)
+JSON=$(CURRDIR)/thirdParty/json-develop
 JSONINC=$(JSON)/single_include
 
 INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC) -I$(JSONINC)
@@ -43,6 +48,5 @@ $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 	$(CC) -o $@ -c $^ $(INCLUDE) $(CFLAGS)
 
 DetEditor: $(SRCDIR)/DetEditor.cxx
-	$(CC) -o $(BINDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
-
+	$(CC) -o $(BINDIR)/DetEditor -std=c++17 -Wdeprecated-declarations $(SRCDIR)/DetEditor.cxx -lstdc++fs
 .PHONY = clean 
