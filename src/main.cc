@@ -27,6 +27,8 @@ int die(std::string output){
 
 int main(int argc, char* argv[]) {
   try{
+    system("display theMaster.png &");
+
     bool storeDefault = false;
     
     json input;
