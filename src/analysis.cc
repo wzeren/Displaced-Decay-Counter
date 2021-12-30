@@ -85,11 +85,9 @@ bool analysis::initPythia() {
 
 bool analysis::runPythia(int nEventsMC) {
 
-    if (input_file_format != "LHE" &&  input_file_format != "CMND"){
-      return false;
-    }
+     if (input_file_format != "LHE" &&  input_file_format != "CMND" && input_file_format != "HEPMC")return false;
   
-    //number of LLPs to be analyzed
+    // Counting the LLPs found in the sample
     ProducedLLP = 0;
     
     // Creating detector list
@@ -116,8 +114,11 @@ bool analysis::runPythia(int nEventsMC) {
      }
     }
     
-    // Loop over Pythia events
+    int nEvent = 0;
     try{
+     if (input_file_format == "LHE" ||  input_file_format == "CMND"){
+     
+    // Loop over Pythia events
      for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
       if (!pythia->next()) continue;
       // Check the list of final state particles
@@ -141,7 +142,49 @@ bool analysis::runPythia(int nEventsMC) {
        }
       }
      }
-     if(verbose) pythia->stat();   
+     if(verbose) pythia->stat();
+     
+     } else if (input_file_format == "HEPMC"){
+     
+      int iEvent = 0;//count number of events in the sample
+      	//read the input HepMC file
+	//	input_path = "../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/test.hepmc";
+	//	HepMC::IO_GenEvent ascii_in(input_path,std::ios::in);
+
+	//	HepMC::IO_GenEvent ascii_in("/home/jsk/hepmc-llp/llp_all_detectors/example_input/py8/test.hepmc",std::ios::in);
+	HepMC::IO_GenEvent ascii_in(input_file_path,std::ios::in);
+	
+	//select an event
+	HepMC::GenEvent* evt = ascii_in.read_next_event();
+
+	//loop over events of this HepMC file
+	while ( evt ){
+	  iEvent++;
+	  //loop over all partcles in the event evt
+	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
+
+	  	if(isLast_hepmc(p, LLPPID)){
+	        	//mass = (*p)->momentum().m();
+	        	ProducedLLP += 1;
+	    		
+	    		
+    double gamma = (*p)->momentum().e()/(mass);
+//    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
+    double theta = (*p)->momentum().theta();            
+//    double phi = (*p)->momentum().phi();           
+//    double eta = (*p)->momentum().eta(); 
+        for(int detInd=0; detInd<detTot; detInd++){
+         observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+        }
+        
+	  } // for
+       }
+	  ascii_in >> evt;
+	  if  (iEvent >= nEventsMC) break;
+	} //while loop
+	nEvent=iEvent;
+     }   
     }  
     catch(std::exception& e) {
      std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
@@ -154,7 +197,9 @@ bool analysis::runPythia(int nEventsMC) {
      myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*employedLumis[detInd]/3000. << "\n";
     }*/
     
-    int nEvent = pythia->mode("Main:numberOfEvents");
+    if (input_file_format == "LHE" ||  input_file_format == "CMND"){ 
+     nEvent= pythia->mode("Main:numberOfEvents");
+    }
     //number of events contained in the sample
     if (nEvent < nEventsMC){
      std::cout << "Warning! You have requested the analysis of " << nEventsMC << " events. But the sample contains only " << nEvent << " events. Resetting the number of events to " << nEvent << " events." << '\n';
@@ -191,7 +236,7 @@ bool analysis::runPythia(int nEventsMC) {
     return true;
 }
 
-
+/*
 bool analysis::runHepMC(int nEventsMC) {
   //JJJ: change to HepMC
   if (input_file_format == "HEPMC"){  
@@ -313,7 +358,7 @@ bool analysis::runHepMC(int nEventsMC) {
     }
     
 }      
-
+*/
 
 bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
 

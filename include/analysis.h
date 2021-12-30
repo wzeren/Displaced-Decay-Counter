@@ -45,7 +45,7 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC);
-    bool runHepMC(int nEventsMC);
+//    bool runHepMC(int nEventsMC);
         
 private: 
     

@@ -27,7 +27,7 @@ int die(std::string output){
 
 int main(int argc, char* argv[]) {
   try{
-    system("display theMaster.png &");
+    system("display UJSWT.png &");
 
     bool storeDefault = false;
     
@@ -219,7 +219,8 @@ int main(int argc, char* argv[]) {
        
     	//std::cout << "Zong" << std::endl;
     
-    	if (!mychecker.runHepMC(nMC)) return 1;
+    	if (!mychecker.runPythia(nMC)) return 1;
+    	//if (!mychecker.runHepMC(nMC)) return 1;
     }
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << "   >>> UNCLE JONG SOO'S WONDROUS LLP SIMULATOR is coming to a happy end! <<<" << '\n';
