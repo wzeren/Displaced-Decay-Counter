@@ -23,26 +23,11 @@ int die(std::string output){
   throw defaultEx;
 }
 
-//./main  input_file_format    input_file_path    LLPPID    mass    ctau     sigma     BR_vis      NMC
-
-  
-
 int main(int argc, char* argv[]) {
   try{
     //    system("display UJSWT.png &");
     
     bool storeDefault = false;
-    
-    //    nlohmann::json input;
-    //    std::map<std::string, std::array<int,2>> detectors;
-    //    nlohmann::json inputDet(detectors);
-    //    std::string input_file_format, input_file_path;
-    //    float sigma{};
-    //    int nMC{};
-    //    int LLPPID{};
-    //    double mass{};
-    //    double ctau{}; 
-    //    double visibleBR {1.};
     
     if(storeDefault)
       storeDefaultCards();
@@ -66,34 +51,9 @@ int main(int argc, char* argv[]) {
       }
 
       input.setInput(inputfile);
-
-      /*
-      inputfile >> input;
-
-      input["input"]["input_file_format"].get_to(input_file_format);
-      input["input"]["input_file_path"].get_to(input_file_path);
-      input["input"]["sigma"].get_to(sigma);
-      input["input"]["nMC"].get_to(nMC);
-      
-      input["LLP"]["LLPPID"].get_to(LLPPID);
-      input["LLP"]["mass"].get_to(mass);
-      input["LLP"]["ctau"].get_to(ctau);
-      input["LLP"]["visibleBR"].get_to(visibleBR);
-      */
     }
     else if(argc == 9){
       input.setInput(argc,argv);
-
-      /*
-      input_file_format= charToString(argv[1]);
-      input_file_path= charToString(argv[2]);  
-      LLPPID = atof(argv[3]); 
-      mass = atof(argv[4]);
-      ctau = atof(argv[5]);
-      sigma = atof(argv[6]); 
-      visibleBR = atof(argv[7]); 
-      nMC = atof(argv[8]); 
-      */
     }
     
     else{
@@ -144,29 +104,11 @@ int main(int argc, char* argv[]) {
     myDetectorList.clear();
     
     myfile << "***************************************************************" << "\n";
-    myfile << "	Detector information (name, on/off, Int. Lumi. in fb^-1):" << "\n";
+    myfile << "	Detector information (name, Int. Lumi. in fb^-1):" << "\n";
     myfile << "***************************************************************" << "\n";
-
-    /*
-    //Read detector settings    
-    std::ifstream("detectors.dat") >> inputDet;
-    for (auto& x : nlohmann::json::iterator_wrapper(inputDet)){
-      //      detectors.insert({{(std::string)x.key(),{(int)x.value()[0],(int)x.value()[1]}}});
-     myfile << (std::string)x.key() << ":	" << (int)x.value()[0] << ",	" << (int)x.value()[1] << std::endl;
-     if((int)x.value()[0]==1){
-    	std::tuple<std::string,double> newDet((std::string)x.key(), (int)x.value()[1]);
-    	myDetectorList.push_back(newDet);
-     }
-    }
-    */
         
     for(auto it = input.myDetectorList.begin(); it != input.myDetectorList.end(); ++it){
-      //      myfile << it->first << ":	" << it->second[0] << ",	" << it->second[1] << std::endl;
       myfile << std::get<0>(*it) << " " << std::get<1>(*it) << std::endl;
-      //      if((it->second[0])==1){
-      //    	std::tuple<std::string,double> newDet(it->first, it->second[1]);
-      //    	myDetectorList.push_back(newDet);
-      //      } 
     }
 
     
@@ -180,15 +122,6 @@ int main(int argc, char* argv[]) {
     analysis defaultAnalysisHandler;
 
     defaultAnalysisHandler.setAllInput(input);
-    //defaultAnalysisHandler.setVerbose();
-    //    defaultAnalysisHandler.setINPUTFILEFORMAT(input.input_file_format);
-    //defaultAnalysisHandler.setINPUTFILEPATH(input.input_file_path);
-    //defaultAnalysisHandler.setLLPPID(input.LLPPID);
-    //defaultAnalysisHandler.setMASS(input.mass);
-    //defaultAnalysisHandler.setCTAU(input.ctau);
-    //defaultAnalysisHandler.setSIGMA(input.sigma);
-    //defaultAnalysisHandler.setVISIBLEBR(input.visibleBR);
-    //defaultAnalysisHandler.setDETECTORS(input.myDetectorList);
 
     if (input.input_file_format == "LHE" || input.input_file_format == "CMND"){
     	if (!defaultAnalysisHandler.initPythia()) return 1;
@@ -198,15 +131,14 @@ int main(int argc, char* argv[]) {
     else if (input.input_file_format == "HEPMC"){   
        
       if (!defaultAnalysisHandler.runPythia(input.nMC)) return 1;
-      //if (!defaultAnalysisHandler.runHepMC(nMC)) return 1;
     }
+    
     std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
     std::cout << "   >>> UNCLE JONG SOO'S WONDROUS LLP SIMULATOR is coming to a happy end! <<<" << '\n';
     std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
     std::cout << '\n';
     
     return 0;
-    
     
   }
   catch (...){
