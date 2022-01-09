@@ -11,6 +11,7 @@
 #include <iterator>
 #include <functional> 
 #include <algorithm>
+#include "include/CInputInterface.h"
 
 //#include "Pythia.h"
 #include "Pythia8/Pythia.h"
@@ -23,15 +24,12 @@
 #include "HepMC/SimpleVector.h"
 
 
-
- 
-
-
 class analysis {
 public:
     analysis();
     ~analysis() {};    
 
+    void setAllInput(inputInterface input);
     void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
     void setINPUTFILEPATH(std::string input_file_path_in) {input_file_path = input_file_path_in;}; 
     void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
@@ -45,16 +43,11 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC);
-//    bool runHepMC(int nEventsMC);
         
 private: 
-    
 
     Pythia8::Pythia* pythia; 
     bool verbose; //< declares amount of Information Pythia writes
-    
-
-    
     std::string input_file_format;
     std::string input_file_path; 
     int LLPPID; 
@@ -64,9 +57,7 @@ private:
     double sigma;
     double visibleBR;
     std::vector <std::tuple<std::string,double>> myDetectorList;
-    
     double ProducedLLP;
-    
 
     bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);//input: HepMC particle and PID, output: check if the input is the last particle that "decays to itself"
 
