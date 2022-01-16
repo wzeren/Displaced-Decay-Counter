@@ -1,1 +1,4 @@
-{"LLP":{"LLPPID":9900012,"ctau":1,"mass":5,"visibleBR":1},"input":{"input_file_format":"LHE","input_file_path":"../example_input/mg5/pp2W2eN_5GeV_VvSq1em7/unweighted_events.lhe.gz","nMC":1000,"sigma":1.66274}}
+{
+    "LLP":{"LLPPID":9900012,"ctau":1,"mass":5,"visibleBR":1},
+    "input":{"input_file_format":"HEPMC","input_file_path":"../example_input/hepmc/pp2W2eN_5GeV_VvSq1em7/testParton.hepmc","nMC":1000,"sigma":1.66274}
+}
