@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
       std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
       std::cout << std::endl << std::endl;
       std::cout << "Input Card: \n";
-      std::cout << "./main input.dat" << std::endl;
+      std::cout << "./main inputEvents inputLLP.dat" << std::endl;
       exit(1);
     }
   
