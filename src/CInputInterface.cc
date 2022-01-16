@@ -14,6 +14,20 @@ void inputInterface::setInput(std::ifstream &inputfileEvents, std::ifstream &inp
   inputLLPs["LLP"]["mass"].get_to(mass);
   inputLLPs["LLP"]["ctau"].get_to(ctau);
   inputLLPs["LLP"]["visibleBR"].get_to(visibleBR);
+
+
+  /*for(auto it = inputLLPs.begin(); it != inputLLPs.end(); ++it){
+    std::cout << *it << std::endl;
+    }
+  */
+
+  //FOR FLORIAN:
+  /*
+  for (auto& x : nlohmann::json::iterator_wrapper(inputLLPs))
+    {
+        std::cout << "key: " << x.key() << ", value: " << x.value()["LLPPID"] << '\n';
+    }
+  */
   
   //Read detector settings
   nlohmann::json temp(detectors);

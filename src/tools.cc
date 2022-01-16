@@ -2,6 +2,7 @@
 
 void storeDefaultCards(){
 
+  
   std::map<std::string, std::array<int,2>> defaultDetectors, detectors;
   
   defaultDetectors.insert({{"MATHUSLA0",{1,3000}}});
@@ -43,5 +44,27 @@ void storeDefaultCards(){
       }
     };
   std::ofstream("input.dat") << input;
+  
 
+  /*
+  nlohmann::json input =
+    {
+     {"LLP1",{
+	  {"LLPPID",9900012},
+	  {"mass",5},
+	  {"ctau",1},
+	  {"visibleBR",1}
+	}
+     }
+     ,	
+     {"LLP2",{
+	  {"LLPPID",9900012},
+	  {"mass",5},
+	  {"ctau",1},
+	  {"visibleBR",1}
+	}
+     }
+    };
+  std::ofstream("multipleLLPs.dat") << input;
+  */
 }
