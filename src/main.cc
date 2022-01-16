@@ -34,23 +34,28 @@ int main(int argc, char* argv[]) {
 
     inputInterface input;
     
-    if(argc == 2){
-      std::string filename(argv[1]);
+    if(argc == 3){
+      std::string filenameEvents(argv[1]);
+      std::string filenameLLPs(argv[2]);
       std::cout << '\n';
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << "           >>> WELCOME TO UNCLE JONG SOO'S WONDROUS LLP SIMULATOR <<<" << '\n';
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << '\n';
-      std::cout << "************* Reading input data from " + filename << " *************" << '\n';
+      std::cout << "************* Reading input data from " + filenameEvents + " and " + filenameLLPs + " *************" << '\n';
       std::cout << '\n';
       
-      std::ifstream inputfile(filename);
-      if (!inputfile.is_open()){
-      	std::cout << filename + " cannot be opened.";
+      std::ifstream inputfileEvents(filenameEvents);
+      if (!inputfileEvents.is_open()){
+      	std::cout << filenameEvents + " cannot be opened.";
       	die("Input is invalid!");
       }
-
-      input.setInput(inputfile);
+      std::ifstream inputfileLLPs(filenameLLPs);
+      if (!inputfileLLPs.is_open()){
+      	std::cout << filenameLLPs + " cannot be opened.";
+      	die("Input is invalid!");
+      }
+      input.setInput(inputfileEvents, inputfileLLPs);
     }
     else if(argc == 9){
       input.setInput(argc,argv);

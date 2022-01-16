@@ -1,18 +1,19 @@
 #include "include/CInputInterface.h"
 
 
-void inputInterface::setInput(std::ifstream &inputfile){
-  inputfile >> input;
+void inputInterface::setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLPs){
+  inputfileEvents >> inputEvents;
+  inputfileLLPs >> inputLLPs;
   
-  input["input"]["input_file_format"].get_to(input_file_format);
-  input["input"]["input_file_path"].get_to(input_file_path);
-  input["input"]["sigma"].get_to(sigma);
-  input["input"]["nMC"].get_to(nMC);
+  inputEvents["input"]["input_file_format"].get_to(input_file_format);
+  inputEvents["input"]["input_file_path"].get_to(input_file_path);
+  inputEvents["input"]["sigma"].get_to(sigma);
+  inputEvents["input"]["nMC"].get_to(nMC);
   
-  input["LLP"]["LLPPID"].get_to(LLPPID);
-  input["LLP"]["mass"].get_to(mass);
-  input["LLP"]["ctau"].get_to(ctau);
-  input["LLP"]["visibleBR"].get_to(visibleBR);
+  inputLLPs["LLP"]["LLPPID"].get_to(LLPPID);
+  inputLLPs["LLP"]["mass"].get_to(mass);
+  inputLLPs["LLP"]["ctau"].get_to(ctau);
+  inputLLPs["LLP"]["visibleBR"].get_to(visibleBR);
   
   //Read detector settings
   nlohmann::json temp(detectors);

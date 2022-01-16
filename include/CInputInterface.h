@@ -12,7 +12,7 @@
 
 class inputInterface{
 public:
-  void setInput(std::ifstream &inputfile);
+  void setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLP);
   void setInput(int argc, char *argv[]);
   float sigma{};
   int nMC{};
@@ -24,7 +24,8 @@ public:
   std::string input_file_format, input_file_path;
 
 private:
-  nlohmann::json input;
+  nlohmann::json inputEvents;
+  nlohmann::json inputLLPs;
   std::map<std::string, std::array<int,2>> detectors;
   nlohmann::json inputDet;
   
