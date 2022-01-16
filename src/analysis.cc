@@ -134,10 +134,16 @@ bool analysis::runPythia(int nEventsMC) {
   int nEvent = 0;
   try{
     if (input_file_format == "LHE" ||  input_file_format == "CMND"){
+
+      HepMC::Pythia8ToHepMC* pythiaToHepMC = new HepMC::Pythia8ToHepMC();
+      HepMC::GenEvent* evt = new HepMC::GenEvent();
       
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
+
+	pythiaToHepMC->fill_next_event(*pythia, evt);  
+
 	// Check the list of final state particles
 	for (int i = 0; i < pythia->event.size(); ++i) {
 	  if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {
@@ -160,17 +166,21 @@ bool analysis::runPythia(int nEventsMC) {
 	    for(int detInd=0; detInd<detTot; detInd++){
 	      auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 	      if(acc > 0){
-		analyseEvent evaluate(pythia);
+		analyseEvent evaluate(evt);
 		if(evaluate.passCuts())
 		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      }
-	    }
-	  }
-	}
-      }
-      if(verbose) pythia->stat();
+	      }//if acc > 0
+	    }//for det
+	  }//if LLP condition
+	}//particle loop
+      }//event loop
       
-    }
+      if(verbose) pythia->stat();
+
+      delete pythiaToHepMC;
+      delete evt;
+      
+    }//if LHE, CMND
 
     else if (input_file_format == "HEPMC"){
       
@@ -203,17 +213,21 @@ bool analysis::runPythia(int nEventsMC) {
 		analyseEvent evaluate(evt);
 		if(evaluate.passCuts())
 		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      }
-	    }
+	      }//if acc > 0
+	    }// for det
 	    
-	  } // for
-	}
+	  } // if LLP cndition
+	}//for loop particle
 	ascii_in >> evt;
 	if  (iEvent >= nEventsMC) break;
-      } //while loop
+      } //while loop event
       nEvent=iEvent;
-    }   
-  }
+
+      delete evt;
+      
+    }//else if HEPMC
+    
+  } //try
   
   catch(std::exception& e) {
     std::cerr << "!!! Error occured while trying to run Pythia: " << e.what() << std::endl;
