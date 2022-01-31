@@ -51,6 +51,47 @@ void modifyDetectorsSource(const std::string myName, const std::string lookForEx
     throw inputPath.string() + " content is invalid. New detector cannot be added!";
 }
 
+void modifyDetCutsSource(const std::string myName, const std::string lookForExpr, const std::string input, const std::string fileExtension){
+
+  fs::path currentPath(fs::current_path());
+  fs::path inputPath;
+  if(fileExtension.compare("cc") == 0)
+    inputPath = currentPath / "../src/CAnalyseEvent.cc";
+  else
+    inputPath = currentPath / "../include/CAnalyseEvent.h";
+  
+  if(!fs::exists(inputPath))
+    throw inputPath.string() + " does not exist.";
+  
+  if (!fs::is_regular_file(inputPath))
+    throw inputPath.string() + " is not a regular file.";
+ 
+  std::ifstream file(inputPath, std::ios::in);
+  if (!file.is_open())
+        throw inputPath.string() + " cannot be opened.";
+
+ 
+  const std::size_t& size = fs::file_size(inputPath);
+  std::string content(size, '\0');
+  file.read(content.data(), size);
+  file.close();
+  
+  size_t strPosition = content.find(lookForExpr);
+ 
+  if(strPosition != std::string::npos){
+
+    content.insert(strPosition-1,input);
+    
+    fs::remove_all(inputPath);
+    
+    std::ofstream outputFile(inputPath);
+    outputFile << content;
+    outputFile.close();
+  }
+  else
+    throw inputPath.string() + " content is invalid. New detector cannot be added!";
+}
+
 
 void CopyNewDet(std::string myName){
  std::ofstream myfile;
@@ -68,6 +109,11 @@ void CopyNewDet(std::string myName){
  myfile << " Detector myDetector(Dname,DLumi,myDetLayers);" << "\n";
  myfile << " return myDetector;" << "\n";
  myfile << "}" << "\n";
+ myfile << "\n";
+ myfile << "bool " << myName << "Cuts(HepMC::GenEvent* evtin){" << "\n";
+ myfile << " bool cuts=true;" << "\n";
+ myfile << " return cuts;" << "\n";
+ myfile << "};" << "\n";
  myfile.close();
  
 /* Open file include/Detectors/<myName>.h and inserts the proper headers: */
@@ -76,18 +122,16 @@ void CopyNewDet(std::string myName){
  myfile << "#define _D" << myName << "_" << "\n";
  myfile << "\n";
  myfile << "#include \"include/CDetector.h\"" << "\n";
+ myfile << "#include \"HepMC/IO_GenEvent.h\"" << "\n";
  myfile << "\n";
  myfile << "Detector " << myName << "();" << "\n";
+ myfile << "\n";
+ myfile << "bool " << myName << "Cuts(HepMC::GenEvent* evtInput);" << "\n";
  myfile << "\n";
  myfile << "#endif" << "\n"; 
  myfile.close();
 
-/* TO DO: open src/detectors.cc and go to the line before "BUILDING THE LIST OF STUDIED DETECTORS" and insert:
-  Copy by hand for now. */
-// myfile.open ("testprint.txt", std::ios_base::app);
-// myfile << "\n";
-// myfile << " Detector " << myName << "X=" << myName << "();" << "\n";
-// myfile << " knownDet.push_back(" << myName << "X);" << "\n";
+/* Open src/detectors.cc and go to the line before "BUILDING THE LIST OF STUDIED DETECTORS" and insert: */
 
     std::stringstream input;    
     input << "\n";
@@ -97,21 +141,27 @@ void CopyNewDet(std::string myName){
     std::string lookForExpr = "// BUILDING THE LIST OF STUDIED DETECTORS";
     modifyDetectorsSource(myName, lookForExpr, input.str(),"cc");
     
-/* TO DO: open include/detectors.h and go to the line before "std::vector<Detector> CreateDetectors(std::vector<std::string>);" and insert:
-  Copy by hand for now. */
-//    myfile << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
-//    myfile.close();
+/* Open include/detectors.h and go to the line before "// END OF INCLUDE DEFINITIONS" and insert: */
 
     lookForExpr = "// END OF INCLUDE DEFINITIONS";
     input.str("");    
     input << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
     modifyDetectorsSource(myName, lookForExpr, input.str(),"h");
     
- //JSK: siehe main function
-/* Also copy the detector's name 'myName' in the storage file 'knowndet.txt' */
-// myfile.open ("knowndet.txt", std::ios_base::app);
-// myfile << myName << "\n";
-// myfile.close();
+/* Open include/CAnalyseEvent.cc and go to the line before "// APPLYING CUTS TO DETECTORS" and insert: */
+
+    lookForExpr = "// APPLYING CUTS TO DETECTORS";
+    input.str("");    
+    input << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
+    modifyDetCutsSource(myName, lookForExpr, input.str(),"h");
+    
+/* Open include/CAnalyseEvent.h and go to the line before "std::vector<Detector> CreateDetectors(std::vector<std::string>);" and insert: */
+
+    lookForExpr = "// END OF INCLUDE DEFINITIONS";
+    input.str("");    
+    input << "\n";
+    input << "  if(dettest==\"" << myName << "\")testres=" << myName << "Cuts(evt);" << "\n";
+    modifyDetCutsSource(myName, lookForExpr, input.str(),"h");
  
 }
 

@@ -13,3 +13,8 @@ Detector CODEXB0() {
  Detector myCODEXB(Dname,DLumi,codexLayers);
  return myCODEXB;
 }
+
+bool CODEXB0Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

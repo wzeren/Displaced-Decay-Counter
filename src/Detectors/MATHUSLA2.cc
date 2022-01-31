@@ -49,3 +49,8 @@ Detector MATHUSLA2() {
  Detector myMATHUSLA(Dname,DLumi,MathuBricks);
  return myMATHUSLA;
 }
+
+bool MATHUSLA2Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

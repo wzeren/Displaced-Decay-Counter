@@ -16,3 +16,21 @@ Detector MATHUSLA0() {
  Detector myMATHUSLA(Dname,DLumi,MathuLayers);
  return myMATHUSLA;
 }
+
+bool MATHUSLA0Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+   for (auto p  = evtin->particles_begin(); p != evtin->particles_end(); ++p ){
+
+    /*
+    //apply trivial cut
+    if( (*p)->momentum().perp() > -10. ){
+    std::cout << (*p)->pdg_id() << std::endl;
+      return true;
+    }
+
+    */
+
+   }
+
+ return cuts;
+};

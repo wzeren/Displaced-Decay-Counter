@@ -55,3 +55,8 @@ Detector ANUBIS1() {
  Detector myANUBIS(Dname,DLumi,AnubisBricks);
  return myANUBIS;
 }
+
+bool ANUBIS1Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

@@ -11,3 +11,8 @@ Detector FACET() {
  Detector myDetector(Dname,DLumi,myDetLayers);
  return myDetector;
 }
+
+bool FACETCuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

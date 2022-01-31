@@ -13,3 +13,8 @@ Detector FASER1() {
  Detector myFASER(Dname,DLumi,faserLayers);
  return myFASER;
 }
+
+bool FASER1Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

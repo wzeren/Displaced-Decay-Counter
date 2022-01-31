@@ -33,3 +33,8 @@ Detector MAPP2() {
  Detector myDetector(Dname,DLumi,myDetLayers);
  return myDetector;
 }
+
+bool MAPP2Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

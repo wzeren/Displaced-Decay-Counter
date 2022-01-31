@@ -134,6 +134,11 @@ Detector MATHUSLA1() {
  Detector myMATHUSLA(Dname,DLumi,IMathuLayers);
  return myMATHUSLA;
 }
+
+bool MATHUSLA1Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};
     
 /*Detector MATHUSLA1() {
  // First layer

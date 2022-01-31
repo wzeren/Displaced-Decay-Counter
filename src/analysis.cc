@@ -167,7 +167,7 @@ bool analysis::runPythia(int nEventsMC) {
 	      auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 	      if(acc > 0){
 		analyseEvent evaluate(evt);
-		if(evaluate.passCuts())
+		if(evaluate.passCuts(DetList[detInd].readname()))
 		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 	      }//if acc > 0
 	    }//for det
@@ -211,7 +211,7 @@ bool analysis::runPythia(int nEventsMC) {
 	      auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 	      if(acc > 0){
 		analyseEvent evaluate(evt);
-		if(evaluate.passCuts())
+		if(evaluate.passCuts(DetList[detInd].readname()))
 		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 	      }//if acc > 0
 	    }// for det

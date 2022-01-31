@@ -68,3 +68,8 @@ Detector CODEXB1() {
  Detector myCODEXB(Dname,DLumi,ICodexLayers);
  return myCODEXB;
 }
+
+bool CODEXB1Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

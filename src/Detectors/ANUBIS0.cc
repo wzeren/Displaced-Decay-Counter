@@ -26,3 +26,8 @@ Detector ANUBIS0() {
  Detector myANUBIS(Dname,DLumi,anubisLayers);
  return myANUBIS;
 }
+
+bool ANUBIS0Cuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};

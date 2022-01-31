@@ -13,3 +13,8 @@ Detector AL3X() {
  Detector myAL3X(Dname,DLumi,alexLayers);
  return myAL3X;
 }
+
+bool AL3XCuts(HepMC::GenEvent* evtin){
+ bool cuts=true;
+ return cuts;
+};
