@@ -49,4 +49,7 @@ $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 
 DetEditor: $(SRCDIR)/DetEditor.cxx
 	$(CC) -o $(BINDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
-.PHONY = clean 
+.PHONY = clean
+
+clean:
+	rm -rf build bin/main
