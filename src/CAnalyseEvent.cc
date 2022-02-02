@@ -29,7 +29,7 @@ bool analyseEvent::passCuts(std::string dettest){
   if(dettest=="MAPP2")testres=MAPP2Cuts(evt);
   
   if(dettest=="FACET")testres=FACETCuts(evt);
-  
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;

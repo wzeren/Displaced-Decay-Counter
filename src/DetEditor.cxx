@@ -152,15 +152,15 @@ void CopyNewDet(std::string myName){
 
     lookForExpr = "// APPLYING CUTS TO DETECTORS";
     input.str("");    
-    input << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
-    modifyDetCutsSource(myName, lookForExpr, input.str(),"h");
+    input << "\n";
+    input << "  if(dettest==\"" << myName << "\")testres=" << myName << "Cuts(evt);" << "\n";
+    modifyDetCutsSource(myName, lookForExpr, input.str(),"cc");
     
 /* Open include/CAnalyseEvent.h and go to the line before "std::vector<Detector> CreateDetectors(std::vector<std::string>);" and insert: */
 
     lookForExpr = "// END OF INCLUDE DEFINITIONS";
     input.str("");    
-    input << "\n";
-    input << "  if(dettest==\"" << myName << "\")testres=" << myName << "Cuts(evt);" << "\n";
+    input << "#include \"include/Detectors/" << myName << ".h\"" << "\n";
     modifyDetCutsSource(myName, lookForExpr, input.str(),"h");
  
 }
