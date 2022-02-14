@@ -32,30 +32,45 @@ public:
     void setAllInput(inputInterface input);
     void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
     void setINPUTFILEPATH(std::string input_file_path_in) {input_file_path = input_file_path_in;}; 
-    void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
-    void setMASS(double mass_in) {mass = mass_in;};
-    void setCTAU(double ctau_in) {ctau = ctau_in;};
     void setSIGMA(double sigma_in) {sigma = sigma_in;};
-    void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
+
     void setDETECTORS(std::vector <std::tuple<std::string,double>> myDetectorList_in) {myDetectorList = myDetectorList_in;};
     void setVerbose() {verbose = true;};
-    
+
+    //    void setLLPPID(double LLPPID_in) {LLPPID = LLPPID_in;};
+    //    void setMASS(double mass_in) {mass = mass_in;};
+    //    void setCTAU(double ctau_in) {ctau = ctau_in;};
+    //    void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC);
-        
+
+  class CLLP{
+  public:
+    int LLPPID{};
+    double mass{};
+    double ctau{}; 
+    double visibleBR {1.};      
+  };
+
+  std::vector <CLLP> LLPdata;
+
+    
 private: 
 
     Pythia8::Pythia* pythia; 
     bool verbose; //< declares amount of Information Pythia writes
     std::string input_file_format;
     std::string input_file_path; 
-    int LLPPID; 
+
     int nMC;
-    double mass;
-    double ctau;
     double sigma;
-    double visibleBR;
+    
+    //    int LLPPID; 
+    //    double mass;
+    //    double ctau;
+    //double visibleBR;
+
     std::vector <std::tuple<std::string,double>> myDetectorList;
     double ProducedLLP;
 

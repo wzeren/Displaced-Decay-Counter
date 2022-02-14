@@ -87,14 +87,18 @@ int main(int argc, char* argv[]) {
     myfile << "***************************************************************" << "\n";
     myfile << "\n";
     myfile << "***************************************************************" << "\n";
-    myfile << "	LLP characteristics:" << "\n";
-    myfile << "***************************************************************" << "\n";
-    myfile << " - PID:		" << input.LLPPID << "\n";
-    myfile << " - mass [GeV]:	" << input.mass << "\n";
-    myfile << " - ctau [m]:	" << input.ctau << "\n";
-    myfile << " - \"visible\" BR:	" << input.visibleBR << "\n";  
-    myfile << "***************************************************************" << "\n";
-    myfile << "\n";
+
+    for(auto llp: input.LLPdata){
+      myfile << "	LLP characteristics:" << "\n";
+      myfile << "***************************************************************" << "\n";
+      myfile << " - PID:		" << llp.LLPPID << "\n";
+      myfile << " - mass [GeV]:	" << llp.mass << "\n";
+      myfile << " - ctau [m]:	" << llp.ctau << "\n";
+      myfile << " - \"visible\" BR:	" << llp.visibleBR << "\n";  
+      myfile << "***************************************************************" << "\n";
+      myfile << "\n";
+    }
+    
     myfile << "***************************************************************" << "\n";
     myfile << "	Cross-section / event information:" << "\n";
     myfile << "***************************************************************" << "\n";

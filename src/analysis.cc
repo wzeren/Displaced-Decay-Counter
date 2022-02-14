@@ -13,14 +13,17 @@
 analysis::analysis() {
   pythia = new Pythia8::Pythia("../xmldoc/", false);
   verbose = false;
-  mass = 0;  //LLP mass in GeV 
-  ctau = 0;//LLP ctau in m
-  LLPPID = 0;
   sigma = 1;
-  visibleBR = 1;
   nMC = 0;
+
   ProducedLLP = 0; //total number of produced LLP's in MC
   myDetectorList.clear();
+
+  //  mass = 0;  //LLP mass in GeV 
+  //  ctau = 0;//LLP ctau in m
+  //  LLPPID = 0;
+  //visibleBR = 1;
+
 };    
 
 
@@ -28,13 +31,14 @@ analysis::analysis() {
 void analysis::setAllInput(inputInterface input){
   setINPUTFILEFORMAT(input.input_file_format);
   setINPUTFILEPATH(input.input_file_path);
-  setLLPPID(input.LLPPID);
-  setMASS(input.mass);
-  setCTAU(input.ctau);
   setSIGMA(input.sigma);
-  setVISIBLEBR(input.visibleBR);
   setDETECTORS(input.myDetectorList);
-    //    void setVerbose();
+
+  for(auto llp: input.LLPdata){
+    LLPdata.push_back({llp.LLPPID,llp.mass,llp.ctau,llp.visibleBR});
+  }
+  
+  //    void setVerbose();
 }
     
 
@@ -141,38 +145,46 @@ bool analysis::runPythia(int nEventsMC) {
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
-
-	pythiaToHepMC->fill_next_event(*pythia, evt);  
-
-	// Check the list of final state particles
-	for (int i = 0; i < pythia->event.size(); ++i) {
-	  if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {
-	    //search LLPs not decaying into themselves
-	    //mass = pythia->event[i].m0();
-	    //ctau = pythia->event[i].tau0()/1000.; //conver mm to m
-	    ProducedLLP += 1; // count produced LLPs
+	
+	for(auto llp: LLPdata){
+	  int LLPPID = llp.LLPPID;
+	  double mass = llp.mass;
+	  double ctau = llp.ctau;
+	  double visibleBR = llp.visibleBR;
+	  
+	  pythiaToHepMC->fill_next_event(*pythia, evt);  
+	  
+	  // Check the list of final state particles
+	  for (int i = 0; i < pythia->event.size(); ++i) {
 	    
-	    Pythia8::Particle XXX=pythia->event[i];
-	    double gamma = XXX.e()/(mass);
-	    //        double beta_z = XXX.pz()/XXX.e();
-	    double beta = sqrt(1. - pow(mass/XXX.e(), 2));
-	    double theta = XXX.p().theta();            
-	    //       double phi = XXX.p().phi();           
-	    //       double eta = XXX.p().eta(); 
-	    //	    for(int detInd=0; detInd<detTot; detInd++){
-	    //	      observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);	    
-	    //}
-
-	    for(int detInd=0; detInd<detTot; detInd++){
-	      auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      if(acc > 0){
-		analyseEvent evaluate(evt);
-		if(evaluate.passCuts(DetList[detInd].readname()))
-		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      }//if acc > 0
-	    }//for det
-	  }//if LLP condition
-	}//particle loop
+	    if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {
+	      //search LLPs not decaying into themselves
+	      //mass = pythia->event[i].m0();
+	      //ctau = pythia->event[i].tau0()/1000.; //conver mm to m
+	      ProducedLLP += 1; // count produced LLPs
+	      
+	      Pythia8::Particle XXX=pythia->event[i];
+	      double gamma = XXX.e()/(mass);
+	      //        double beta_z = XXX.pz()/XXX.e();
+	      double beta = sqrt(1. - pow(mass/XXX.e(), 2));
+	      double theta = XXX.p().theta();            
+	      //       double phi = XXX.p().phi();           
+	      //       double eta = XXX.p().eta(); 
+	      //	    for(int detInd=0; detInd<detTot; detInd++){
+	      //	      observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);	    
+	      //}
+	      
+	      for(int detInd=0; detInd<detTot; detInd++){
+		auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		if(acc > 0){
+		  analyseEvent evaluate(evt);
+		  if(evaluate.passCuts(DetList[detInd].readname()))
+		    observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		}//if acc > 0
+	      }//for det
+	    }//if LLP condition
+	  }//particle loop
+	}//LLPdata loop
       }//event loop
       
       if(verbose) pythia->stat();
@@ -187,44 +199,55 @@ bool analysis::runPythia(int nEventsMC) {
       int iEvent = 0;//count number of events in the sample
 
       HepMC::IO_GenEvent ascii_in(input_file_path,std::ios::in);
-      
+
       //select an event
       HepMC::GenEvent* evt = ascii_in.read_next_event();
       
       //loop over events of this HepMC file
+
       while ( evt ){
 	iEvent++;
-	//loop over all partcles in the event evt
-	for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
+	
+	for(auto llp: LLPdata){
+	  int LLPPID = llp.LLPPID;
+	  double mass = llp.mass;
+	  double ctau = llp.ctau;
+	  double visibleBR = llp.visibleBR;
 	  
-	  if(isLast_hepmc(p, LLPPID)){
+	  //loop over all partcles in the event evt
+	  for ( HepMC::GenEvent::particle_const_iterator p  = evt->particles_begin(); p != evt->particles_end(); ++p ){
+	    
+	    
+	    if(isLast_hepmc(p, LLPPID)){
+	      
+	      ProducedLLP += 1;
+	      
+	      double gamma = (*p)->momentum().e()/(mass);
+	      //    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
+	      double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
+	      double theta = (*p)->momentum().theta();            
+	      //    double phi = (*p)->momentum().phi();           
+	      //    double eta = (*p)->momentum().eta(); 
+	      for(int detInd=0; detInd<detTot; detInd++){
+		auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		if(acc > 0){
+		  analyseEvent evaluate(evt);
+		  if(evaluate.passCuts(DetList[detInd].readname()))
+		    observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		}//if acc > 0
+	      }// for det
+	      
+	    } // if LLP cndition
+	    
+	  }//for loop particle
+	  ascii_in >> evt;
+	  if  (iEvent >= nEventsMC) break;
 
-	    ProducedLLP += 1;
-	    
-	    double gamma = (*p)->momentum().e()/(mass);
-	    //    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
-	    double beta = sqrt(1. - pow(mass/(*p)->momentum().e(), 2));
-	    double theta = (*p)->momentum().theta();            
-	    //    double phi = (*p)->momentum().phi();           
-	    //    double eta = (*p)->momentum().eta(); 
-	    for(int detInd=0; detInd<detTot; detInd++){
-	      auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      if(acc > 0){
-		analyseEvent evaluate(evt);
-		if(evaluate.passCuts(DetList[detInd].readname()))
-		  observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
-	      }//if acc > 0
-	    }// for det
-	    
-	  } // if LLP cndition
-	}//for loop particle
-	ascii_in >> evt;
-	if  (iEvent >= nEventsMC) break;
+	}// LLPdata loop
       } //while loop event
       nEvent=iEvent;
-
-      delete evt;
       
+      delete evt;
     }//else if HEPMC
     
   } //try
@@ -261,6 +284,9 @@ bool analysis::runPythia(int nEventsMC) {
   myfile << "	Number of visible LLP events in the detectors." << "\n";
   myfile << "Detector: simulated acceptance, number of events:" << "\n";
   myfile << "***************************************************************" << "\n";
+  std::cout << "ZONG: FIX IT! :" << std::endl;
+  double visibleBR=1.;
+
   for(int detInd=0; detInd<detTot; detInd++){
     double acceptance = observedLLPevents[detInd] / std::max(1.,double(ProducedLLP));
     double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent,nEventsMC)));
