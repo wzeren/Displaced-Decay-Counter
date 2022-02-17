@@ -117,8 +117,10 @@ bool analysis::runPythia(int nEventsMC) {
   studiedDet.clear();
   std::vector<double> employedLumis;
   employedLumis.clear();
-  std::vector<double> observedLLPevents;
-  observedLLPevents.clear();
+  std::vector<std::vector<double>> observedLLPevents(LLPdata.size());
+  //  observedLLPevents.clear();
+
+  
   
   for(int detInd=0;detInd<detTot;detInd++){
     studiedDet.push_back(std::get<0>(myDetectorList[detInd]));
@@ -128,7 +130,8 @@ bool analysis::runPythia(int nEventsMC) {
   
   double foundLumi=0.;
   for(int detInd=0; detInd<detTot; detInd++){
-    observedLLPevents.push_back(0.);
+    for(size_t iLLP = 0; iLLP < observedLLPevents.size();iLLP++)
+      observedLLPevents[iLLP].push_back(0.);
     if(employedLumis[detInd]<=0){
       foundLumi=DetList[detInd].readLumi();
       employedLumis[detInd]=foundLumi;
@@ -145,7 +148,8 @@ bool analysis::runPythia(int nEventsMC) {
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
-	
+
+	size_t iLLP = 0;
 	for(auto llp: LLPdata){
 	  int LLPPID = llp.LLPPID;
 	  double mass = llp.mass;
@@ -179,11 +183,12 @@ bool analysis::runPythia(int nEventsMC) {
 		if(acc > 0){
 		  analyseEvent evaluate(evt);
 		  if(evaluate.passCuts(DetList[detInd].readname()))
-		    observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		    observedLLPevents[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 		}//if acc > 0
 	      }//for det
 	    }//if LLP condition
 	  }//particle loop
+	  iLLP++;
 	}//LLPdata loop
       }//event loop
       
@@ -207,7 +212,8 @@ bool analysis::runPythia(int nEventsMC) {
 
       while ( evt ){
 	iEvent++;
-	
+
+	size_t iLLP = 0;
 	for(auto llp: LLPdata){
 	  int LLPPID = llp.LLPPID;
 	  double mass = llp.mass;
@@ -233,7 +239,7 @@ bool analysis::runPythia(int nEventsMC) {
 		if(acc > 0){
 		  analyseEvent evaluate(evt);
 		  if(evaluate.passCuts(DetList[detInd].readname()))
-		    observedLLPevents[detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		    observedLLPevents[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 		}//if acc > 0
 	      }// for det
 	      
@@ -242,7 +248,7 @@ bool analysis::runPythia(int nEventsMC) {
 	  }//for loop particle
 	  ascii_in >> evt;
 	  if  (iEvent >= nEventsMC) break;
-
+	  iLLP++;
 	}// LLPdata loop
       } //while loop event
       nEvent=iEvent;
@@ -284,13 +290,14 @@ bool analysis::runPythia(int nEventsMC) {
   myfile << "	Number of visible LLP events in the detectors." << "\n";
   myfile << "Detector: simulated acceptance, number of events:" << "\n";
   myfile << "***************************************************************" << "\n";
-  std::cout << "ZONG: FIX IT! :" << std::endl;
   double visibleBR=1.;
 
-  for(int detInd=0; detInd<detTot; detInd++){
-    double acceptance = observedLLPevents[detInd] / std::max(1.,double(ProducedLLP));
-    double VisibleLLPs = observedLLPevents[detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent,nEventsMC)));
-    myfile << DetList[detInd].readname() << " :	" << acceptance << " ,	" << VisibleLLPs << "\n";
+  for(size_t iLLP=0; iLLP < observedLLPevents.size(); iLLP++){
+    for(int detInd=0; detInd<detTot; detInd++){
+      double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,double(ProducedLLP));
+      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent,nEventsMC)));
+      myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
+    }
   }
   myfile << "\n";
   myfile << "***************************************************************" << "\n";
