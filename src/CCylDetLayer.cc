@@ -1,19 +1,25 @@
+/*! \file
+ * Definition of the member functions of the CylDetLayer class.
+*/
 #include "include/CCylDetLayer.h"
 #include "include/CCylSeg.h"
 
- /* The straightforward constructor of the CylDetLayer class directly takes a vector
-     of oriented cylindrical segments and a weight as input.
-    We do not encourage its use. */
+/*! \brief
+ * Simple constructor pf the CylDetLayer class.
+
+ * The straightforward constructor of the CylDetLayer class directly takes a vector of oriented cylindrical segments and a weight as input. We do not encourage its use. 
+*/
 
 CylDetLayer::CylDetLayer(std::vector<CylSeg> Seglist,double wgh) { 
   CylSegList=Seglist;
   weight=wgh;
 }
 
- /* The 'advanced' constructor reads a list of coordinates (a vector of 2-dim. arrays) 
-     in the cylindrical plane {z,h}, together with the weighing factor.
-    It then builds the convex polygonal envelope associated with the coordinates,
-     automatically detecting the orientation of segments with respect to the IP. */
+/*! \brief
+ * Advanced constructor of the CylDetLayer class.
+
+ * The 'advanced' constructor reads a list of coordinates (a vector of 2-dim. arrays) in the cylindrical plane {z,h}, together with the weighing factor. It then builds the convex polygonal envelope associated with the coordinates, automatically detecting the orientation of segments with respect to the IP.
+*/
  
 CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) { 
  //  reset all y-values to positive.
@@ -147,10 +153,12 @@ CylDetLayer::CylDetLayer(std::vector<std::array<double,2>> ptlist,double wgh) {
   weight=wgh;
 }
 
- /* The inDetDec class function computes the weighed decay probability 
-     within the detector layer. 
-    It simply sums decay probabilities from the listed cyl. segments 
-     and applies an overall weight. */
+/*! \brief
+ * Decay probability function for the CylDetLayer class.
+
+ * The inDetDec class function computes the weighed decay probability within the detector layer. 
+   It simply sums decay probabilities from the listed cyl. segments and applies an overall weight.
+*/
  
 double CylDetLayer::inDetDec(double th,double leff) {
   double Pdec=0.;

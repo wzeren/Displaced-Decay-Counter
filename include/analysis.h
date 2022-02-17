@@ -1,3 +1,6 @@
+/*! \file
+ * Definition of the analysis class, giving access to the test functions for the analysis of events.
+*/
 #ifndef _ANALYSIS
 #define _ANALYSIS
 
@@ -23,6 +26,9 @@
 //#include "HepMC/ParticleData.h"
 #include "HepMC/SimpleVector.h"
 
+/*! \brief
+ * The analysis class gives access to the test functions for an event file containing identified LLPs.
+*/
 
 class analysis {
 public:
@@ -44,6 +50,10 @@ public:
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
     bool runPythia(int nEventsMC);
+
+/*! \brief
+ * The CLLP class stores the characteristics of a given LLP.
+*/
 
   class CLLP{
   public:

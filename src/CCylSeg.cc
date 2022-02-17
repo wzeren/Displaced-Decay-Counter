@@ -1,7 +1,11 @@
+/*! \file
+ * Definition of the member functions of the CylSeg class.
+*/
 #include "include/CCylSeg.h"
 
-/* The CylSeg constructor takes coordinates of the extreme points (2-dim. arrays) as input,
-    as well as a sign (stored as an integer) to define the orientation. */
+/*!
+ * The CylSeg constructor takes coordinates of the extreme points (2-dim. arrays) as input, as well as a sign (stored as an integer) to define the orientation.
+*/
 
 CylSeg::CylSeg (std::array<double,2> Azy,std::array<double,2> Bzy,int fls) {
   zA=Azy[0];                            // reads the coordinates
@@ -19,9 +23,9 @@ CylSeg::CylSeg (std::array<double,2> Azy,std::array<double,2> Bzy,int fls) {
   }
 }
 
-/* The class function DecProb computes the signed exponential factor from an input 
-    corresponding to the angle of emission of the particle 
-    and its effective flying distance. */
+/*!
+ * The class function DecProb computes the signed exponential factor from an input corresponding to the angle of emission of the particle and its effective flying distance.
+ */
 
 double CylSeg::DecProb (double th,double leff) {
   double elInt=0.;  // exponential contribution initialized to 0.

@@ -1,4 +1,7 @@
 //********************** EDITOR OF DETECTORS PROJECT *****************************
+/*! \file
+ * The DetEditor sub-program generates code for the inclusion of new detectors.
+*/
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,7 +11,9 @@
 
 namespace fs = std::experimental::filesystem;
 
-/* Function Copying the code associated with the new detector */
+/*! 
+ * Auxilliary function copying code lines at specific locations in /src/detectors.cc and /include/detectors.h .
+*/
 
 void modifyDetectorsSource(const std::string myName, const std::string lookForExpr, const std::string input, const std::string fileExtension){
 
@@ -51,6 +56,10 @@ void modifyDetectorsSource(const std::string myName, const std::string lookForEx
     throw inputPath.string() + " content is invalid. New detector cannot be added!";
 }
 
+/*! 
+ * Auxilliary function copying code lines at specific locations in /src/CAnalyseEvent.cc and /include/CAnalyseEvent.h .
+*/
+
 void modifyDetCutsSource(const std::string myName, const std::string lookForExpr, const std::string input, const std::string fileExtension){
 
   fs::path currentPath(fs::current_path());
@@ -92,6 +101,9 @@ void modifyDetCutsSource(const std::string myName, const std::string lookForExpr
     throw inputPath.string() + " content is invalid. New detector cannot be added!";
 }
 
+/*! 
+ * Principal function copying the code associated with the new detector.
+*/
 
 void CopyNewDet(std::string myName){
  std::ofstream myfile;
@@ -165,8 +177,9 @@ void CopyNewDet(std::string myName){
  
 }
 
-/* Main function, prompting the user for a detector identifier,
-    then calling the editing function. */
+/*!
+ * The main routine prompts the user for a detector identifier, then calls the editing function. 
+*/
 
 int main(){
 
