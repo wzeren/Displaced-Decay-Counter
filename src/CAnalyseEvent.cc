@@ -1,5 +1,14 @@
+/*! \file
+ * Definition of the member function passCuts of the analyseEvent class, distributing the cut function to each detector.
+*/
 #include "include/CAnalyseEvent.h"
 #include <iostream>
+
+/*! \brief
+ * The passCuts function looks for the cuts relevant for each detector and applies it to the tested event.
+ 
+ * The individual cut functions are defined in the files describing the corresponding detectors in src/Detectors/ .
+*/
 
 bool analyseEvent::passCuts(std::string dettest){
   bool testres=true;

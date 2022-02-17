@@ -1,14 +1,21 @@
-// class Detector defining a full detector
+/*! \file
+ * Definition of the Detector class, collecting the characteristics of a detector model.
+*/
 #ifndef _CCDetector_
 #define _CCDetector_
 
 #include <string>
 #include "include/CCylDetLayer.h"
 
-/* The detector class collects together a list (vector) of cylindrical detector layers.
-    It is labelled with an identifier and receives a default integrated luminosity.
-    Both of these properties can be read, as well as the detector's acceptance.
-   This is the 'macroscopic' object that is tested in the simulation. */
+/*! \brief
+ * The Detector class defines the basic properties of a detector model.
+
+   The Detector class collects together a list (vector) of cylindrical detector layers.
+   It is labelled with an identifier and receives a default integrated luminosity.
+   Both of these properties can be read, as well as the detector's acceptance.
+   This is the 'macroscopic' object that is tested in the simulation.
+   Detector models are stored in the src/Detectors/ folder.
+*/
 
 class Detector{
     std::string Detname;                  // detector identifier
@@ -21,7 +28,9 @@ class Detector{
     double readLumi();                         // reads the detector's luminosity
 };
 
-/* Auxiliary function to build detector layers. */
+/*! \brief
+ * Auxiliary function to build detector layers from 'bricks'.
+*/
 
 CylDetLayer CylBrick(std::array<double,2> coord, double length, double height, double apphi, double wgh);
 

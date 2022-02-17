@@ -1,3 +1,6 @@
+/*! \file
+ * Definition of the member functions of the analysis class, allowing testing of the event files.
+*/
 #include "include/analysis.h"
 #include "include/functions.h"
 #include "include/CCylSeg.h"
@@ -41,8 +44,9 @@ void analysis::setAllInput(inputInterface input){
   //    void setVerbose();
 }
     
-
-
+/*!
+ * The function initPythia initializes Pythia.
+*/
 bool analysis::initPythia() {
   
   if (input_file_format != "LHE" &&  input_file_format != "CMND"){
@@ -102,6 +106,10 @@ bool analysis::initPythia() {
   }
   return true;
 }
+
+/*!
+ * The function runPythia analyses the event file to determine the number of observed LLPs at far detectors.
+*/
 
 bool analysis::runPythia(int nEventsMC) {
   
@@ -427,6 +435,10 @@ observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);
     }
     
 }      
+*/
+
+/*!
+ * The isLast_hepmc function determines the address of the LLP in the event file.
 */
 
 bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID){
