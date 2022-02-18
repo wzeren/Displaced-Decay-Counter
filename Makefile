@@ -48,7 +48,7 @@ $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 	$(CC) -o $@ -c $^ $(INCLUDE) $(CFLAGS)
 
 DetEditor: $(SRCDIR)/DetEditor.cxx
-	$(CC) -o $(BINDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
+	$(CC) -o $(SRCDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
 .PHONY = clean
 
 clean:
