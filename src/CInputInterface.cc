@@ -1,6 +1,12 @@
+/*! \file
+ * Definition of the member functions of the inputInterface class.
+*/
 #include "include/CInputInterface.h"
 
-
+ 
+/*!
+ * Reads and stores the input from the input files.
+*/
 void inputInterface::setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLPs){
   inputfileEvents >> inputEvents;
   inputfileLLPs >> inputLLPs;

@@ -1,3 +1,6 @@
+/*! \file
+ * Definition of the input interface.
+*/
 #ifndef _CINPUTINTERFACE_
 #define _CINPUTINTERFACE_
 
@@ -10,6 +13,9 @@
 #include "CInputInterface.h"
 #include "include/functions.h"
 
+/*! \brief
+ * The inputInterface collects the input in json format.
+*/
 
 class inputInterface{
 public:
@@ -21,6 +27,10 @@ public:
   //  double mass{};
   //  double ctau{}; 
   //  double visibleBR {1.};
+  
+/*! \brief
+ * The CLLP class stores the characteristics of a given LLP.
+*/
 
   class CLLP{
   public:
