@@ -49,7 +49,7 @@ void analysis::setAllInput(inputInterface input){
 */
 bool analysis::initPythia() {
   
-  if (input_file_format != "LHE" &&  input_file_format != "CMND"){
+  if (input_file_format != "LHE" &&  input_file_format != "IN"){
     return false;
   }
   
@@ -58,7 +58,7 @@ bool analysis::initPythia() {
       pythia->readString("Beams:frameType = 4");
       pythia->readString("Beams:LHEF = "+input_file_path);
     }
-    else if (input_file_format == "CMND"){
+    else if (input_file_format == "IN"){
       
       pythia->readFile(input_file_path);
     }
@@ -113,7 +113,7 @@ bool analysis::initPythia() {
 
 bool analysis::runPythia(int nEventsMC) {
   
-  if (input_file_format != "LHE" &&  input_file_format != "CMND" && input_file_format != "HEPMC")
+  if (input_file_format != "LHE" &&  input_file_format != "IN" && input_file_format != "HEPMC")
     return false;
   
   // Counting the LLPs found in the sample
@@ -148,7 +148,7 @@ bool analysis::runPythia(int nEventsMC) {
   
   int nEvent = 0;
   try{
-    if (input_file_format == "LHE" ||  input_file_format == "CMND"){
+    if (input_file_format == "LHE" ||  input_file_format == "IN"){
 
       HepMC::Pythia8ToHepMC* pythiaToHepMC = new HepMC::Pythia8ToHepMC();
       HepMC::GenEvent* evt = new HepMC::GenEvent();
@@ -156,7 +156,7 @@ bool analysis::runPythia(int nEventsMC) {
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
-
+  
 	size_t iLLP = 0;
 	for(auto llp: LLPdata){
 	  int LLPPID = llp.LLPPID;
@@ -205,7 +205,7 @@ bool analysis::runPythia(int nEventsMC) {
       delete pythiaToHepMC;
       delete evt;
       
-    }//if LHE, CMND
+    }//if LHE, IN
 
     else if (input_file_format == "HEPMC"){
       
@@ -277,7 +277,7 @@ bool analysis::runPythia(int nEventsMC) {
       myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*employedLumis[detInd]/3000. << "\n";
       }*/
   
-  if (input_file_format == "LHE" ||  input_file_format == "CMND"){ 
+  if (input_file_format == "LHE" ||  input_file_format == "IN"){ 
     nEvent= pythia->mode("Main:numberOfEvents");
   }
   //number of events contained in the sample
