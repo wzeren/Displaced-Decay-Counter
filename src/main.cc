@@ -64,8 +64,8 @@ int main(int argc, char* argv[]) {
     else{
       std::cout << "Command Line Input: \n";
       std::cout << "./main input_file_format input_file_path LLPPID mass ctau sigma BR_vis NMC" << std::endl;
-      std::cout << "   - input_file_format: LHE, HEPMC or IN" << std::endl;        
-      std::cout << "   - input_file_path: LHE/HEPMC file for LHE/HEPMC, in file for PY8" << std::endl;        
+      std::cout << "   - input_file_format: LHE, HEPMC or CMND" << std::endl;        
+      std::cout << "   - input_file_path: LHE/HEPMC file for LHE/HEPMC, cmnd file for PY8" << std::endl;        
       std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;   
       std::cout << "   - mass: LLP mass in GeV" << std::endl;   
       std::cout << "   - ctau: LLP ctau in meter" << std::endl;  
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
 
     defaultAnalysisHandler.setAllInput(input);
 
-    if (input.input_file_format == "LHE" || input.input_file_format == "IN"){
+    if (input.input_file_format == "LHE" || input.input_file_format == "CMND"){
     	if (!defaultAnalysisHandler.initPythia()) return 1;
 	if (!defaultAnalysisHandler.runPythia(input.nMC))  return 1;
     }
