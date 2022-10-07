@@ -34,9 +34,10 @@ int main(int argc, char* argv[]) {
 
     inputInterface input;
     
-    if(argc == 3){
+    if(argc == 4){
       std::string filenameEvents(argv[1]);
       std::string filenameLLPs(argv[2]);
+      std::string resultPath(argv[3]);
       std::cout << '\n';
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << "           >>> WELCOME TO UNCLE JONG SOO'S WONDROUS LLP SIMULATOR <<<" << '\n';
@@ -55,9 +56,9 @@ int main(int argc, char* argv[]) {
       	std::cout << filenameLLPs + " cannot be opened.";
       	die("Input is invalid!");
       }
-      input.setInput(inputfileEvents, inputfileLLPs);
+      input.setInput(inputfileEvents, inputfileLLPs, resultPath);
     }
-    else if(argc == 9){
+    else if(argc == 10){
       input.setInput(argc,argv);
     }
     
@@ -72,9 +73,10 @@ int main(int argc, char* argv[]) {
       std::cout << "   - sigma: production cross section in fb" << std::endl;  
       std::cout << "   - BR_vis: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
       std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
+      std::cout << "   - Path to Result file" << std::endl;
       std::cout << std::endl << std::endl;
       std::cout << "Input Card: \n";
-      std::cout << "./main inputEvents inputLLPs.dat" << std::endl;
+      std::cout << "./main <inputEvents.dat> <inputLLPs.dat> <PathToResultFile>" << std::endl;
       exit(1);
     }
   
@@ -134,12 +136,12 @@ int main(int argc, char* argv[]) {
 
     if (input.input_file_format == "LHE" || input.input_file_format == "CMND"){
     	if (!defaultAnalysisHandler.initPythia()) return 1;
-	if (!defaultAnalysisHandler.runPythia(input.nMC))  return 1;
+	if (!defaultAnalysisHandler.runPythia(input.nMC,input.pathToResultFile))  return 1;
     }
     
     else if (input.input_file_format == "HEPMC"){   
        
-      if (!defaultAnalysisHandler.runPythia(input.nMC)) return 1;
+      if (!defaultAnalysisHandler.runPythia(input.nMC,input.pathToResultFile)) return 1;
     }
     
     std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';

@@ -19,7 +19,7 @@
 
 class inputInterface{
 public:
-  void setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLP);
+  void setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLP, std::string inputPathToResultFile);
   void setInput(int argc, char *argv[]);
   float sigma{};
   int nMC{};
@@ -44,7 +44,8 @@ public:
   
   std::vector <std::tuple<std::string,double>> myDetectorList;
   std::string input_file_format, input_file_path;
-
+  std::string pathToResultFile;
+  
 private:
   nlohmann::json inputEvents;
   nlohmann::json inputLLPs;

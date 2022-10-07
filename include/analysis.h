@@ -49,7 +49,7 @@ public:
     //    void setVISIBLEBR(double visibleBR_in) {visibleBR = visibleBR_in;};
     bool doCalculations(); //< evaluates widths 
     bool initPythia(); //< Initialises Pythia, if needed. 
-    bool runPythia(int nEventsMC);
+    bool runPythia(int nEventsMC, std::string pathToResultFile);
 
 /*! \brief
  * The CLLP class stores the characteristics of a given LLP.

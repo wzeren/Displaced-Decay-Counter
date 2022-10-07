@@ -111,7 +111,7 @@ bool analysis::initPythia() {
  * The function runPythia analyses the event file to determine the number of observed LLPs at far detectors.
 */
 
-bool analysis::runPythia(int nEventsMC) {
+bool analysis::runPythia(int nEventsMC, std::string pathToResultFile) {
   
   if (input_file_format != "LHE" &&  input_file_format != "CMND" && input_file_format != "HEPMC")
     return false;
@@ -197,6 +197,7 @@ bool analysis::runPythia(int nEventsMC) {
 	  }//particle loop
 	  iLLP++;
 	}//LLPdata loop
+	nEvent = iEvent;
       }//event loop
       
       if(verbose) pythia->stat();
@@ -277,9 +278,9 @@ bool analysis::runPythia(int nEventsMC) {
       myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*employedLumis[detInd]/3000. << "\n";
       }*/
   
-  if (input_file_format == "LHE" ||  input_file_format == "CMND"){ 
-    nEvent= pythia->mode("Main:numberOfEvents");
-  }
+  //  if (input_file_format == "LHE" ||  input_file_format == "CMND"){ 
+  //    nEvent= pythia->mode("Main:numberOfEvents");
+  //  }
   //number of events contained in the sample
   if (nEvent < nEventsMC){
     std::cout << "Warning! You have requested the analysis of " << nEventsMC << " events. But the sample contains only " << nEvent << " events. Resetting the number of events to " << nEvent << " events." << '\n';
@@ -289,7 +290,8 @@ bool analysis::runPythia(int nEventsMC) {
   //sigma = pythia->info.sigmaGen()*1e12; //in fb  
   
   std::ofstream myfile;
-  myfile.open ("Logs/results.txt");
+//  myfile.open ("Logs/results.txt");
+  myfile.open(pathToResultFile);
   myfile << "***************************************************************" << "\n";
   myfile << "***************** WELCOME TO THE RESULT FILE ******************" << "\n";
   myfile << "***************************************************************" << "\n";
@@ -314,7 +316,8 @@ bool analysis::runPythia(int nEventsMC) {
   myfile.close();
   
   std::cout << '\n';
-  std::cout << "************* Read the results in bin/Logs/results.txt **************" <<'\n';
+  std::string resultsLocation = "************* Read the results in " + pathToResultFile + " **************";
+  std::cout << resultsLocation <<'\n';
   std::cout << '\n';
   
   return true;

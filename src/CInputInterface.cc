@@ -7,9 +7,10 @@
 /*!
  * Reads and stores the input from the input files.
 */
-void inputInterface::setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLPs){
+void inputInterface::setInput(std::ifstream &inputfileEvents, std::ifstream &inputfileLLPs, std::string inputPathToResultFile){
   inputfileEvents >> inputEvents;
   inputfileLLPs >> inputLLPs;
+  pathToResultFile = inputPathToResultFile;
   
   inputEvents["input"]["input_file_format"].get_to(input_file_format);
   inputEvents["input"]["input_file_path"].get_to(input_file_path);
@@ -59,7 +60,8 @@ void inputInterface::setInput(int argc, char *argv[]){
   //  ctau = atof(argv[5]);
   sigma = atof(argv[6]); 
   //  visibleBR = atof(argv[7]); 
-  nMC = atof(argv[8]); 
+  nMC = atof(argv[8]);
+  pathToResultFile = charToString(argv[9]);  
 
   LLPdata.push_back({atoi(argv[3]), atof(argv[4]), atof(argv[5]), atof(argv[7])});
   
