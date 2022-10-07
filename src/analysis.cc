@@ -254,6 +254,7 @@ bool analysis::runPythia(int nEventsMC) {
 	    } // if LLP cndition
 	    
 	  }//for loop particle
+	  delete evt;
 	  ascii_in >> evt;
 	  if  (iEvent >= nEventsMC) break;
 	  iLLP++;
@@ -261,7 +262,7 @@ bool analysis::runPythia(int nEventsMC) {
       } //while loop event
       nEvent=iEvent;
       
-      delete evt;
+
     }//else if HEPMC
     
   } //try

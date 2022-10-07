@@ -33,7 +33,7 @@
 class analysis {
 public:
     analysis();
-    ~analysis() {};    
+    ~analysis() {delete pythia;};    
 
     void setAllInput(inputInterface input);
     void setINPUTFILEFORMAT(std::string input_file_format_in) {input_file_format = input_file_format_in;}; 
