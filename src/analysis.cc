@@ -156,7 +156,6 @@ bool analysis::runPythia(int nEventsMC) {
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
-
 	size_t iLLP = 0;
 	for(auto llp: LLPdata){
 	  int LLPPID = llp.LLPPID;
