@@ -25,9 +25,7 @@ int die(std::string output){
 
 int main(int argc, char* argv[]) {
   try{
-    //    system("display UJSWT.png &");
-    
-    bool storeDefault = false;
+    const bool storeDefault = false;
     
     if(storeDefault)
       storeDefaultCards();
@@ -43,7 +41,7 @@ int main(int argc, char* argv[]) {
       std::cout << "           >>> WELCOME TO UNCLE JONG SOO'S WONDROUS LLP SIMULATOR <<<" << '\n';
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << '\n';
-      std::cout << "************* Reading input data from " + filenameEvents + " and " + filenameLLPs + " *************" << '\n';
+      std::cout << "**** Reading input data from " + filenameEvents + " ****" << '\n';
       std::cout << '\n';
       
       std::ifstream inputfileEvents(filenameEvents);
@@ -73,14 +71,13 @@ int main(int argc, char* argv[]) {
       std::cout << "   - sigma: production cross section in fb" << std::endl;  
       std::cout << "   - BR_vis: decay branching ratio of the LLP into visibles, between 0 and 1" << std::endl;
       std::cout << "   - nMC: the number of MC events to be analyzed" << std::endl;
-      std::cout << "   - Path to Result file" << std::endl;
+      std::cout << "   - path to result file" << std::endl;
       std::cout << std::endl << std::endl;
       std::cout << "Input Card: \n";
-      std::cout << "./main <inputEvents.dat> <inputLLPs.dat> <PathToResultFile>" << std::endl;
+      std::cout << "./main <inputEvents.dat> <inputLLPs.dat> <pathToResultFile>" << std::endl;
       exit(1);
     }
   
-    //std::cout << "parton event generation: " << parton_generation << std::endl;
     std::ofstream myfile;
     myfile.open ("Logs/input_summary.txt");
     
@@ -152,6 +149,7 @@ int main(int argc, char* argv[]) {
     return 0;
     
   }
+
   catch (...){
     std::cout << "Disaster!!! " << '\n';
     return 1;
