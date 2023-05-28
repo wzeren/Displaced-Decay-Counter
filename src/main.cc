@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     
     else{
       std::cout << "Command Line Input: \n";
-      std::cout << "./main input_file_format input_file_path LLPPID mass ctau sigma BR_vis NMC" << std::endl;
+      std::cout << "./main input_file_format input_file_path LLPPID mass ctau sigma BR_vis nMC path" << std::endl;
       std::cout << "   - input_file_format: LHE, HEPMC or CMND" << std::endl;        
       std::cout << "   - input_file_path: LHE/HEPMC file for LHE/HEPMC, cmnd file for PY8" << std::endl;        
       std::cout << "   - LLPPID: PID of the LLP you want to study" << std::endl;   
