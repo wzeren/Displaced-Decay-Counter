@@ -150,12 +150,18 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   try{
     if (input_file_format == "LHE" ||  input_file_format == "CMND"){
 
-      HepMC::Pythia8ToHepMC* pythiaToHepMC = new HepMC::Pythia8ToHepMC();
-      HepMC::GenEvent* evt = new HepMC::GenEvent();
+      //HepMC::Pythia8ToHepMC* pythiaToHepMC = new HepMC::Pythia8ToHepMC();
+      //HepMC::GenEvent* evt = new HepMC::GenEvent();
       
       // Loop over Pythia events
       for (int iEvent = 0; iEvent < nEventsMC; ++iEvent) {
 	if (!pythia->next()) continue;
+	
+      HepMC::Pythia8ToHepMC* pythiaToHepMC = new HepMC::Pythia8ToHepMC();
+      HepMC::GenEvent* evt = new HepMC::GenEvent();
+      
+      
+      
 	size_t iLLP = 0;
 	for(auto llp: LLPdata){
 	  int LLPPID = llp.LLPPID;
@@ -198,12 +204,18 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	  iLLP++;
 	}//LLPdata loop
 	nEvent = iEvent;
+	
+	
+      delete pythiaToHepMC;
+      delete evt;
+      
+      
       }//event loop
       
       if(verbose) pythia->stat();
 
-      delete pythiaToHepMC;
-      delete evt;
+      //delete pythiaToHepMC;
+      //delete evt;
       
     }//if LHE, CMND
 
@@ -358,6 +370,5 @@ bool analysis::isLast_hepmc(HepMC::GenEvent::particle_const_iterator p, int PID)
   }
   
 }
-
 
 
