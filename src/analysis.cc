@@ -294,8 +294,8 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   //    nEvent= pythia->mode("Main:numberOfEvents");
   //  }
   //number of events contained in the sample
-  if (nEvent < nEventsMC){
-    std::cout << "Warning! You have requested the analysis of " << nEventsMC << " events. But the sample contains only " << nEvent << " events. Resetting the number of events to " << nEvent << " events." << '\n';
+  if (nEvent+1 < nEventsMC){
+    std::cout << "Warning! You have requested the analysis of " << nEventsMC << " events. But the sample contains only " << nEvent+1 << " events. Resetting the number of events to " << nEvent+1 << " events." << '\n';
   }
   
   //uncomment the line below, to use the cross section included in the input file read by Pythia, for the computation, instead of the user-input value
@@ -317,7 +317,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   for(size_t iLLP=0; iLLP < observedLLPevents.size(); iLLP++){
     for(int detInd=0; detInd<detTot; detInd++){
       double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,double(ProducedLLP));
-      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent,nEventsMC)));
+      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
       myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
   }
