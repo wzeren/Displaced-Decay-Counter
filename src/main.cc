@@ -38,8 +38,7 @@ int main(int argc, char* argv[]) {
       std::string resultPath(argv[3]);
       std::cout << '\n';
       std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
-      std::cout << "           >>> WELCOME TO UNCLE JONG SOO'S WONDROUS LLP SIMULATOR <<<" << '\n';
-      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
+      std::cout << "           >>> WELCOME TO DISPLACED DECAY COUNTER <<<" << '\n';      std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
       std::cout << '\n';
       std::cout << "**** Reading input data from " + filenameEvents + " ****" << '\n';
       std::cout << '\n';
@@ -142,7 +141,7 @@ int main(int argc, char* argv[]) {
     }
     
     std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
-    std::cout << "   >>> UNCLE JONG SOO'S WONDROUS LLP SIMULATOR is coming to a happy end! <<<" << '\n';
+    std::cout << "   >>> DISPLACED DECAY COUNTER is coming to a happy end! <<<" << '\n';
     std::cout << "->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-o->+|+<-" << '\n';
     std::cout << '\n';
     
