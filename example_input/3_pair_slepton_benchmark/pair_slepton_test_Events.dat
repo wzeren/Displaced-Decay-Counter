@@ -1,1 +1,1 @@
-{"input":{"input_file_format":"CMND","input_file_path":"'DDC_Directory'/3_pair_slepton_benchmark/pair_slepton_test_input.cmnd","nMC":10000,"sigma":0.4836}}
+{"input":{"input_file_format":"CMND","input_file_path":"'DDC_Directory'/example_input/3_pair_slepton_benchmark/pair_slepton_test_input.cmnd","nMC":10000,"sigma":0.4836}}
