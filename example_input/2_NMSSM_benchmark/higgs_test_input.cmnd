@@ -27,7 +27,6 @@ Beams:eCM = 13000.                 ! CM energy of collision
 
 
 ! 3) Process selection
-!HardQCD:hardbbbar = on
 Higgs:useBSM = on
 HiggsBSM:gg2A3 = on
 
@@ -53,8 +52,6 @@ HiggsA3:coup2l = 0.000000000000000001
 HiggsA3:coup2d = 0.000000000000000001
 HiggsA3:coup2u = 0.000000000000000001
 37:m0 = 10000
-
-
 
 
 23:spinType=1
