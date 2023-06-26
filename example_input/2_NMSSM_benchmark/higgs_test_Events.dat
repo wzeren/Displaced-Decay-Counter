@@ -1,1 +1,1 @@
-{"input":{"input_file_format":"CMND","input_file_path":"/home/wzeren/Desktop/Research/LLP_far_detectors_MG5_pythia8_tool/NMSSM_benchmark/higgs_test_input.cmnd","nMC":10000,"sigma":68.69}}
+{"input":{"input_file_format":"CMND","input_file_path":"'DDC_Directory'/example_input/2_NMSSM_benchmark/higgs_test_input.cmnd","nMC":10000,"sigma":68.69}}
