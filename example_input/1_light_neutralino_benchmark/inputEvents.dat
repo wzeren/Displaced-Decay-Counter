@@ -1,1 +1,1 @@
-{"input":{"input_file_format":"CMND","input_file_path":"'DDC_Directory'/example_input/1_light_neutralino_benchmark","nMC":1000000,"sigma":487000000000}}
+{"input":{"input_file_format":"CMND","input_file_path":"'DDC_Directory'/example_input/1_light_neutralino_benchmark/light_neutralino_test.cmnd","nMC":1000000,"sigma":487000000000}}
