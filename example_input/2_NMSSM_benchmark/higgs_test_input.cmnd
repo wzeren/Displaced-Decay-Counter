@@ -25,7 +25,6 @@ Beams:eCM = 13000.                 ! CM energy of collision
 !Next:numberShowEvent = 0
 
 
-
 ! 3) Process selection
 Higgs:useBSM = on
 HiggsBSM:gg2A3 = on
@@ -58,8 +57,3 @@ HiggsA3:coup2u = 0.000000000000000001
 23:m0=70
 23:tau0 = 1
 23:mayDecay = False
-
-
-! id:addChannel = onMode bRatio meMode product1 product2 ...
-! Note: sum of branching ratios automatically rescaled to 1.
-!36:addChannel = 1 1 0 23 25
