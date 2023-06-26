@@ -8,7 +8,7 @@ Beams:idB = 2212                   ! second beam, p = 2212, pbar = -2212
 Beams:eCM = 13000.                 ! CM energy of collision
 
 ! 2) Read SLHA spectrum (a few examples are provided by default)
-SLHA:file = 'DDC_Directory'/3_pair_slepton_benchmark/slha1-example.spc       ! Sample SLHA2 spectrum
+SLHA:file = 'DDC_Directory'/example_input/3_pair_slepton_benchmark/slha1-example.spc       ! Sample SLHA2 spectrum
 
 
 ! 2.5) Handling of information output
