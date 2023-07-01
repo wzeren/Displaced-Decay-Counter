@@ -42,7 +42,7 @@ Block MASS                      # Mass spectrum
    1000004     100000   # ~c_L
    1000005     100000   # ~b_1
    1000006     100000   # ~t_1
-   1000011     500   # ~e_L
+   1000011     100000   # ~e_L
    1000012     100000   # ~nue_L
    1000013     100000   # ~mu_L
    1000014     100000   # ~numu_L
@@ -54,7 +54,7 @@ Block MASS                      # Mass spectrum
    2000004     100000   # ~c_R
    2000005     100000   # ~b_2
    2000006     100000   # ~t_2
-   2000011     100000   # ~e_R
+   2000011     500   # ~e_R
    2000013     100000   # ~mu_R
    2000015     100000   # ~stau_2
 Block alpha                     # Effective Higgs mixing parameter
@@ -153,7 +153,7 @@ Block ae Q= 8.73811408e+02
   
   
 #decay table
-DECAY   1000011     0.1   # selectron_L decays
+DECAY   2000011     0.1   # selectron_L decays
 #          BR         NDA      ID1       ID2
-     	   1    	2     1000022     11   # BR(~e_L -> ~chi_10 e-)
+     	   1    	2     1000022     11   # BR(~e_R -> ~chi_10 e-)
 
