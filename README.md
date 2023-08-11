@@ -19,4 +19,9 @@ The code is written in C++. There is a Makefile. In the first line of Makefile, 
 
 ### Questions and bug reports
 
-If you have any questions, or would like to report any bug, you can write to any of us.
+If you have any questions, or would like to report any bug, you are welcome to write to any of us:
+
+Florian Domingo: [florian.domingoh@gmail.com](florian.domingoh@gmail.com)
+Julian Günther: [guenther@physik.uni-bonn.de](guenther@physik.uni-bonn.de)
+Jong Soo Kim: [jongsoo.kim@tu-dortmund.de](jongsoo.kim@tu-dortmund.de)
+Zeren Simon Wang: [wzs@mx.nthu.edu.tw](wzs@mx.nthu.edu.tw)
