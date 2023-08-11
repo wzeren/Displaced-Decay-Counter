@@ -5,6 +5,9 @@
 
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
 
+
+[![doxygen](hhttps://img.shields.io/badge/Doxygen-808080)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/doxygen/Doxyfile)
+
 ## Introduction
 
 We develop a tool Displaced Decay Counter, **DDC**, for estimating the signal-event rates of different LLP models at various LHC far detectors. The input files can be LHEF, HepMC, or a CMND run card for Pythia8. It can be easily generalized to the cases of other collider types and detectors. One can also implement new detector's geometries in a straightforward manner into the code.
