@@ -1,9 +1,8 @@
 # DDC: Displaced Decay Counter
 
-**By Florian Domingo, Julian Gǘnther, Jong Soo Kim, and Zeren Simon Wang
-**
+**By Florian Domingo, Julian Günther, Jong Soo Kim, and Zeren Simon Wang**
 
-[comment]: <> ([![arXiv](http://img.shields.io/badge/arXiv-2105.07077-B31B1B.svg)](https://arxiv.org/abs/2105.07077))
+
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
 
 ## Introduction
