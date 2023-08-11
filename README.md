@@ -4,8 +4,6 @@
 
 
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
-
-
 [![doxygen](https://img.shields.io/badge/Doxygen-808080)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/doxygen/Doxyfile)
 
 ## Introduction
