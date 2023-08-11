@@ -12,12 +12,12 @@ We develop a tool Displaced Decay Counter, **DDC**, for estimating the signal-ev
 
 
 
-### Compilation
+## Compilation
 
 The code is written in C++. There is a Makefile. In the first line of Makefile, put in the path to your own Pythia8 and HepMC installation. Pythia8 should have been compiled with a link to zlib, in order to allow for reading *.lhe.gz files. If you do not use zlib, removev "-lz" in the line starting with "LDFLAGS". Run "make -jN" in the terminal to compile, where N is the number of CPU cores you want to use.
 
 
-### Questions and bug reports
+## Questions and bug reports
 
 If you have any questions, or would like to report any bug, you are welcome to write to any of us:
 
