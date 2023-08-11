@@ -1,0 +1,23 @@
+# DDC: Displaced Decay Counter
+
+**By Florian Domingo, Julian Gǘnther, Jong Soo Kim, and Zeren Simon Wang
+**
+
+[comment]: <> ([![arXiv](http://img.shields.io/badge/arXiv-2105.07077-B31B1B.svg)](https://arxiv.org/abs/2105.07077))
+[![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
+
+## Introduction
+
+We develop a tool Displaced Decay Counter, **DDC**, for estimating the signal-event rates of different LLP models at various LHC far detectors. The input files can be LHEF, HepMC, or a CMND run card for Pythia8. It can be easily generalized to the cases of other collider types and detectors. One can also implement new detector's geometries in a straightforward manner into the code.
+
+
+
+
+### Compilation
+
+The code is written in C++. There is a Makefile. In the first line of Makefile, put in the path to your own Pythia8 and HepMC installation. Pythia8 should have been compiled with a link to zlib, in order to allow for reading *.lhe.gz files. If you do not use zlib, removev "-lz" in the line starting with "LDFLAGS". Run "make -jN" in the terminal to compile, where N is the number of CPU cores you want to use.
+
+
+### Questions and bug reports
+
+If you have any questions, or would like to report any bug, you can write to any of us.
