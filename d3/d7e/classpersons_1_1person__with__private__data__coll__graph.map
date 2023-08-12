@@ -1,8 +1,0 @@
-<map id="persons::person_with_private_data" name="persons::person_with_private_data">
-<area shape="rect" id="node1" title=" " alt="" coords="773,49,917,89"/>
-<area shape="rect" id="node2" title=" " alt="" coords="503,13,582,38"/>
-<area shape="rect" id="node3" title=" " alt="" coords="175,5,299,45"/>
-<area shape="rect" id="node4" href="$d9/dcc/classnlohmann_1_1basic__json.html" title="a class to store JSON values" alt="" coords="417,63,668,161"/>
-<area shape="rect" id="node5" href="$dd/d0d/classnlohmann_1_1byte__container__with__subtype.html" title="an internal type for a backed binary type" alt="" coords="141,92,332,132"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,99,92,125"/>
-</map>

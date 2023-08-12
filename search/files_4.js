@@ -1,25 +1,4 @@
 var searchData=
 [
-  ['emplace_2ecpp_0',['emplace.cpp',['../db/df0/emplace_8cpp.html',1,'']]],
-  ['emplace_2emd_1',['emplace.md',['../d8/d57/emplace_8md.html',1,'']]],
-  ['emplace_5fback_2ecpp_2',['emplace_back.cpp',['../df/dcc/emplace__back_8cpp.html',1,'']]],
-  ['emplace_5fback_2emd_3',['emplace_back.md',['../df/d94/emplace__back_8md.html',1,'']]],
-  ['empty_2ecpp_4',['empty.cpp',['../de/d53/empty_8cpp.html',1,'']]],
-  ['empty_2emd_5',['empty.md',['../db/d8d/empty_8md.html',1,'']]],
-  ['emptytest_2ecpp_6',['EmptyTest.cpp',['../d5/d7a/EmptyTest_8cpp.html',1,'']]],
-  ['end_2ecpp_7',['end.cpp',['../d2/d8b/end_8cpp.html',1,'']]],
-  ['end_2ehpp_8',['end.hpp',['../dd/d8d/end_8hpp.html',1,'']]],
-  ['end_2emd_9',['end.md',['../d7/db9/end_8md.html',1,'']]],
-  ['enum_5fconversion_2emd_10',['enum_conversion.md',['../d8/d95/enum__conversion_8md.html',1,'']]],
-  ['erase_2emd_11',['erase.md',['../da/d2a/erase_8md.html',1,'']]],
-  ['erase_5f_5fiteratortype_2ecpp_12',['erase__IteratorType.cpp',['../d0/d8f/erase____IteratorType_8cpp.html',1,'']]],
-  ['erase_5f_5fiteratortype_5fiteratortype_2ecpp_13',['erase__IteratorType_IteratorType.cpp',['../d5/d95/erase____IteratorType__IteratorType_8cpp.html',1,'']]],
-  ['erase_5f_5fkey_5ftype_2ecpp_14',['erase__key_type.cpp',['../db/de3/erase____key__type_8cpp.html',1,'']]],
-  ['erase_5f_5fsize_5ftype_2ecpp_15',['erase__size_type.cpp',['../d7/dd6/erase____size__type_8cpp.html',1,'']]],
-  ['error_5fhandler_5ft_2emd_16',['error_handler_t.md',['../d2/d4c/error__handler__t_8md.html',1,'']]],
-  ['example_2ecpp_17',['example.cpp',['../d2/df4/conan_2example_8cpp.html',1,'(Global Namespace)'],['../d4/d31/example_8cpp.html',1,'(Global Namespace)'],['../dd/d66/vcpkg_2example_8cpp.html',1,'(Global Namespace)']]],
-  ['exception_2ecpp_18',['exception.cpp',['../de/d9e/exception_8cpp.html',1,'']]],
-  ['exception_2emd_19',['exception.md',['../d6/d98/exception_8md.html',1,'']]],
-  ['exceptions_2ehpp_20',['exceptions.hpp',['../da/d49/exceptions_8hpp.html',1,'']]],
-  ['exceptions_2emd_21',['exceptions.md',['../dc/d30/exceptions_8md.html',1,'']]]
+  ['license_2emd_0',['LICENSE.md',['../d7/dd2/LICENSE_8md.html',1,'']]]
 ];

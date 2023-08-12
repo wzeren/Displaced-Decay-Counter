@@ -1,5 +1,0 @@
-<map id="nlohmann::basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType &gt;" name="nlohmann::basic_json&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType &gt;">
-<area shape="rect" id="node1" title="a class to store JSON values" alt="" coords="5,183,256,281"/>
-<area shape="rect" id="node2" href="$dd/d0d/classnlohmann_1_1byte__container__with__subtype.html" title="an internal type for a backed binary type" alt="" coords="35,80,226,120"/>
-<area shape="rect" id="node3" title=" " alt="" coords="87,5,174,31"/>
-</map>

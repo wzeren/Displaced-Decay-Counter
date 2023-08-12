@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['f_0',['f',['../d4/d54/structnlohmann_1_1detail_1_1dtoa__impl_1_1diyfp.html#aea90459e340a231ca31d46946803ef51',1,'nlohmann::detail::dtoa_impl::diyfp::f()'],['../d5/dfe/structnlohmann_1_1detail_1_1dtoa__impl_1_1cached__power.html#a21ae81f515f5b08d5bf423775ee56074',1,'nlohmann::detail::dtoa_impl::cached_power::f()'],['../df/d6e/classpersons_1_1person__with__private__alphabet.html#aaee5d5bc66ee64ce6c0d779d15d067be',1,'persons::person_with_private_alphabet::f()'],['../d4/dad/classpersons_1_1person__with__public__alphabet.html#a8d2266b3fa50a07fe0c41710527ce36f',1,'persons::person_with_public_alphabet::f()']]],
-  ['f_1',['F',['../d2/d6c/classfuzzer_1_1TraceState.html#aa02e89daa315d71081e553bf6e670b3e',1,'fuzzer::TraceState::F()'],['../de/d0f/namespacefuzzer.html#a487f929a0c9384179bd8324a32d30ac5',1,'fuzzer::F()']]],
-  ['failure_5fflags_2',['failure_flags',['../d6/d28/structdoctest_1_1CurrentTestCaseStats.html#aaa58c52fd07a20e6e4daf19eecb2e2ba',1,'doctest::CurrentTestCaseStats']]],
-  ['featuredebug_3',['FeatureDebug',['../d4/de2/classfuzzer_1_1InputCorpus.html#ac96d30659dd6bab0643c021fc274c03c',1,'fuzzer::InputCorpus']]],
-  ['features_4',['Features',['../db/dc8/structfuzzer_1_1MergeFileInfo.html#a2112cf5669b715cb2c02f26db11ab049',1,'fuzzer::MergeFileInfo']]],
-  ['file_5fdir_5',['file_dir',['../d8/d2e/classamalgamate_1_1TranslationUnit.html#aff5d10ca68726ffd9b541b53f5236739',1,'amalgamate::TranslationUnit']]],
-  ['file_5fpath_6',['file_path',['../d8/d2e/classamalgamate_1_1TranslationUnit.html#a08009905863cf3c94b32ce2865c172fa',1,'amalgamate::TranslationUnit']]],
-  ['files_7',['Files',['../df/dd0/structfuzzer_1_1Merger.html#a42362a205d6c97bf673f316590f09caa',1,'fuzzer::Merger']]],
-  ['filters_8',['filters',['../d5/dda/classcpplint_1_1__CppLintState.html#a8443105b9623383ab75fa242009c006e',1,'cpplint::_CppLintState']]],
-  ['first_9',['first',['../d6/d39/structdoctest_1_1ContextOptions.html#a9f26ee60a5259e73f9f25ce3f4883a97',1,'doctest::ContextOptions']]],
-  ['firstnotprocessedfile_10',['FirstNotProcessedFile',['../df/dd0/structfuzzer_1_1Merger.html#ad85df96bca5a4311606eaf1d22abaa2f',1,'fuzzer::Merger']]],
-  ['flagdescriptions_11',['FlagDescriptions',['../de/d0f/namespacefuzzer.html#a631116f5a36caa4d4af1ba79ab64ff0e',1,'fuzzer']]],
-  ['flags_12',['Flags',['../de/d0f/namespacefuzzer.html#aa032f9b4b984e042cd92634eff9102e5',1,'fuzzer']]],
-  ['flysign_13',['flysign',['../de/d8c/classCylSeg.html#af52770a23caa09b0403993ef0d5333c4',1,'CylSeg']]],
-  ['fn_14',['Fn',['../dd/dec/structfuzzer_1_1MutationDispatcher_1_1Mutator.html#a47dc0ce7e1e03f7e1f1920ef38e3d21e',1,'fuzzer::MutationDispatcher::Mutator']]],
-  ['foo_15',['foo',['../d8/daa/classFooBar.html#a92b494051e1ccfacb255eb8a6c0ab223',1,'FooBar']]],
-  ['force_5fcolors_16',['force_colors',['../d6/d39/structdoctest_1_1ContextOptions.html#a8cd276e86a209f3d5486eb6c5a2a29bf',1,'doctest::ContextOptions']]],
-  ['frees_17',['Frees',['../d2/db8/structfuzzer_1_1MallocFreeTracer.html#a443a06573fb78b9874a0553696c74654',1,'fuzzer::MallocFreeTracer']]]
+  ['mass_0',['mass',['../d6/da4/classanalysis_1_1CLLP.html#a7b43b3c5821e91ee1d8446958d6776f6',1,'analysis::CLLP::mass()'],['../d8/d0e/classinputInterface_1_1CLLP.html#af081b7d349e71582bbd00871fb3de883',1,'inputInterface::CLLP::mass()']]],
+  ['mydetectorlist_1',['myDetectorList',['../d4/db0/classanalysis.html#a22eef53c1f5e1a8e0cdea63c95c68f6e',1,'analysis::myDetectorList()'],['../d9/dbc/classinputInterface.html#a31b79e604ecae4ce0c607759c5d4a55c',1,'inputInterface::myDetectorList()']]]
 ];

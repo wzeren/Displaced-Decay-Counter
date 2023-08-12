@@ -1,25 +1,8 @@
 var searchData=
 [
-  ['d_0',['d',['../d4/dad/classpersons_1_1person__with__public__alphabet.html#a7e2d7f6ddebdb5888924528c7aab4711',1,'persons::person_with_public_alphabet::d()'],['../df/d6e/classpersons_1_1person__with__private__alphabet.html#afde9b2a7c56e72740a735e23c3a385c3',1,'persons::person_with_private_alphabet::d()']]],
-  ['data_1',['Data',['../d5/df9/classfuzzer_1_1FixedWord.html#a368877b7f9546683eacaba050108e08d',1,'fuzzer::FixedWord']]],
-  ['data_2',['data',['../db/d0c/classdoctest_1_1String.html#a5c77ed634a1b81aea739a73fb01d986a',1,'doctest::String::data()'],['../d3/dae/structdoctest_1_1QueryData.html#a8085a29db9a1cd5c7eff22ef44e9a9e8',1,'doctest::QueryData::data()']]],
-  ['de_3',['DE',['../df/d96/classfuzzer_1_1Dictionary.html#abd922beb40acc4b6adf3b857ff050fc0',1,'fuzzer::Dictionary']]],
-  ['decimal_5fpoint_4',['decimal_point',['../d4/d0a/classnlohmann_1_1detail_1_1serializer.html#a311e5d6f4b31d5be0eb3c0cb20b6965a',1,'nlohmann::detail::serializer']]],
-  ['decimal_5fpoint_5fchar_5',['decimal_point_char',['../d8/d22/classnlohmann_1_1detail_1_1lexer.html#a6f2fd5b4b6b153f11fc8f77213350073',1,'nlohmann::detail::lexer']]],
-  ['default_6',['Default',['../d5/d47/structfuzzer_1_1FlagDescription.html#a890648c4627746b74568d2447ead4fbd',1,'fuzzer::FlagDescription']]],
-  ['defaultex_7',['defaultEx',['../d9/d0f/main_8cc.html#a38a47ea79d6d9b434c7219c710ba310c',1,'main.cc']]],
-  ['defaultmutators_8',['DefaultMutators',['../d4/daf/classfuzzer_1_1MutationDispatcher.html#a3cbcd4cc9d4041bc46969afe71cd4897',1,'fuzzer::MutationDispatcher']]],
-  ['description_9',['Description',['../d5/d47/structfuzzer_1_1FlagDescription.html#a774e7429409c5d31b747bf1f0a5e011e',1,'fuzzer::FlagDescription']]],
-  ['detectleaks_10',['DetectLeaks',['../de/db1/structfuzzer_1_1FuzzingOptions.html#a92ea8609fe9c2d3231697c41155a1bd2',1,'fuzzer::FuzzingOptions']]],
-  ['detectors_11',['detectors',['../d9/dbc/classinputInterface.html#ab33d97be443b0594dcd2238427a32ef5',1,'inputInterface']]],
-  ['detlumi_12',['DetLumi',['../d5/da2/classDetector.html#a3f06ae7634140cafadbecccd0b0de539',1,'Detector']]],
-  ['detname_13',['Detname',['../d5/da2/classDetector.html#a724da172e251f47ae6e048e663e7c6a2',1,'Detector']]],
-  ['detv_14',['detv',['../de/d8c/classCylSeg.html#a3c0ee4cc58ccff4ec671f5ae0359eae9',1,'CylSeg']]],
-  ['discarded_15',['discarded',['../d6/d69/classnlohmann_1_1detail_1_1json__sax__dom__callback__parser.html#a8997ee6dc3bd39116b951465b946445e',1,'nlohmann::detail::json_sax_dom_callback_parser']]],
-  ['distance_16',['Distance',['../d1/df7/sax__parse_8cpp.html#a528212c35bbcc5a82c612f1378c58c9a',1,'sax_parse.cpp']]],
-  ['docrossover_17',['DoCrossOver',['../de/db1/structfuzzer_1_1FuzzingOptions.html#ad346e90bccc27327e72b138f31e1013c',1,'fuzzer::FuzzingOptions']]],
-  ['doingmyownmemmem_18',['DoingMyOwnMemmem',['../de/d0f/namespacefuzzer.html#a3619345ffabcbb1926ba5603c9576aa4',1,'fuzzer']]],
-  ['doprintnewpcs_19',['DoPrintNewPCs',['../df/d51/classfuzzer_1_1TracePC.html#ab5928c0b55bb79fcba040a44d7eadec1',1,'fuzzer::TracePC']]],
-  ['dumpcoverage_20',['DumpCoverage',['../de/db1/structfuzzer_1_1FuzzingOptions.html#ad0b152c12020901bc562e1216f22f80d',1,'fuzzer::FuzzingOptions']]],
-  ['duration_21',['duration',['../d6/d39/structdoctest_1_1ContextOptions.html#a0fc3e0c1cf669cffd1f826c005fc4223',1,'doctest::ContextOptions']]]
+  ['input_5ffile_5fformat_0',['input_file_format',['../d4/db0/classanalysis.html#a887934b51e7f3aedad27357e34d68fba',1,'analysis::input_file_format()'],['../d9/dbc/classinputInterface.html#afeb15fc29220265750d4612032d6c880',1,'inputInterface::input_file_format()']]],
+  ['input_5ffile_5fpath_1',['input_file_path',['../d4/db0/classanalysis.html#ac181c96df56f95d53c067a17c4d112ba',1,'analysis::input_file_path()'],['../d9/dbc/classinputInterface.html#a48331826bd9fe5682515abc371d7581a',1,'inputInterface::input_file_path()']]],
+  ['inputdet_2',['inputDet',['../d9/dbc/classinputInterface.html#a85575a149347363acf9909efcbb89838',1,'inputInterface']]],
+  ['inputevents_3',['inputEvents',['../d9/dbc/classinputInterface.html#aa95d8e7ca3247a135b96ce9b6e5be698',1,'inputInterface']]],
+  ['inputllps_4',['inputLLPs',['../d9/dbc/classinputInterface.html#a55044c44b86f6ef7bf98e4ed6ffd99b2',1,'inputInterface']]]
 ];
