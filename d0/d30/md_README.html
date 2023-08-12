@@ -78,6 +78,8 @@ $(function() {
 <p>We develop a tool Displaced Decay Counter, <b>DDC</b>, for estimating the signal-event rates of different LLP models at various LHC far detectors. The input files can be LHEF, HepMC, or a CMND run card for Pythia8. It can be easily generalized to the cases of other collider types and detectors. One can also implement new detector's geometries in a straightforward manner into the code.</p>
 <h1>Compilation</h1>
 <p>The code is written in C++. There is a Makefile. In the first line of Makefile, put in the path to your own Pythia8 and HepMC installation. Pythia8 should have been compiled with a link to zlib, in order to allow for reading *.lhe.gz files. If you do not use zlib, removev "-lz" in the line starting with "LDFLAGS". Run "make -jN" in the terminal to compile, where N is the number of CPU cores you want to use.</p>
+<h1>Relevant files for the benchmark models</h1>
+<p>We provide the input files, Python plotting scripts, data points, as well as the final sensitivity plots, of the theoretical benchmark models considered in the paper, collectively in the folder "example_input".</p>
 <h1>Doxygen documentation</h1>
 <p>An updated Doxygen documentation of the code can be accessed at <a href="https://wzeren.github.io/Displaced-Decay-Counter"><img src="https://img.shields.io/badge/Doxygen-808080" alt="doxygen" class="inline"/></a>.</p>
 <h1>Questions and bug reports</h1>
