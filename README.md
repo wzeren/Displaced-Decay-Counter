@@ -4,7 +4,7 @@
 
 
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
-[![doxygen](https://img.shields.io/badge/Doxygen-808080)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/doxygen/Doxyfile)
+
 
 ## Introduction
 
@@ -21,7 +21,8 @@ The code is written in C++. There is a Makefile. In the first line of Makefile, 
 
 ## Doxygen documentation
 
-An updated Doxygen documentation of the code can be accessed at [https://wzeren.github.io/Displaced-Decay-Counter/index.html](https://wzeren.github.io/Displaced-Decay-Counter/index.html).
+An updated Doxygen documentation of the code can be accessed at [![doxygen](https://img.shields.io/badge/Doxygen-808080)](https://wzeren.github.io/Displaced-Decay-Counter)
+
 
 
 ## Questions and bug reports
