@@ -1,0 +1,9 @@
+<map id="nlohmann::fifo_map&lt; Key, T, Compare, Allocator &gt;" name="nlohmann::fifo_map&lt; Key, T, Compare, Allocator &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="423,45,620,86"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="170,5,305,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,34,423,49,422,54,319,40"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="148,70,327,141"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="342,88,422,77,423,82,342,94"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,93,44,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="59,103,147,103,147,108,59,108"/>
+</map>

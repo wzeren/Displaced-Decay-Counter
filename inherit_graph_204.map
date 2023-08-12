@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,120,106,145"/>
+<area shape="rect" id="Node000001" href="$db/d20/classmyexception.html" title=" " alt="" coords="195,94,288,120"/>
+<area shape="poly" id="edge36_Node000000_Node000001" title=" " alt="" coords="120,121,194,111,195,116,121,126"/>
+<area shape="rect" id="Node000002" href="$de/df2/classnlohmann_1_1detail_1_1exception.html" title="general exception of the basic_json class" alt="" coords="154,144,329,169"/>
+<area shape="poly" id="edge37_Node000000_Node000002" title=" " alt="" coords="120,138,154,142,153,148,120,143"/>
+<area shape="rect" id="Node000003" href="$d4/d5f/classnlohmann_1_1detail_1_1invalid__iterator.html" title="exception indicating errors with iterators" alt="" coords="377,5,534,46"/>
+<area shape="poly" id="edge38_Node000002_Node000003" title=" " alt="" coords="321,134,327,130,343,113,351,95,359,76,375,57,394,44,397,49,379,61,364,79,356,97,348,116,331,134,324,139"/>
+<area shape="rect" id="Node000004" href="$d5/d1b/classnlohmann_1_1detail_1_1other__error.html" title="exception indicating other library errors" alt="" coords="381,71,530,111"/>
+<area shape="poly" id="edge39_Node000002_Node000004" title=" " alt="" coords="305,136,328,130,392,109,393,115,330,135,307,142"/>
+<area shape="rect" id="Node000005" href="$d2/d67/classnlohmann_1_1detail_1_1out__of__range.html" title="exception indicating access out of the defined range" alt="" coords="387,136,525,177"/>
+<area shape="poly" id="edge40_Node000002_Node000005" title=" " alt="" coords="344,154,386,154,386,159,344,159"/>
+<area shape="rect" id="Node000006" href="$d5/d1a/classnlohmann_1_1detail_1_1parse__error.html" title="exception indicating a parse error" alt="" coords="380,201,532,242"/>
+<area shape="poly" id="edge41_Node000002_Node000006" title=" " alt="" coords="301,171,387,198,386,203,299,177"/>
+<area shape="rect" id="Node000007" href="$da/d1c/classnlohmann_1_1detail_1_1type__error.html" title="exception indicating executing a member function with a wrong type" alt="" coords="384,267,528,307"/>
+<area shape="poly" id="edge42_Node000002_Node000007" title=" " alt="" coords="271,177,320,213,378,251,403,264,400,268,376,256,317,218,268,181"/>
+</map>

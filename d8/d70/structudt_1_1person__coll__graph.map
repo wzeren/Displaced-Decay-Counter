@@ -1,0 +1,11 @@
+<map id="udt::person" name="udt::person">
+<area shape="rect" id="Node000001" title=" " alt="" coords="32,273,117,298"/>
+<area shape="rect" id="Node000002" href="$da/de4/structudt_1_1age.html" title=" " alt="" coords="5,184,72,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="46,223,54,248,68,271,63,274,49,250,41,225"/>
+<area shape="rect" id="Node000003" href="$dd/d84/structudt_1_1name.html" title=" " alt="" coords="96,184,173,210"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,224,85,274,81,271,116,220"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="96,95,173,121"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="137,136,137,184,132,184,132,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="73,5,196,46"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="137,61,137,95,132,95,132,61"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="nlohmann::detail::output_vector_adapter&lt; CharType, AllocatorType &gt;" name="nlohmann::detail::output_vector_adapter&lt; CharType, AllocatorType &gt;">
+<area shape="rect" id="Node000001" title="output adapter for byte vectors" alt="" coords="265,31,449,87"/>
+<area shape="rect" id="Node000002" href="$dc/d9b/structnlohmann_1_1detail_1_1output__adapter__protocol.html" title="abstract output adapter interface" alt="" coords="5,5,207,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,38,265,44,264,49,221,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="13,71,199,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,75,264,68,265,73,213,80"/>
+</map>

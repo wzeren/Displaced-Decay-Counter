@@ -1,0 +1,11 @@
+<map id="sax_event_consumer" name="sax_event_consumer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="41,273,185,298"/>
+<area shape="rect" id="Node000002" href="$d0/d82/structnlohmann_1_1json__sax.html" title="SAX interface." alt="" coords="5,184,119,210"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,221,108,271,103,274,74,224"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="142,184,302,210"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,221,130,274,126,270,194,217"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,95,261,121"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="225,136,225,184,219,184,219,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="160,5,284,46"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="225,61,225,95,219,95,219,61"/>
+</map>

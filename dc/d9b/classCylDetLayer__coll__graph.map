@@ -1,0 +1,7 @@
+<map id="CylDetLayer" name="CylDetLayer">
+<area shape="rect" id="Node000001" title="The class CylDetLayer defines a detector layer in cylindrical coordinates." alt="" coords="32,183,123,208"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,94,150,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,134,80,182,75,182,75,134"/>
+<area shape="rect" id="Node000003" href="$de/d8c/classCylSeg.html" title="Oriented segment corresponding to the detector&#39;s surface." alt="" coords="46,5,109,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="80,46,80,94,75,94,75,46"/>
+</map>

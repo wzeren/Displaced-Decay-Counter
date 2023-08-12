@@ -1,0 +1,17 @@
+<map id="doctest::detail::MessageBuilder" name="doctest::detail::MessageBuilder">
+<area shape="rect" id="Node000001" title=" " alt="" coords="85,361,245,402"/>
+<area shape="rect" id="Node000002" href="$dd/dae/structdoctest_1_1MessageData.html" title=" " alt="" coords="18,273,168,298"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,308,152,359,147,362,108,312"/>
+<area shape="rect" id="Node000003" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="25,177,129,202"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,216,93,272,88,273,78,217"/>
+<area shape="rect" id="Node000004" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="5,80,143,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="77,120,79,176,74,176,72,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="193,273,286,298"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="223,312,182,362,178,359,219,308"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,169,306,210"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,225,242,273,237,272,238,224"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="167,80,317,106"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="244,121,244,168,238,168,239,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="193,5,291,31"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="245,46,245,80,239,80,239,46"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="thirdParty/json&#45;develop/include/nlohmann/detail/input/json_sax.hpp" name="thirdParty/json&#45;develop/include/nlohmann/detail/input/json_sax.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="233,5,395,61"/>
+<area shape="rect" id="Node000002" href="$d2/d5f/binary__reader_8hpp.html" title=" " alt="" coords="175,109,336,165"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,75,273,110,269,107,289,73"/>
+<area shape="rect" id="Node000006" href="$d1/d46/parser_8hpp.html" title=" " alt="" coords="293,213,455,268"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="336,74,350,108,364,163,373,212,368,213,359,164,345,110,331,76"/>
+<area shape="rect" id="Node000003" href="$dd/d86/binary__writer_8hpp.html" title=" " alt="" coords="56,213,218,268"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="214,176,170,214,167,210,211,172"/>
+<area shape="rect" id="Node000005" href="$dc/da3/include_2nlohmann_2json_8hpp.html" title=" " alt="" coords="141,420,319,461"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="255,180,234,420,229,419,249,179"/>
+<area shape="rect" id="Node000004" href="$db/d1c/serializer_8hpp.html" title=" " alt="" coords="5,316,167,372"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="119,283,102,317,97,314,114,281"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="162,280,180,315,225,419,220,421,176,317,157,282"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="141,378,201,417,198,422,138,383"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="348,282,246,421,242,418,344,279"/>
+</map>

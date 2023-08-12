@@ -1,0 +1,12 @@
+<map id="doctest::detail::ResultBuilder" name="doctest::detail::ResultBuilder">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,351,190,376"/>
+<area shape="rect" id="Node000002" href="$da/d42/structdoctest_1_1AssertData.html" title=" " alt="" coords="30,276,165,301"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,316,100,350,95,350,95,316"/>
+<area shape="rect" id="Node000003" href="$d7/d2c/structdoctest_1_1TestCaseData.html" title=" " alt="" coords="173,185,326,211"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,220,119,277,117,273,215,216"/>
+<area shape="rect" id="Node000004" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="45,94,150,120"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="96,135,91,183,93,234,98,275,93,276,87,235,86,183,91,134"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="132,125,230,182,228,187,129,129"/>
+<area shape="rect" id="Node000005" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="29,5,166,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="100,46,100,94,95,94,95,46"/>
+</map>
