@@ -19,6 +19,11 @@ The code is written in C++. There is a Makefile. In the first line of Makefile, 
 
 
 
+## Relevant files for the benchmark models
+
+We provide the input files, Python plotting scripts, data points, as well as the final sensitivity plots, of the theoretical benchmark models considered in the paper, collectively in the folder "example_input".
+
+
 ## Doxygen documentation
 
 An updated Doxygen documentation of the code can be accessed at [![doxygen](https://img.shields.io/badge/Doxygen-808080)](https://wzeren.github.io/Displaced-Decay-Counter).
