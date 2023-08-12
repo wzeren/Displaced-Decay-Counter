@@ -1,7 +1,5 @@
 <map id="nlohmann::detail::output_string_adapter&lt; CharType, StringType &gt;" name="nlohmann::detail::output_string_adapter&lt; CharType, StringType &gt;">
-<area shape="rect" id="Node000001" title="output adapter for basic_string" alt="" coords="273,31,453,87"/>
-<area shape="rect" id="Node000002" href="$dc/d9b/structnlohmann_1_1detail_1_1output__adapter__protocol.html" title="abstract output adapter interface" alt="" coords="5,5,207,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,38,273,45,272,50,221,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="44,71,168,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,79,272,68,273,73,183,84"/>
+<area shape="rect" id="node1" title="output adapter for basic_string" alt="" coords="275,5,456,60"/>
+<area shape="rect" id="node2" href="$dc/d9b/structnlohmann_1_1detail_1_1output__adapter__protocol.html" title="abstract output adapter interface" alt="" coords="5,13,208,53"/>
+<area shape="rect" id="node3" title=" " alt="" coords="45,77,169,117"/>
 </map>

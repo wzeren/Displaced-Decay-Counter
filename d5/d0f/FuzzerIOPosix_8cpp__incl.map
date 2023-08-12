@@ -1,17 +1,10 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/FuzzerIOPosix.cpp" name="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/FuzzerIOPosix.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="177,5,330,61"/>
-<area shape="rect" id="Node000002" href="$d2/d3f/FuzzerDefs_8h.html" title=" " alt="" coords="205,109,302,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,61,256,94,251,94,251,61"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,183,70,208"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,138,85,181,83,176,216,133"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="93,183,158,208"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="233,138,161,177,159,173,230,133"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="182,183,242,208"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="249,136,229,171,224,168,244,134"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="266,183,326,208"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="263,134,284,169,279,171,258,136"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="351,183,404,208"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="276,133,345,173,343,177,273,138"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="429,183,486,208"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="289,133,416,177,414,182,287,138"/>
+<area shape="rect" id="node1" title=" " alt="" coords="181,5,335,60"/>
+<area shape="rect" id="node2" href="$d2/d3f/FuzzerDefs_8h.html" title=" " alt="" coords="209,108,307,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,181,71,207"/>
+<area shape="rect" id="node4" title=" " alt="" coords="95,181,160,207"/>
+<area shape="rect" id="node5" title=" " alt="" coords="185,181,246,207"/>
+<area shape="rect" id="node6" title=" " alt="" coords="270,181,331,207"/>
+<area shape="rect" id="node7" title=" " alt="" coords="356,181,411,207"/>
+<area shape="rect" id="node8" title=" " alt="" coords="435,181,494,207"/>
 </map>

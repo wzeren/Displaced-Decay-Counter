@@ -1,15 +1,9 @@
 <map id="Detector" name="Detector">
-<area shape="rect" id="Node000001" title="The Detector class defines the basic properties of a detector model." alt="" coords="107,375,177,401"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="28,286,106,312"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,322,133,373,129,376,85,325"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,183,129,223"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,238,70,286,64,286,64,238"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="130,286,303,312"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,325,154,376,150,373,194,322"/>
-<area shape="rect" id="Node000005" href="$d4/deb/classCylDetLayer.html" title="The class CylDetLayer defines a detector layer in cylindrical coordinates." alt="" coords="171,190,262,216"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="219,230,219,286,214,286,214,230"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="144,94,289,120"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="219,134,219,190,214,190,214,134"/>
-<area shape="rect" id="Node000007" href="$de/d8c/classCylSeg.html" title="Oriented segment corresponding to the detector&#39;s surface." alt="" coords="185,5,248,31"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="219,46,219,94,214,94,214,46"/>
+<area shape="rect" id="node1" title="The Detector class defines the basic properties of a detector model." alt="" coords="107,372,177,397"/>
+<area shape="rect" id="node2" title=" " alt="" coords="28,284,107,309"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,181,129,221"/>
+<area shape="rect" id="node4" title=" " alt="" coords="131,284,305,309"/>
+<area shape="rect" id="node5" href="$d4/deb/classCylDetLayer.html" title="The class CylDetLayer defines a detector layer in cylindrical coordinates." alt="" coords="172,189,264,214"/>
+<area shape="rect" id="node6" title=" " alt="" coords="145,93,291,119"/>
+<area shape="rect" id="node7" href="$de/d8c/classCylSeg.html" title="Oriented segment corresponding to the detector&#39;s surface." alt="" coords="187,5,249,31"/>
 </map>

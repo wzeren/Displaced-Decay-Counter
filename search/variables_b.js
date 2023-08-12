@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['k_0',['k',['../df/d6e/classpersons_1_1person__with__private__alphabet.html#afe015f188675029ca401cb9e0050bc49',1,'persons::person_with_private_alphabet::k'],['../d4/dad/classpersons_1_1person__with__public__alphabet.html#a13aca3c93f50fdc84aa22ce6a0dc1d93',1,'persons::person_with_public_alphabet::k'],['../d5/dfe/structnlohmann_1_1detail_1_1dtoa__impl_1_1cached__power.html#a8c1f2efed643eeaa8fae83c697a29c6a',1,'nlohmann::detail::dtoa_impl::cached_power::k']]],
+  ['k_0',['k',['../df/d6e/classpersons_1_1person__with__private__alphabet.html#afe015f188675029ca401cb9e0050bc49',1,'persons::person_with_private_alphabet::k()'],['../d4/dad/classpersons_1_1person__with__public__alphabet.html#a13aca3c93f50fdc84aa22ce6a0dc1d93',1,'persons::person_with_public_alphabet::k()'],['../d5/dfe/structnlohmann_1_1detail_1_1dtoa__impl_1_1cached__power.html#a8c1f2efed643eeaa8fae83c697a29c6a',1,'nlohmann::detail::dtoa_impl::cached_power::k()']]],
   ['kallocatedpointerssize_1',['kAllocatedPointersSize',['../d5/d6b/AccumulateAllocationsTest_8cpp.html#ae127ada45be82de073aa88c73c7647a9',1,'AccumulateAllocationsTest.cpp']]],
   ['kalpha_2',['kAlpha',['../dc/d41/namespacenlohmann_1_1detail_1_1dtoa__impl.html#ac1ea1316de0b4a219f707c76b1db1966',1,'nlohmann::detail::dtoa_impl']]],
   ['karraysize_3',['kArraySize',['../dd/dcc/LoadTest_8cpp.html#a2daeb7b0cc78afb6575abfd1e2428e03',1,'LoadTest.cpp']]],
@@ -10,7 +10,7 @@ var searchData=
   ['kextrastatsformatstring_7',['kExtraStatsFormatString',['../d7/d86/afl__driver_8cpp.html#a40af4d588ddad36585706fbad9312ca1',1,'afl_driver.cpp']]],
   ['key_5fkeep_5fstack_8',['key_keep_stack',['../d6/d69/classnlohmann_1_1detail_1_1json__sax__dom__callback__parser.html#a0ad9aea7efe690677b22d17c90c6e5cf',1,'nlohmann::detail::json_sax_dom_callback_parser']]],
   ['keys_9',['keys',['../d2/d33/classnlohmann_1_1fifo__map__compare.html#a08694accaf28b1381e55598acb6f34f3',1,'nlohmann::fifo_map_compare']]],
-  ['kfeaturesetsize_10',['kFeatureSetSize',['../d4/de2/classfuzzer_1_1InputCorpus.html#a048f6e049364635d9c3014e794b129ad',1,'fuzzer::InputCorpus::kFeatureSetSize'],['../df/d51/classfuzzer_1_1TracePC.html#a8ec97bc9273ad4a6f83d615a3febdf14',1,'fuzzer::TracePC::kFeatureSetSize']]],
+  ['kfeaturesetsize_10',['kFeatureSetSize',['../d4/de2/classfuzzer_1_1InputCorpus.html#a048f6e049364635d9c3014e794b129ad',1,'fuzzer::InputCorpus::kFeatureSetSize()'],['../df/d51/classfuzzer_1_1TracePC.html#a8ec97bc9273ad4a6f83d615a3febdf14',1,'fuzzer::TracePC::kFeatureSetSize()']]],
   ['kgamma_11',['kGamma',['../dc/d41/namespacenlohmann_1_1detail_1_1dtoa__impl.html#a4a750fcc38da1ce68b7e25ab3a230e20',1,'nlohmann::detail::dtoa_impl']]],
   ['kmapsizeinbits_12',['kMapSizeInBits',['../d1/dd1/structfuzzer_1_1ValueBitMap.html#abc4765423cfa45ec36e1eaee9d4491b9',1,'fuzzer::ValueBitMap']]],
   ['kmapsizeinbitsaligned_13',['kMapSizeInBitsAligned',['../d1/dd1/structfuzzer_1_1ValueBitMap.html#a2e454dabf261b10965dfb7dbf96c408e',1,'fuzzer::ValueBitMap']]],

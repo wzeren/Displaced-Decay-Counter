@@ -1,7 +1,5 @@
 <map id="include/tools.h" name="include/tools.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="53,5,158,31"/>
-<area shape="rect" id="Node000002" href="$d9/d0f/main_8cc.html" title=" " alt="" coords="5,79,94,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,61,80,57,77,85,41"/>
-<area shape="rect" id="Node000003" href="$d7/d21/tools_8cc.html" title=" " alt="" coords="117,79,206,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,41,154,77,150,80,122,44"/>
+<area shape="rect" id="node1" title=" " alt="" coords="53,5,159,31"/>
+<area shape="rect" id="node2" href="$d9/d0f/main_8cc.html" title=" " alt="" coords="5,79,95,104"/>
+<area shape="rect" id="node3" href="$d7/d21/tools_8cc.html" title=" " alt="" coords="119,79,208,104"/>
 </map>

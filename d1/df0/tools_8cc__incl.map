@@ -1,13 +1,8 @@
 <map id="src/tools.cc" name="src/tools.cc">
-<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,276,31"/>
-<area shape="rect" id="Node000002" href="$d5/da5/tools_8h.html" title=" " alt="" coords="179,79,284,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,31,234,64,229,64,229,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,71,178"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="199,108,85,150,83,145,198,103"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="95,153,224,178"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="221,107,183,144,180,140,218,103"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="248,153,359,178"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="245,103,283,140,279,144,241,107"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="383,153,429,178"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="262,103,370,147,368,152,260,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="189,5,278,31"/>
+<area shape="rect" id="node2" href="$d5/da5/tools_8h.html" title=" " alt="" coords="181,79,286,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,152,72,177"/>
+<area shape="rect" id="node4" title=" " alt="" coords="96,152,227,177"/>
+<area shape="rect" id="node5" title=" " alt="" coords="251,152,362,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="386,152,433,177"/>
 </map>

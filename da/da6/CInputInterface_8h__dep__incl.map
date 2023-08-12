@@ -1,13 +1,7 @@
 <map id="include/CInputInterface.h" name="include/CInputInterface.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="98,6,263,32"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="251,3,277,7,286,11,290,19,285,28,272,33,236,35,236,30,271,28,281,24,284,19,282,15,276,12,250,8"/>
-<area shape="rect" id="Node000002" href="$d2/d40/analysis_8h.html" title=" " alt="" coords="20,80,143,106"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="153,43,100,82,97,77,150,39"/>
-<area shape="rect" id="Node000004" href="$d9/d0f/main_8cc.html" title=" " alt="" coords="136,154,225,179"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="183,47,183,153,178,153,178,47"/>
-<area shape="rect" id="Node000005" href="$d6/dbf/CInputInterface_8cc.html" title=" " alt="" coords="218,80,367,106"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="213,38,275,77,272,82,210,42"/>
-<area shape="rect" id="Node000003" href="$db/de1/analysis_8cc.html" title=" " alt="" coords="5,154,113,179"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="76,120,65,154,60,152,71,119"/>
-<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="112,112,165,151,162,155,109,117"/>
+<area shape="rect" id="node1" title=" " alt="" coords="99,6,265,32"/>
+<area shape="rect" id="node2" href="$d2/d40/analysis_8h.html" title=" " alt="" coords="20,80,144,105"/>
+<area shape="rect" id="node4" href="$d9/d0f/main_8cc.html" title=" " alt="" coords="137,153,227,178"/>
+<area shape="rect" id="node5" href="$d6/dbf/CInputInterface_8cc.html" title=" " alt="" coords="220,80,371,105"/>
+<area shape="rect" id="node3" href="$db/de1/analysis_8cc.html" title=" " alt="" coords="5,153,113,178"/>
 </map>

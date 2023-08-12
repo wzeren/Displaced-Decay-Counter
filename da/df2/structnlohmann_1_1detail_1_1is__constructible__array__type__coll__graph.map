@@ -1,7 +1,5 @@
 <map id="nlohmann::detail::is_constructible_array_type&lt; BasicJsonType, ConstructibleArrayType &gt;" name="nlohmann::detail::is_constructible_array_type&lt; BasicJsonType, ConstructibleArrayType &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="393,13,562,84"/>
-<area shape="rect" id="Node000002" href="$d8/d8b/structnlohmann_1_1detail_1_1is__constructible__array__type__impl.html" title=" " alt="" coords="158,5,345,91"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="360,46,393,46,393,51,360,51"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,35,110,61"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="125,46,157,46,157,51,125,51"/>
+<area shape="rect" id="node1" title=" " alt="" coords="395,13,565,82"/>
+<area shape="rect" id="node2" href="$d8/d8b/structnlohmann_1_1detail_1_1is__constructible__array__type__impl.html" title=" " alt="" coords="159,5,347,89"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,35,111,60"/>
 </map>

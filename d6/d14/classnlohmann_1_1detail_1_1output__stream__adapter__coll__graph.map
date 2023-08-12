@@ -1,11 +1,7 @@
 <map id="nlohmann::detail::output_stream_adapter&lt; CharType &gt;" name="nlohmann::detail::output_stream_adapter&lt; CharType &gt;">
-<area shape="rect" id="Node000001" title="output adapter for output streams" alt="" coords="643,37,838,78"/>
-<area shape="rect" id="Node000002" href="$dc/d9b/structnlohmann_1_1detail_1_1output__adapter__protocol.html" title="abstract output adapter interface" alt="" coords="351,5,552,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="567,36,643,44,642,50,566,41"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="386,71,517,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="531,79,642,66,643,72,532,85"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="152,78,301,104"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="316,88,386,88,386,94,316,94"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,78,103,104"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="117,88,152,88,152,94,117,94"/>
+<area shape="rect" id="node1" title="output adapter for output streams" alt="" coords="648,5,844,45"/>
+<area shape="rect" id="node2" href="$dc/d9b/structnlohmann_1_1detail_1_1output__adapter__protocol.html" title="abstract output adapter interface" alt="" coords="353,5,556,45"/>
+<area shape="rect" id="node3" title=" " alt="" coords="389,69,520,109"/>
+<area shape="rect" id="node4" title=" " alt="" coords="153,77,304,102"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,77,104,102"/>
 </map>

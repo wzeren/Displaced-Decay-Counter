@@ -1,7 +1,5 @@
 <map id="nlohmann::detail::is_compatible_integer_type_impl&lt; RealIntegerType, CompatibleNumberIntegerType, typename &gt;" name="nlohmann::detail::is_compatible_integer_type_impl&lt; RealIntegerType, CompatibleNumberIntegerType, typename &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="158,5,365,91"/>
-<area shape="rect" id="Node000003" href="$d1/d21/structnlohmann_1_1detail_1_1is__compatible__integer__type.html" title=" " alt="" coords="413,13,657,84"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="380,46,412,46,412,51,380,51"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,35,110,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,46,157,46,157,51,124,51"/>
+<area shape="rect" id="node1" title=" " alt="" coords="159,5,367,89"/>
+<area shape="rect" id="node3" href="$d1/d21/structnlohmann_1_1detail_1_1is__compatible__integer__type.html" title=" " alt="" coords="415,13,660,82"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,35,111,60"/>
 </map>

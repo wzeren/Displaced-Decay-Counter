@@ -1,9 +1,6 @@
 <map id="doctest::detail::Subcase" name="doctest::detail::Subcase">
-<area shape="rect" id="Node000001" title=" " alt="" coords="14,271,173,297"/>
-<area shape="rect" id="Node000002" href="$d8/d97/structdoctest_1_1SubcaseSignature.html" title=" " alt="" coords="5,183,182,208"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,223,96,271,91,271,91,223"/>
-<area shape="rect" id="Node000003" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="41,94,146,120"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,134,96,182,91,182,91,134"/>
-<area shape="rect" id="Node000004" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="25,5,162,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,46,96,94,91,94,91,46"/>
+<area shape="rect" id="node1" title=" " alt="" coords="15,269,173,295"/>
+<area shape="rect" id="node2" href="$d8/d97/structdoctest_1_1SubcaseSignature.html" title=" " alt="" coords="5,181,183,207"/>
+<area shape="rect" id="node3" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="41,93,147,119"/>
+<area shape="rect" id="node4" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="25,5,163,31"/>
 </map>

@@ -1,11 +1,7 @@
 <map id="nlohmann::detail::input_stream_adapter" name="nlohmann::detail::input_stream_adapter">
-<area shape="rect" id="Node000001" title=" " alt="" coords="6,334,154,375"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="36,245,124,271"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,286,83,333,77,333,77,286"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="17,155,143,196"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,211,83,245,77,245,77,211"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,80,155,106"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,121,83,155,77,155,77,121"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="31,5,129,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="83,46,83,80,77,80,77,46"/>
+<area shape="rect" id="node1" title=" " alt="" coords="6,332,155,372"/>
+<area shape="rect" id="node2" title=" " alt="" coords="36,244,125,269"/>
+<area shape="rect" id="node3" title=" " alt="" coords="17,155,144,195"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,80,156,105"/>
+<area shape="rect" id="node5" title=" " alt="" coords="31,5,130,31"/>
 </map>

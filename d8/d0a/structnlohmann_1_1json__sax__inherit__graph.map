@@ -1,5 +1,4 @@
 <map id="nlohmann::json_sax&lt; BasicJsonType &gt;" name="nlohmann::json_sax&lt; BasicJsonType &gt;">
-<area shape="rect" id="Node000001" title="SAX interface." alt="" coords="10,5,145,46"/>
-<area shape="rect" id="Node000002" href="$d7/d98/classsax__event__consumer.html" title=" " alt="" coords="5,94,150,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,61,80,94,75,94,75,61"/>
+<area shape="rect" id="node1" title="SAX interface." alt="" coords="11,5,145,45"/>
+<area shape="rect" id="node2" href="$d7/d98/classsax__event__consumer.html" title=" " alt="" coords="5,93,151,133"/>
 </map>

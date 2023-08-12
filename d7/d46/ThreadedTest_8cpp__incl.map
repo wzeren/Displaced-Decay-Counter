@@ -1,13 +1,8 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/ThreadedTest.cpp" name="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/ThreadedTest.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="136,5,291,61"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,109,73,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,64,77,105,75,100,158,59"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="97,109,157,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,63,151,100,148,96,185,59"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="182,109,246,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="216,61,216,94,211,94,211,61"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="270,109,331,135"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="242,59,280,96,276,100,239,63"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="354,109,412,135"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="268,59,348,100,345,104,266,64"/>
+<area shape="rect" id="node1" title=" " alt="" coords="139,5,295,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,108,73,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="98,108,159,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="184,108,249,133"/>
+<area shape="rect" id="node5" title=" " alt="" coords="274,108,335,133"/>
+<area shape="rect" id="node6" title=" " alt="" coords="359,108,418,133"/>
 </map>

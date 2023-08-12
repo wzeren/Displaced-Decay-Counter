@@ -240,7 +240,7 @@ var menudata={children:[
 {text:"v",url:"functions_type_v.html#index_v"}]},
 {text:"Enumerations",url:"functions_enum.html"},
 {text:"Enumerator",url:"functions_eval.html"},
-{text:"Related Symbols",url:"functions_rela.html",children:[
+{text:"Related Functions",url:"functions_rela.html",children:[
 {text:":",url:"functions_rela.html#index_:"},
 {text:"b",url:"functions_rela.html#index_b"},
 {text:"d",url:"functions_rela.html#index_d"},

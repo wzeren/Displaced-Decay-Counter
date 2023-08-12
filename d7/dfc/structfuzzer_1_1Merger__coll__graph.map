@@ -1,14 +1,8 @@
 <map id="fuzzer::Merger" name="fuzzer::Merger">
-<area shape="rect" id="Node000001" title=" " alt="" coords="38,376,139,402"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="108,273,234,313"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,326,101,378,97,374,142,323"/>
-<area shape="rect" id="Node000003" href="$db/dc8/structfuzzer_1_1MergeFileInfo.html" title=" " alt="" coords="105,184,245,210"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,225,175,272,169,272,171,225"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="28,95,106,121"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="72,136,90,376,85,376,66,136"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,128,161,181,158,185,92,133"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,5,129,46"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="70,61,70,95,64,95,64,61"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="130,95,279,121"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="198,136,182,185,177,183,193,134"/>
+<area shape="rect" id="node1" title=" " alt="" coords="37,373,140,399"/>
+<area shape="rect" id="node2" title=" " alt="" coords="108,271,235,311"/>
+<area shape="rect" id="node3" href="$db/dc8/structfuzzer_1_1MergeFileInfo.html" title=" " alt="" coords="105,183,246,208"/>
+<area shape="rect" id="node4" title=" " alt="" coords="28,95,107,120"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,5,129,45"/>
+<area shape="rect" id="node6" title=" " alt="" coords="131,95,281,120"/>
 </map>

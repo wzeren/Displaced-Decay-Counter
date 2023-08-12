@@ -1,9 +1,6 @@
 <map id="include/main.h" name="include/main.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="76,5,180,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,77,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,34,68,72,65,67,111,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="101,79,154,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,31,130,64,125,64,125,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="179,79,255,105"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="144,29,193,68,189,72,141,34"/>
+<area shape="rect" id="node1" title=" " alt="" coords="77,5,182,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,77,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="102,79,157,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="181,79,259,104"/>
 </map>

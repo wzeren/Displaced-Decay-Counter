@@ -1,9 +1,6 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/doctest/doctest_compatibility.h" name="thirdParty/json&#45;develop/test/thirdparty/doctest/doctest_compatibility.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="9,5,167,61"/>
-<area shape="rect" id="Node000002" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,109,80,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,62,58,97,53,94,71,60"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="104,109,163,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="104,60,122,94,118,97,100,62"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="10,183,75,208"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="45,135,45,168,40,168,40,135"/>
+<area shape="rect" id="node1" title=" " alt="" coords="9,5,167,60"/>
+<area shape="rect" id="node2" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,108,80,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="105,108,165,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="9,181,76,207"/>
 </map>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['capture_0',['CAPTURE',['../df/d45/doctest__compatibility_8h.html#a0cd84d289552018d72489c085df0a9ca',1,'CAPTURE:&#160;doctest_compatibility.h'],['../de/dec/doctest_8h.html#a0cd84d289552018d72489c085df0a9ca',1,'CAPTURE:&#160;doctest.h']]],
+  ['capture_0',['CAPTURE',['../df/d45/doctest__compatibility_8h.html#a0cd84d289552018d72489c085df0a9ca',1,'CAPTURE():&#160;doctest_compatibility.h'],['../de/dec/doctest_8h.html#a0cd84d289552018d72489c085df0a9ca',1,'CAPTURE():&#160;doctest.h']]],
   ['check_1',['CHECK',['../de/dec/doctest_8h.html#a836cca6b6ed3a1706353f6d1bca0935f',1,'doctest.h']]],
   ['check_5feq_2',['CHECK_EQ',['../de/dec/doctest_8h.html#acab009b596160e614aec1ace5aa8560b',1,'doctest.h']]],
   ['check_5ferror_3',['CHECK_ERROR',['../d7/d86/afl__driver_8cpp.html#a4edc48973ba985ce28e5d873e55460d9',1,'afl_driver.cpp']]],

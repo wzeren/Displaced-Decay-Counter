@@ -1,13 +1,8 @@
 <map id="thirdParty/json&#45;develop/test/src/unit&#45;element_access2.cpp" name="thirdParty/json&#45;develop/test/src/unit&#45;element_access2.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="94,5,247,61"/>
-<area shape="rect" id="Node000002" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,109,165,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,63,111,100,107,96,143,59"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="189,109,318,135"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="198,59,234,96,230,100,194,63"/>
-<area shape="rect" id="Node000003" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,183,80,208"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,136,60,171,56,169,78,133"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="104,183,163,208"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="98,133,120,169,115,171,93,136"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="10,256,75,282"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,209,45,241,40,241,40,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="93,5,248,60"/>
+<area shape="rect" id="node2" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,108,165,133"/>
+<area shape="rect" id="node6" title=" " alt="" coords="189,108,320,133"/>
+<area shape="rect" id="node3" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,181,80,207"/>
+<area shape="rect" id="node5" title=" " alt="" coords="105,181,165,207"/>
+<area shape="rect" id="node4" title=" " alt="" coords="9,255,76,280"/>
 </map>

@@ -1,13 +1,8 @@
 <map id="persons::person_without_private_data_2" name="persons::person_without_private_data_2">
-<area shape="rect" id="Node000001" title=" " alt="" coords="770,49,931,90"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="501,13,579,39"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="594,30,770,56,769,61,593,36"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="174,5,297,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="312,23,501,23,501,28,312,28"/>
-<area shape="rect" id="Node000004" href="$d9/dcc/classnlohmann_1_1basic__json.html" title="a class to store JSON values" alt="" coords="415,62,665,163"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="679,91,769,78,770,83,680,96"/>
-<area shape="rect" id="Node000005" href="$dd/d0d/classnlohmann_1_1byte__container__with__subtype.html" title="an internal type for a backed binary type" alt="" coords="140,92,330,133"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="345,110,415,110,415,115,345,115"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,100,91,125"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="106,110,139,110,139,115,106,115"/>
+<area shape="rect" id="node1" title=" " alt="" coords="773,49,936,89"/>
+<area shape="rect" id="node2" title=" " alt="" coords="503,13,582,38"/>
+<area shape="rect" id="node3" title=" " alt="" coords="175,5,299,45"/>
+<area shape="rect" id="node4" href="$d9/dcc/classnlohmann_1_1basic__json.html" title="a class to store JSON values" alt="" coords="417,63,668,161"/>
+<area shape="rect" id="node5" href="$dd/d0d/classnlohmann_1_1byte__container__with__subtype.html" title="an internal type for a backed binary type" alt="" coords="141,92,332,132"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,99,92,125"/>
 </map>

@@ -1,7 +1,5 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/TimeoutEmptyTest.cpp" name="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/TimeoutEmptyTest.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,190,61"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="25,109,85,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,62,70,97,65,94,82,60"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="109,109,174,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,60,131,94,126,97,109,62"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,191,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="23,108,85,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="109,108,175,133"/>
 </map>

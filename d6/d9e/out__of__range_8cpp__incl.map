@@ -1,7 +1,5 @@
 <map id="thirdParty/json&#45;develop/doc/examples/out_of_range.cpp" name="thirdParty/json&#45;develop/doc/examples/out_of_range.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,214,46"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="13,94,84,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,48,69,84,64,80,92,45"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="108,94,237,120"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,45,156,80,151,84,123,48"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,215,45"/>
+<area shape="rect" id="node2" title=" " alt="" coords="11,93,83,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="107,93,238,119"/>
 </map>

@@ -1,13 +1,7 @@
 <map id="nlohmann::json_pointer&lt; BasicJsonType &gt;" name="nlohmann::json_pointer&lt; BasicJsonType &gt;">
-<area shape="rect" id="Node000001" title="JSON Pointer." alt="" coords="8,376,162,417"/>
-<area shape="rect" id="Node000002" href="$da/de8/classnlohmann_1_1json__pointer.html" title="JSON Pointer." alt="" coords="191,273,344,313"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,323,121,378,119,374,218,319"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="361,284,371,293,363,301,345,305,344,300,361,297,366,293,358,288"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,184,165,210"/>
-<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="84,225,79,273,80,329,85,376,80,376,75,329,74,273,79,224"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="123,214,230,270,228,274,120,219"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="46,95,124,121"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="88,136,88,184,82,184,82,136"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="23,5,147,46"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="88,61,88,95,82,95,82,61"/>
+<area shape="rect" id="node1" title="JSON Pointer." alt="" coords="8,373,163,413"/>
+<area shape="rect" id="node2" href="$da/de8/classnlohmann_1_1json__pointer.html" title="JSON Pointer." alt="" coords="192,271,347,311"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,183,165,208"/>
+<area shape="rect" id="node4" title=" " alt="" coords="46,95,125,120"/>
+<area shape="rect" id="node5" title=" " alt="" coords="23,5,147,45"/>
 </map>

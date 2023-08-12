@@ -1,9 +1,6 @@
 <map id="thirdParty/json&#45;develop/doc/examples/parse__contiguouscontainer__parser_callback_t.cpp" name="thirdParty/json&#45;develop/doc/examples/parse__contiguouscontainer__parser_callback_t.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,277,61"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="12,109,83,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,63,73,101,69,97,110,59"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="108,109,174,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,61,144,94,138,94,138,61"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="198,109,327,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="180,59,235,98,232,102,177,63"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,277,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="12,108,84,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="108,108,175,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="199,108,329,133"/>
 </map>

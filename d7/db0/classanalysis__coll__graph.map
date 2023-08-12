@@ -1,13 +1,8 @@
 <map id="analysis" name="analysis">
-<area shape="rect" id="Node000001" title="The analysis class gives access to the test functions for an event file containing identified LLPs." alt="" coords="534,74,602,100"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="241,5,380,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="396,29,453,37,511,53,548,71,546,76,509,57,452,43,395,34"/>
-<area shape="rect" id="Node000003" href="$d6/da4/classanalysis_1_1CLLP.html" title="The CLLP class stores the characteristics of a given LLP." alt="" coords="13,13,121,39"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,23,240,23,240,28,136,28"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="272,72,349,97"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="364,82,534,84,533,89,364,88"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,64,129,105"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="144,82,271,82,271,87,144,87"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="233,121,388,162"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="402,126,509,103,533,97,534,102,511,109,403,131"/>
+<area shape="rect" id="node1" title="The analysis class gives access to the test functions for an event file containing identified LLPs." alt="" coords="537,73,607,98"/>
+<area shape="rect" id="node2" title=" " alt="" coords="243,5,383,45"/>
+<area shape="rect" id="node3" href="$d6/da4/classanalysis_1_1CLLP.html" title="The CLLP class stores the characteristics of a given LLP." alt="" coords="13,13,122,38"/>
+<area shape="rect" id="node4" title=" " alt="" coords="273,71,352,97"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,64,129,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="235,121,391,161"/>
 </map>

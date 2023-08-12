@@ -1,9 +1,6 @@
 <map id="thirdParty/json&#45;develop/doc/examples/operator__ValueType.cpp" name="thirdParty/json&#45;develop/doc/examples/operator__ValueType.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="78,5,234,61"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,109,77,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,63,70,102,67,98,118,59"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="101,109,211,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,61,158,94,153,94,153,61"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="235,109,364,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,59,268,99,266,103,199,64"/>
+<area shape="rect" id="node1" title=" " alt="" coords="79,5,236,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,108,77,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="102,108,213,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,108,368,133"/>
 </map>

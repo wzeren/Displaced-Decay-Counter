@@ -1,7 +1,5 @@
 <map id="alt_string" name="alt_string">
-<area shape="rect" id="Node000001" title=" " alt="" coords="30,184,104,210"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="28,95,106,121"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,136,70,184,64,184,64,136"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,129,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,61,70,95,64,95,64,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="30,183,105,208"/>
+<area shape="rect" id="node2" title=" " alt="" coords="28,95,107,120"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,129,45"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="nlohmann::detail::json_sax_dom_parser&lt; BasicJsonType &gt;" name="nlohmann::detail::json_sax_dom_parser&lt; BasicJsonType &gt;">
-<area shape="rect" id="Node000001" title="SAX implementation to create a JSON value from SAX events." alt="" coords="5,94,240,135"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="22,5,223,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,46,125,93,120,93,120,46"/>
+<area shape="rect" id="node1" title="SAX implementation to create a JSON value from SAX events." alt="" coords="5,93,240,133"/>
+<area shape="rect" id="node2" title=" " alt="" coords="22,5,223,31"/>
 </map>

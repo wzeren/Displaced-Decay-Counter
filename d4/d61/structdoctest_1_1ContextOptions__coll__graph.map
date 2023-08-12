@@ -1,21 +1,11 @@
 <map id="doctest::ContextOptions" name="doctest::ContextOptions">
-<area shape="rect" id="Node000001" title="OCLINT too many fields." alt="" coords="103,420,262,446"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="49,316,141,342"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,353,141,394,167,417,164,421,137,398,106,356"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="15,183,145,223"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,238,96,315,91,316,81,238"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,94,155,120"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,135,83,182,77,182,77,135"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="31,5,129,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="83,46,83,94,77,94,77,46"/>
-<area shape="rect" id="Node000006" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="227,94,331,120"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="267,134,240,185,215,248,202,297,194,346,186,420,181,419,188,346,197,296,209,247,235,183,262,131"/>
-<area shape="rect" id="Node000008" href="$d5/de7/structdoctest_1_1detail_1_1TestCase.html" title=" " alt="" coords="220,316,383,342"/>
-<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="284,134,303,316,297,316,279,134"/>
-<area shape="rect" id="Node000009" href="$d7/d2c/structdoctest_1_1TestCaseData.html" title=" " alt="" coords="379,190,533,216"/>
-<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="315,124,435,187,432,192,313,129"/>
-<area shape="rect" id="Node000007" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="210,5,347,31"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="281,46,281,94,276,94,276,46"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="278,354,198,422,195,418,275,350"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="432,227,318,318,315,314,428,223"/>
+<area shape="rect" id="node1" title="OCLINT too many fields." alt="" coords="103,416,263,441"/>
+<area shape="rect" id="node2" title=" " alt="" coords="49,313,142,339"/>
+<area shape="rect" id="node3" title=" " alt="" coords="15,181,146,221"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,93,156,119"/>
+<area shape="rect" id="node5" title=" " alt="" coords="31,5,130,31"/>
+<area shape="rect" id="node6" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="228,93,333,119"/>
+<area shape="rect" id="node8" href="$d5/de7/structdoctest_1_1detail_1_1TestCase.html" title=" " alt="" coords="221,313,385,339"/>
+<area shape="rect" id="node9" href="$d7/d2c/structdoctest_1_1TestCaseData.html" title=" " alt="" coords="382,189,537,214"/>
+<area shape="rect" id="node7" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="211,5,350,31"/>
 </map>

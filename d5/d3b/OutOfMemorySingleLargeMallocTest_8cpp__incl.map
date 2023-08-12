@@ -1,15 +1,9 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/OutOfMemorySingleLargeMallocTest.cpp" name="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/test/OutOfMemorySingleLargeMallocTest.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="134,5,373,76"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,124,73,150"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,79,81,120,79,115,173,74"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="97,124,157,150"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,79,157,117,153,113,205,74"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="181,124,241,150"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,77,225,111,220,109,236,75"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="264,124,329,150"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="272,75,287,109,282,111,267,77"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="353,124,413,150"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="303,74,356,113,353,117,300,79"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="437,124,508,150"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="336,74,432,115,430,120,333,79"/>
+<area shape="rect" id="node1" title=" " alt="" coords="137,5,377,75"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,123,73,148"/>
+<area shape="rect" id="node3" title=" " alt="" coords="98,123,159,148"/>
+<area shape="rect" id="node4" title=" " alt="" coords="184,123,244,148"/>
+<area shape="rect" id="node5" title=" " alt="" coords="268,123,333,148"/>
+<area shape="rect" id="node6" title=" " alt="" coords="358,123,419,148"/>
+<area shape="rect" id="node7" title=" " alt="" coords="443,123,515,148"/>
 </map>

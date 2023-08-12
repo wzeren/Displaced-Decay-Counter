@@ -1,19 +1,11 @@
 <map id="thirdParty/json&#45;develop/test/src/unit&#45;inspection.cpp" name="thirdParty/json&#45;develop/test/src/unit&#45;inspection.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="284,5,465,46"/>
-<area shape="rect" id="Node000002" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,94,165,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="304,49,147,92,146,87,302,44"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="189,94,318,120"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="346,49,285,88,282,83,343,44"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="342,94,407,120"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="377,46,377,79,372,79,372,46"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="431,94,499,120"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="399,44,442,82,438,86,395,48"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="524,94,623,120"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="425,44,530,86,528,91,423,49"/>
-<area shape="rect" id="Node000003" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,168,80,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,121,60,156,56,154,78,118"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="104,168,163,193"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="98,118,120,154,115,156,93,121"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="10,241,75,267"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,194,45,226,40,226,40,194"/>
+<area shape="rect" id="node1" title=" " alt="" coords="286,5,469,45"/>
+<area shape="rect" id="node2" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,93,165,119"/>
+<area shape="rect" id="node6" title=" " alt="" coords="189,93,320,119"/>
+<area shape="rect" id="node7" title=" " alt="" coords="344,93,411,119"/>
+<area shape="rect" id="node8" title=" " alt="" coords="435,93,504,119"/>
+<area shape="rect" id="node9" title=" " alt="" coords="529,93,629,119"/>
+<area shape="rect" id="node3" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,167,80,192"/>
+<area shape="rect" id="node5" title=" " alt="" coords="105,167,165,192"/>
+<area shape="rect" id="node4" title=" " alt="" coords="9,240,76,265"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['number_20handling_0',['Number Handling',['../d7/d65/md_thirdParty_2json-develop_2doc_2mkdocs_2docs_2features_2types_2number__handling.html',1,'']]]
+  ['number_20handling_0',['Number Handling',['../d8/de8/md_thirdParty_json_develop_doc_mkdocs_docs_features_types_number_handling.html',1,'']]]
 ];

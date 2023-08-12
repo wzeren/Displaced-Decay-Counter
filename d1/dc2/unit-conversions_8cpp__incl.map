@@ -1,27 +1,15 @@
 <map id="thirdParty/json&#45;develop/test/src/unit&#45;conversions.cpp" name="thirdParty/json&#45;develop/test/src/unit&#45;conversions.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="458,5,651,46"/>
-<area shape="rect" id="Node000002" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,94,165,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="458,46,174,94,174,88,457,41"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="189,94,318,120"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="480,49,315,92,313,87,479,44"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="342,94,399,120"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="510,49,413,90,411,85,507,44"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="422,94,511,120"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="535,48,492,86,489,82,531,44"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="535,94,574,120"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="557,46,557,79,552,79,552,46"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="598,94,637,120"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="572,45,601,80,596,84,568,48"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="661,94,771,120"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="596,44,679,85,677,90,594,49"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="795,94,898,120"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="628,44,788,87,787,92,627,49"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="923,94,989,120"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="652,41,909,91,908,96,651,46"/>
-<area shape="rect" id="Node000003" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,168,80,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,121,60,156,56,154,78,118"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="104,168,163,193"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="98,118,120,154,115,156,93,121"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="10,241,75,267"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="45,194,45,226,40,226,40,194"/>
+<area shape="rect" id="node1" title=" " alt="" coords="462,5,655,45"/>
+<area shape="rect" id="node2" href="$df/d45/doctest__compatibility_8h.html" title=" " alt="" coords="11,93,165,119"/>
+<area shape="rect" id="node6" title=" " alt="" coords="189,93,320,119"/>
+<area shape="rect" id="node7" title=" " alt="" coords="345,93,402,119"/>
+<area shape="rect" id="node8" title=" " alt="" coords="426,93,515,119"/>
+<area shape="rect" id="node9" title=" " alt="" coords="539,93,578,119"/>
+<area shape="rect" id="node10" title=" " alt="" coords="603,93,643,119"/>
+<area shape="rect" id="node11" title=" " alt="" coords="667,93,778,119"/>
+<area shape="rect" id="node12" title=" " alt="" coords="803,93,907,119"/>
+<area shape="rect" id="node13" title=" " alt="" coords="931,93,997,119"/>
+<area shape="rect" id="node3" href="$de/dec/doctest_8h.html" title=" " alt="" coords="5,167,80,192"/>
+<area shape="rect" id="node5" title=" " alt="" coords="105,167,165,192"/>
+<area shape="rect" id="node4" title=" " alt="" coords="9,240,76,265"/>
 </map>

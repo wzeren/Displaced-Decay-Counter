@@ -1,11 +1,7 @@
 <map id="doctest::QueryData" name="doctest::QueryData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="59,271,190,297"/>
-<area shape="rect" id="Node000002" href="$d2/d03/structdoctest_1_1TestRunStats.html" title=" " alt="" coords="5,183,156,208"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,220,121,270,116,272,91,223"/>
-<area shape="rect" id="Node000003" href="$d7/d2c/structdoctest_1_1TestCaseData.html" title=" " alt="" coords="180,183,333,208"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,219,145,273,142,268,225,214"/>
-<area shape="rect" id="Node000004" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="204,94,309,120"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="259,134,259,182,254,182,254,134"/>
-<area shape="rect" id="Node000005" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="188,5,325,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="259,46,259,94,254,94,254,46"/>
+<area shape="rect" id="node1" title=" " alt="" coords="59,269,191,295"/>
+<area shape="rect" id="node2" href="$d2/d03/structdoctest_1_1TestRunStats.html" title=" " alt="" coords="5,181,156,207"/>
+<area shape="rect" id="node3" href="$d7/d2c/structdoctest_1_1TestCaseData.html" title=" " alt="" coords="181,181,335,207"/>
+<area shape="rect" id="node4" href="$db/d0c/classdoctest_1_1String.html" title=" " alt="" coords="205,93,311,119"/>
+<area shape="rect" id="node5" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="189,5,327,31"/>
 </map>

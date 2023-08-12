@@ -1,5 +1,4 @@
 <map id="doctest::String" name="doctest::String">
-<area shape="rect" id="Node000001" title=" " alt="" coords="22,94,126,120"/>
-<area shape="rect" id="Node000002" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="5,5,143,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,46,77,94,71,94,71,46"/>
+<area shape="rect" id="node1" title=" " alt="" coords="22,93,127,119"/>
+<area shape="rect" id="node2" href="$d6/ddd/structdoctest_1_1String_1_1view.html" title="OCLINT avoid private static members." alt="" coords="5,5,144,31"/>
 </map>

@@ -1,7 +1,5 @@
 <map id="thirdParty/json&#45;develop/doc/examples/swap__string_t.cpp" name="thirdParty/json&#45;develop/doc/examples/swap__string_t.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,227,46"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="19,94,90,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,48,75,84,71,80,99,45"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="114,94,243,120"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="134,45,162,80,158,84,129,48"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,228,45"/>
+<area shape="rect" id="node2" title=" " alt="" coords="18,93,90,119"/>
+<area shape="rect" id="node3" title=" " alt="" coords="114,93,245,119"/>
 </map>

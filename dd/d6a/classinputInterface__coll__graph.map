@@ -1,18 +1,10 @@
 <map id="inputInterface" name="inputInterface">
-<area shape="rect" id="Node000001" title="The inputInterface collects the input in json format." alt="" coords="733,102,833,128"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="422,5,594,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="609,48,710,79,756,99,754,104,708,84,607,53"/>
-<area shape="rect" id="Node000003" href="$d8/d0e/classinputInterface_1_1CLLP.html" title="The CLLP class stores the characteristics of a given LLP." alt="" coords="178,13,318,39"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,23,422,23,422,28,333,28"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="430,71,586,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="601,96,732,108,732,113,601,102"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="210,213,287,239"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="302,234,362,242,436,247,515,245,593,231,646,209,695,181,765,126,769,131,698,185,648,214,594,236,516,250,435,253,361,248,301,239"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="437,136,579,177"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="300,209,436,173,438,178,302,214"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,205,129,246"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="144,223,209,223,209,228,144,228"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="593,144,708,127,732,123,733,128,709,133,594,149"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="187,144,310,169"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="325,154,437,154,437,159,325,159"/>
+<area shape="rect" id="node1" title="The inputInterface collects the input in json format." alt="" coords="737,109,839,134"/>
+<area shape="rect" id="node2" title=" " alt="" coords="425,5,597,45"/>
+<area shape="rect" id="node3" href="$d8/d0e/classinputInterface_1_1CLLP.html" title="The CLLP class stores the characteristics of a given LLP." alt="" coords="179,13,320,38"/>
+<area shape="rect" id="node4" title=" " alt="" coords="433,69,589,109"/>
+<area shape="rect" id="node5" title=" " alt="" coords="210,209,289,234"/>
+<area shape="rect" id="node7" title=" " alt="" coords="440,133,583,173"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,201,129,241"/>
+<area shape="rect" id="node8" title=" " alt="" coords="187,139,311,165"/>
 </map>

@@ -1,18 +1,10 @@
 <map id="fuzzer::InputCorpus" name="fuzzer::InputCorpus">
-<area shape="rect" id="Node000001" title=" " alt="" coords="667,76,799,102"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="425,5,566,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="582,32,644,49,704,73,703,78,642,54,580,37"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="432,118,559,159"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="573,119,667,100,668,105,575,125"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="226,76,304,102"/>
-<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="318,86,667,86,667,92,318,92"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,97,432,122,431,127,317,103"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="15,69,138,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="153,86,226,86,226,92,153,92"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="433,183,559,224"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="559,174,642,136,708,100,710,105,645,141,562,179"/>
-<area shape="rect" id="Node000007" href="$d4/dbe/structfuzzer_1_1InputInfo.html" title=" " alt="" coords="209,191,321,216"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="336,201,432,201,432,206,336,206"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="5,191,148,216"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="162,201,208,201,208,206,162,206"/>
+<area shape="rect" id="node1" title=" " alt="" coords="672,76,804,101"/>
+<area shape="rect" id="node2" title=" " alt="" coords="428,5,571,31"/>
+<area shape="rect" id="node3" title=" " alt="" coords="435,118,563,158"/>
+<area shape="rect" id="node4" title=" " alt="" coords="227,76,305,101"/>
+<area shape="rect" id="node5" title=" " alt="" coords="15,69,139,109"/>
+<area shape="rect" id="node6" title=" " alt="" coords="436,182,563,222"/>
+<area shape="rect" id="node7" href="$d4/dbe/structfuzzer_1_1InputInfo.html" title=" " alt="" coords="209,189,323,215"/>
+<area shape="rect" id="node8" title=" " alt="" coords="5,189,148,215"/>
 </map>

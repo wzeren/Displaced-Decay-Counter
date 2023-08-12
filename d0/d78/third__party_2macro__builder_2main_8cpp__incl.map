@@ -1,9 +1,6 @@
 <map id="thirdParty/json&#45;develop/third_party/macro_builder/main.cpp" name="thirdParty/json&#45;develop/third_party/macro_builder/main.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="39,5,210,61"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,109,65,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,63,60,100,56,97,95,59"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="89,109,160,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,61,127,94,122,94,122,61"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="184,109,252,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,59,196,97,192,101,152,63"/>
+<area shape="rect" id="node1" title=" " alt="" coords="41,5,211,60"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,108,65,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="90,108,162,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="186,108,255,133"/>
 </map>

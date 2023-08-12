@@ -1,7 +1,5 @@
 <map id="include/CCylSeg.h" name="include/CCylSeg.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="6,5,132,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,55,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,32,46,67,41,65,60,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="79,79,139,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="78,30,97,65,92,67,73,33"/>
+<area shape="rect" id="node1" title=" " alt="" coords="7,5,134,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,56,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="80,79,141,104"/>
 </map>

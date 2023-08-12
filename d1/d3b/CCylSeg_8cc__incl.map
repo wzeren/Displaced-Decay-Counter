@@ -1,9 +1,6 @@
 <map id="src/CCylSeg.cc" name="src/CCylSeg.cc">
-<area shape="rect" id="Node000001" title=" " alt="" coords="14,5,124,31"/>
-<area shape="rect" id="Node000002" href="$db/d5d/CCylSeg_8h.html" title=" " alt="" coords="6,79,132,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,31,71,64,66,64,66,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,55,178"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,106,46,141,41,138,60,104"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="79,153,139,178"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="78,104,97,138,92,141,73,106"/>
+<area shape="rect" id="node1" title=" " alt="" coords="15,5,126,31"/>
+<area shape="rect" id="node2" href="$db/d5d/CCylSeg_8h.html" title=" " alt="" coords="7,79,134,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,152,56,177"/>
+<area shape="rect" id="node4" title=" " alt="" coords="80,152,141,177"/>
 </map>

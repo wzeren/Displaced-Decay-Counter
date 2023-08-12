@@ -1,9 +1,6 @@
 <map id="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/standalone/StandaloneFuzzTargetMain.c" name="thirdParty/json&#45;develop/test/thirdparty/Fuzzer/standalone/StandaloneFuzzTargetMain.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="16,5,238,76"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,124,73,150"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,78,62,115,58,111,93,74"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="97,124,157,150"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,76,130,109,124,109,124,76"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="181,124,244,150"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,74,193,111,189,114,156,78"/>
+<area shape="rect" id="node1" title=" " alt="" coords="16,5,239,75"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,123,73,148"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,123,157,148"/>
+<area shape="rect" id="node4" title=" " alt="" coords="181,123,244,148"/>
 </map>
