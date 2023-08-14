@@ -1,0 +1,49 @@
+! hnl_w.in
+! This file contains commands to be read in for a Pythia8 run.
+! Lines not beginning with a letter or digit are comments.
+
+
+! 1) Beam parameter settings. Values below agree with default ones.
+Beams:idA = 2212                   ! first beam, p = 2212, pbar = -2212
+Beams:idB = 2212                   ! second beam, p = 2212, pbar = -2212
+Beams:eCM = 14000.                 ! CM energy of collision
+
+! 2) Read SLHA spectrum (a few examples are provided by default)
+!SLHA:file = slha2-example.spc       ! Sample SLHA2 spectrum
+
+! 2.5) Handling of information output
+!PartonLevel:all = off
+!ProcessLevel:resonanceDecays = off
+
+!Init:showProcesses = off
+!Init:showChangedSettings = off
+!Init:showChangedParticleData = off
+
+!Next:numberCount = 0
+!Next:numberShowInfo = 0
+!Next:numberShowProcess = 0
+!Next:numberShowEvent = 0
+
+! 3) Process selection
+HardQCD:hardbbbar = on
+
+! 4) Settings for the event generation process in the Pythia8 library.
+PartonLevel:MPI = off
+Random:setSeed = on
+Random:seed = 0
+Main:numberOfEvents = 1000000
+!Main:writeHepMC
+
+! 5) Set up properties of the LLP (and its production and decay)
+! id:all = name antiName spinType chargeType colType m0 mWidth mMin mMax tau0
+1000022:new = hnl
+1000022:spinType = 2
+1000022:chargeType = 0
+1000022:colType = 0
+1000022:m0 = 1
+1000022:tau0 = 1
+!1000022:mayDecay = True
+
+! id:addChannel = onMode bRatio meMode product1 product2 ...
+! Note: sum of branching ratios automatically rescaled to 1.
+521:oneChannel = 1 1 0 -11 1000022
