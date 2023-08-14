@@ -11,7 +11,9 @@
 We develop a tool Displaced Decay Counter, **DDC**, for estimating the signal-event rates of different LLP models at various LHC far detectors. The input files can be LHEF, HepMC, or a CMND run card for Pythia8. It can be easily generalized to the cases of other collider types and detectors. One can also implement new detector's geometries in a straightforward manner into the code.
 
 
+## Paper
 
+An accompanying paper of this tool can be accessed at . Any user of the tool is strongly suggested to read the paper carefully first, before starting to test the tool.
 
 ## Compilation
 
