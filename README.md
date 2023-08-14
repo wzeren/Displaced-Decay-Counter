@@ -3,6 +3,7 @@
 **By Florian Domingo, Julian Günther, Jong Soo Kim, and Zeren Simon Wang**
 
 
+[![arXiv](http://img.shields.io/badge/arXiv-2308.XXXXX-B31B1B.svg)](https://arxiv.org/abs/2308.XXXXX)
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
 
 
