@@ -21,7 +21,7 @@ The code is written in C++. There is a Makefile. In the first line of Makefile, 
 
 ## Relevant files for the benchmark models
 
-We provide the input files, Python plotting scripts, data points, as well as the final sensitivity plots, of the theoretical benchmark models considered in the paper, collectively in the folder "examples".
+We provide the input files, Python plotting scripts, the final sensitivity plots, as well as the data points, of the theoretical benchmark models considered in the paper, collectively in the folder "examples".
 
 
 ## Doxygen documentation
