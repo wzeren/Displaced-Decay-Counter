@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ya_0',['yA',['../de/d8c/classCylSeg.html#a16a0673bc4f9cc6f8d58d9cfabc958cc',1,'CylSeg']]],
-  ['yb_1',['yB',['../de/d8c/classCylSeg.html#a8bbe6b14d8d169a5baee25fe421ce282',1,'CylSeg']]],
-  ['yeqn_2',['yeqn',['../de/d8c/classCylSeg.html#a70fbfd9476808507af3d3ab10a79cab5',1,'CylSeg']]]
+  ['verbose_0',['verbose',['../d4/db0/classanalysis.html#a5ccced4539bfbafadf84bae096491b2e',1,'analysis']]],
+  ['visiblebr_1',['visibleBR',['../d6/da4/classanalysis_1_1CLLP.html#afe44d164fc277f4946faf06fc4ceaa8c',1,'analysis::CLLP::visibleBR()'],['../d8/d0e/classinputInterface_1_1CLLP.html#a64be4b62793ed65a4ecd47220b7bb07f',1,'inputInterface::CLLP::visibleBR()']]]
 ];
