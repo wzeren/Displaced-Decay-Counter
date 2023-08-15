@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tools_2ecc_0',['tools.cc',['../d7/d21/tools_8cc.html',1,'']]],
-  ['tools_2eh_1',['tools.h',['../d5/da5/tools_8h.html',1,'']]]
+  ['verbose_0',['verbose',['../d4/db0/classanalysis.html#a5ccced4539bfbafadf84bae096491b2e',1,'analysis']]],
+  ['visiblebr_1',['visibleBR',['../d6/da4/classanalysis_1_1CLLP.html#afe44d164fc277f4946faf06fc4ceaa8c',1,'analysis::CLLP::visibleBR()'],['../d8/d0e/classinputInterface_1_1CLLP.html#a64be4b62793ed65a4ecd47220b7bb07f',1,'inputInterface::CLLP::visibleBR()']]]
 ];
