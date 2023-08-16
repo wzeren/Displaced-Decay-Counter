@@ -3,7 +3,7 @@
 **By Florian Domingo, Julian Günther, Jong Soo Kim, and Zeren Simon Wang**
 
 
-[![arXiv](http://img.shields.io/badge/arXiv-2308.XXXXX-B31B1B.svg)](https://arxiv.org/abs/2308.XXXXX)
+[![arXiv](http://img.shields.io/badge/arXiv-2308.07371-B31B1B.svg)](https://arxiv.org/abs/2308.07371)
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md)
 
 
@@ -14,7 +14,7 @@ We develop a tool Displaced Decay Counter, **DDC**, for estimating the signal-ev
 
 ## Paper
 
-An accompanying paper of this tool can be accessed at [![arXiv](http://img.shields.io/badge/arXiv-2308.XXXXX-B31B1B.svg)](https://arxiv.org/abs/2308.XXXXX). Any user of the tool is strongly suggested to read the paper carefully first, before starting to test the tool.
+An accompanying paper of this tool can be accessed at [![arXiv](http://img.shields.io/badge/arXiv-2308.07371-B31B1B.svg)](https://arxiv.org/abs/2308.07371). Any user of the tool is strongly suggested to read the paper carefully first, before starting to test the tool.
 
 ## Compilation
 
