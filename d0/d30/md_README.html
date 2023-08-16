@@ -73,11 +73,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><b>By Florian Domingo, Julian Günther, Jong Soo Kim, and Zeren Simon Wang</b></p>
-<p ><a href="https://arxiv.org/abs/2308.XXXXX"><img src="http://img.shields.io/badge/arXiv-2308.XXXXX-B31B1B.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="license" style="pointer-events: none;" class="inline"/></a></p>
+<p ><a href="https://arxiv.org/abs/2308.07371"><img src="http://img.shields.io/badge/arXiv-2308.07371-B31B1B.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/wzeren/Displaced-Decay-Counter/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="license" style="pointer-events: none;" class="inline"/></a></p>
 <h1>Introduction</h1>
 <p >We develop a tool Displaced Decay Counter, <b>DDC</b>, for estimating the signal-event rates of different LLP models at various LHC far detectors. The input files can be LHEF, HepMC, or a CMND run card for Pythia8. It can be easily generalized to the cases of other collider types and detectors. One can also implement new detector's geometries in a straightforward manner into the code.</p>
 <h1>Paper</h1>
-<p >An accompanying paper of this tool can be accessed at <a href="https://arxiv.org/abs/2308.XXXXX"><img src="http://img.shields.io/badge/arXiv-2308.XXXXX-B31B1B.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a>. Any user of the tool is strongly suggested to read the paper carefully first, before starting to test the tool.</p>
+<p >An accompanying paper of this tool can be accessed at <a href="https://arxiv.org/abs/2308.07371"><img src="http://img.shields.io/badge/arXiv-2308.07371-B31B1B.svg" alt="arXiv" style="pointer-events: none;" class="inline"/></a>. Any user of the tool is strongly suggested to read the paper carefully first, before starting to test the tool.</p>
 <h1>Compilation</h1>
 <p >The code is written in C++. There is a Makefile. In the first line of Makefile, put in the path to your own Pythia8 and HepMC installation. Pythia8 should have been compiled with a link to zlib, in order to allow for reading *.lhe.gz files. If you do not use zlib, remove "-lz" in the line starting with "LDFLAGS". Run "make -jN" in the terminal to compile, where N is the number of CPU cores you want to use.</p>
 <h1>Relevant files for the benchmark models</h1>
