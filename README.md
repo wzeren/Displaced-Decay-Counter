@@ -37,7 +37,7 @@ An updated Doxygen documentation of the code can be accessed at [![doxygen](http
 
 If you have any questions, or would like to report any bug, you are welcome to write to any of us:
 
-- Florian Domingo: [florian.domingoh@gmail.com](mailto:florian.domingoh@gmail.com)
+- Florian Domingo: [domingo@physik.uni-bonn.de](mailto:domingo@physik.uni-bonn.de)
 - Julian Günther: [guenther@physik.uni-bonn.de](mailto:guenther@physik.uni-bonn.de)
 - Jong Soo Kim: [jongsoo.kim@tu-dortmund.de](mailto:jongsoo.kim@tu-dortmund.de)
 - Zeren Simon Wang: [wzs@mx.nthu.edu.tw](mailto:wzs@mx.nthu.edu.tw)
