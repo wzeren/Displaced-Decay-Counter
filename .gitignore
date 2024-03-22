@@ -1,1 +1,4 @@
 !.github/
+/bin/main
+/build
+
