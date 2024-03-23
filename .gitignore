@@ -1,1 +1,5 @@
 !.github/
+/bin/main
+/build
+/src/DetEditor
+
