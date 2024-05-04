@@ -52,10 +52,10 @@ $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 	@[ ! -d $(dir $@) ] & mkdir -p $(dir $@)
 	$(CC) -o $@ -c $^ $(INCLUDE) $(CFLAGS)
 
-DetEditor: $(SRCDIR)/DetEditor
+DetEditor: $(BINDIR)/DetEditor
 
-$(SRCDIR)/DetEditor: $(SRCDIR)/DetEditor.cxx
+$(BINDIR)/DetEditor: $(SRCDIR)/DetEditor.cxx
 	$(CC) -o $@ -std=c++17 $< -lstdc++fs
 
 clean:
-	rm -rf build bin/main src/DetEditor
+	rm -rf build bin/main bin/DetEditor
