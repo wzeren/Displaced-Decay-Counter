@@ -313,11 +313,12 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   myfile << "Detector: simulated acceptance, number of events:" << "\n";
   myfile << "***************************************************************" << "\n";
   double visibleBR=1.;
-
+  
   for(size_t iLLP=0; iLLP < observedLLPevents.size(); iLLP++){
+    visibleBR=LLPdata[iLLP].visibleBR;
     for(int detInd=0; detInd<detTot; detInd++){
       double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,double(ProducedLLP));
-      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
+      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,double(ProducedLLP));// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
       myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
   }
