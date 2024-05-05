@@ -40,7 +40,7 @@ OBJ=$(patsubst %.cc,%.o,$(TMP))
 
 .PHONY: all main clean DetEditor
 
-all: main
+all: main DetEditor
 
 main: $(BIN)
 
