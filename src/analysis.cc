@@ -19,7 +19,7 @@ analysis::analysis() {
   sigma = 1;
   nMC = 0;
 
-  ProducedLLP = 0; //total number of produced LLP's in MC
+  ProducedLLP.clear(); //total number of produced LLP's in MC
   myDetectorList.clear();
 
   //  mass = 0;  //LLP mass in GeV 
@@ -117,7 +117,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
     return false;
   
   // Counting the LLPs found in the sample
-  ProducedLLP = 0;
+  ProducedLLP=std::vector<double>(LLPdata.size(), 0.0);  
   
   // Creating detector list
   int detTot=myDetectorList.size();
@@ -178,7 +178,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	      //search LLPs not decaying into themselves
 	      //mass = pythia->event[i].m0();
 	      //ctau = pythia->event[i].tau0()/1000.; //conver mm to m
-	      ProducedLLP += 1; // count produced LLPs
+	      ProducedLLP[iLLP] += 1; // count produced LLPs
 	      
 	      Pythia8::Particle XXX=pythia->event[i];
 	      double gamma = XXX.e()/(mass);
@@ -246,7 +246,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	    
 	    if(isLast_hepmc(p, LLPPID)){
 	      
-	      ProducedLLP += 1;
+	      ProducedLLP[iLLP] += 1;
 	      
 	      double gamma = (*p)->momentum().e()/(mass);
 	      //    double beta_z = (*p)->momentum().pz()/(*p)->momentum().e();
@@ -317,8 +317,8 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   for(size_t iLLP=0; iLLP < observedLLPevents.size(); iLLP++){
     visibleBR=LLPdata[iLLP].visibleBR;
     for(int detInd=0; detInd<detTot; detInd++){
-      double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,double(ProducedLLP));
-      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,double(ProducedLLP));// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
+      double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,ProducedLLP[iLLP]);
+      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,ProducedLLP[iLLP]);// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
       myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
   }

@@ -82,7 +82,7 @@ private:
     //double visibleBR;
 
     std::vector <std::tuple<std::string,double>> myDetectorList;
-    double ProducedLLP;
+    std::vector <double> ProducedLLP;
 
     bool isLast_hepmc(HepMC::GenEvent::particle_const_iterator p , int PID);//input: HepMC particle and PID, output: check if the input is the last particle that "decays to itself"
 
