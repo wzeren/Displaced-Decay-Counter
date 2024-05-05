@@ -29,7 +29,7 @@ One needs to run the program "main" within the folder "bin", with "./main" follo
 
 ## Relevant files for the benchmark models
 
-We provide the input files, Python plotting scripts, the final sensitivity plots, as well as the data points, of the theoretical benchmark models considered in the paper, collectively in the folder "examples".
+We provide the input files, Python plotting scripts, the final sensitivity plots, as well as the data points, of the theoretical benchmark models considered in the paper, collectively in the folder "examples". If you want to test these examples, please do not forget to modify certain information in the input files, such as "input_file_path" in the "...Events.dat" files.
 
 
 ## Doxygen documentation
