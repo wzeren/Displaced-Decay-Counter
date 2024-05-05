@@ -125,8 +125,8 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   studiedDet.clear();
   std::vector<double> employedLumis;
   employedLumis.clear();
-  std::vector<std::vector<double>> observedLLPevents(LLPdata.size());
-  //  observedLLPevents.clear();
+  std::vector<std::vector<double>> observedLLPs(LLPdata.size());
+  //  observedLLPs.clear();
 
   
   
@@ -138,8 +138,8 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   
   double foundLumi=0.;
   for(int detInd=0; detInd<detTot; detInd++){
-    for(size_t iLLP = 0; iLLP < observedLLPevents.size();iLLP++)
-      observedLLPevents[iLLP].push_back(0.);
+    for(size_t iLLP = 0; iLLP < observedLLPs.size();iLLP++)
+      observedLLPs[iLLP].push_back(0.);
     if(employedLumis[detInd]<=0){
       foundLumi=DetList[detInd].readLumi();
       employedLumis[detInd]=foundLumi;
@@ -175,7 +175,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	  for (int i = 0; i < pythia->event.size(); ++i) {
 	    
 	    if (abs(pythia->event[i].id()) == LLPPID &&  abs(pythia->event[pythia->event[i].daughter1()].id())!=LLPPID) {
-	      //search LLPs not decaying into themselves
+	      //search for LLPs not decaying into themselves
 	      //mass = pythia->event[i].m0();
 	      //ctau = pythia->event[i].tau0()/1000.; //conver mm to m
 	      ProducedLLP[iLLP] += 1; // count produced LLPs
@@ -184,19 +184,14 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	      double gamma = XXX.e()/(mass);
 	      //        double beta_z = XXX.pz()/XXX.e();
 	      double beta = sqrt(1. - pow(mass/XXX.e(), 2));
-	      double theta = XXX.p().theta();            
-	      //       double phi = XXX.p().phi();           
-	      //       double eta = XXX.p().eta(); 
-	      //	    for(int detInd=0; detInd<detTot; detInd++){
-	      //	      observedLLPevents[detInd] += DetList[detInd].DetAcc(theta,beta*gamma*ctau);	    
-	      //}
+	      double theta = XXX.p().theta(); 
 	      
 	      for(int detInd=0; detInd<detTot; detInd++){
 		auto acc = DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 		if(acc > 0){
 		  analyseEvent evaluate(evt);
 		  if(evaluate.passCuts(DetList[detInd].readname()))
-		    observedLLPevents[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		    observedLLPs[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 		}//if acc > 0
 	      }//for det
 	    }//if LLP condition
@@ -259,7 +254,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 		if(acc > 0){
 		  analyseEvent evaluate(evt);
 		  if(evaluate.passCuts(DetList[detInd].readname()))
-		    observedLLPevents[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
+		    observedLLPs[iLLP][detInd] += acc;// DetList[detInd].DetAcc(theta,beta*gamma*ctau);
 		}//if acc > 0
 	      }// for det
 	      
@@ -287,7 +282,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   /*  std::ofstream myfile;
       myfile.open ("testres.txt"); //, std::ios_base::app);
       for(int detInd=0; detInd<detTot; detInd++){
-      myfile << DetList[detInd].readname() << " : " << observedLLPevents[detInd]*employedLumis[detInd]/3000. << "\n";
+      myfile << DetList[detInd].readname() << " : " << observedLLPs[iLLP][detInd]*employedLumis[detInd]/3000. << "\n";
       }*/
   
   //  if (input_file_format == "LHE" ||  input_file_format == "CMND"){ 
@@ -314,11 +309,11 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
   myfile << "***************************************************************" << "\n";
   double visibleBR=1.;
   
-  for(size_t iLLP=0; iLLP < observedLLPevents.size(); iLLP++){
+  for(size_t iLLP=0; iLLP < observedLLPs.size(); iLLP++){
     visibleBR=LLPdata[iLLP].visibleBR;
     for(int detInd=0; detInd<detTot; detInd++){
-      double acceptance = observedLLPevents[iLLP][detInd] / std::max(1.,ProducedLLP[iLLP]);
-      double VisibleLLPs = observedLLPevents[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,ProducedLLP[iLLP]);// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
+      double acceptance = observedLLPs[iLLP][detInd] / std::max(1.,ProducedLLP[iLLP]);
+      double VisibleLLPs = observedLLPs[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,ProducedLLP[iLLP]);// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
       myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
   }
