@@ -261,11 +261,11 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
 	    } // if LLP cndition
 	    
 	  }//for loop particle
+	  iLLP++;
+	}// LLPdata loop
 	  delete evt;
 	  ascii_in >> evt;
 	  if  (iEvent >= nEventsMC) break;
-	  iLLP++;
-	}// LLPdata loop
       } //while loop event
       nEvent=iEvent;
       
