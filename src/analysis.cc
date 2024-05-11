@@ -313,7 +313,7 @@ bool analysis::runPythia(const int nEventsMC, const std::string pathToResultFile
     visibleBR=LLPdata[iLLP].visibleBR;
     for(int detInd=0; detInd<detTot; detInd++){
       double acceptance = observedLLPs[iLLP][detInd] / std::max(1.,ProducedLLP[iLLP]);
-      double VisibleLLPs = observedLLPs[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,ProducedLLP[iLLP]);// / std::max(1.,double(std::min(nEvent+1,nEventsMC)));
+      double VisibleLLPs = observedLLPs[iLLP][detInd] * employedLumis[detInd] * sigma * visibleBR/ std::max(1.,double(std::min(nEvent+1,nEventsMC)));// std::max(1.,ProducedLLP[iLLP]);
       myfile << DetList[detInd].readname() << ", LLP" << iLLP << ":	" << acceptance << " ,	" << VisibleLLPs << "\n";
     }
   }
