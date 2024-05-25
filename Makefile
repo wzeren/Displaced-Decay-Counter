@@ -33,24 +33,29 @@ HEADDIR=include
 LIBDIR=build
 BINDIR=bin
 
-BIN=main
+BIN=$(BINDIR)/main
 SRC=$(shell find . -name '*.cc')
 TMP=$(subst $(SRCDIR),$(LIBDIR), $(SRC))
 OBJ=$(patsubst %.cc,%.o,$(TMP))
 
-all: $(BIN)
+.PHONY: all main clean DetEditor
 
-main: $(OBJ)
+all: main DetEditor
+
+main: $(BIN)
+
+$(BIN): $(OBJ)
 	@[ ! -d $(BINDIR) ] & mkdir -p $(BINDIR)
-	$(CC) -o $(BINDIR)/$@ $^ $(LDFLAGS) $(CFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS)
 
 $(LIBDIR)/%.o: $(SRCDIR)/%.cc
 	@[ ! -d $(dir $@) ] & mkdir -p $(dir $@)
 	$(CC) -o $@ -c $^ $(INCLUDE) $(CFLAGS)
 
-DetEditor: $(SRCDIR)/DetEditor.cxx
-	$(CC) -o $(SRCDIR)/DetEditor -std=c++17 $(SRCDIR)/DetEditor.cxx -lstdc++fs
-.PHONY = clean
+DetEditor: $(BINDIR)/DetEditor
+
+$(BINDIR)/DetEditor: $(SRCDIR)/DetEditor.cxx
+	$(CC) -o $@ -std=c++17 $< -lstdc++fs
 
 clean:
-	rm -rf build bin/main
+	rm -rf build bin/main bin/DetEditor
