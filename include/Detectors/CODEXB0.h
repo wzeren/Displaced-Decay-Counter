@@ -1,8 +1,8 @@
 #ifndef _DCODEXB0_
 #define _DCODEXB0_
 
-#include "include/CDetector.h"
 #include "HepMC/IO_GenEvent.h"
+#include "include/CDetector.h"
 
 Detector CODEXB0();
 

@@ -1,8 +1,8 @@
 #ifndef _DFACET_
 #define _DFACET_
 
-#include "include/CDetector.h"
 #include "HepMC/IO_GenEvent.h"
+#include "include/CDetector.h"
 
 Detector FACET();
 

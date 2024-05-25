@@ -1,14 +1,9 @@
 #ifndef _FUNCTIONS
 #define _FUNCTIONS
 
-
-#include <string>
 #include <sstream>
-
+#include <string>
 
 std::string charToString(char* x);
-
-
-
 
 #endif

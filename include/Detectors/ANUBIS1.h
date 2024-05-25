@@ -1,8 +1,8 @@
 #ifndef _DANUBIS1_
 #define _DANUBIS1_
 
-#include "include/CDetector.h"
 #include "HepMC/IO_GenEvent.h"
+#include "include/CDetector.h"
 
 Detector ANUBIS1();
 
