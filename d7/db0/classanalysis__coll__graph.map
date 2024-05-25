@@ -1,8 +1,9 @@
 <map id="analysis" name="analysis">
-<area shape="rect" id="node1" title="The analysis class gives access to the test functions for an event file containing identified LLPs." alt="" coords="537,73,607,98"/>
+<area shape="rect" id="node1" title="The analysis class gives access to the test functions for an event file containing identified LLPs." alt="" coords="537,105,607,130"/>
 <area shape="rect" id="node2" title=" " alt="" coords="243,5,383,45"/>
 <area shape="rect" id="node3" href="$d6/da4/classanalysis_1_1CLLP.html" title="The CLLP class stores the characteristics of a given LLP." alt="" coords="13,13,122,38"/>
-<area shape="rect" id="node4" title=" " alt="" coords="273,71,352,97"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,64,129,104"/>
-<area shape="rect" id="node6" title=" " alt="" coords="235,121,391,161"/>
+<area shape="rect" id="node4" title=" " alt="" coords="273,70,352,95"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,63,129,103"/>
+<area shape="rect" id="node6" title=" " alt="" coords="235,120,391,160"/>
+<area shape="rect" id="node7" title=" " alt="" coords="241,185,384,210"/>
 </map>
