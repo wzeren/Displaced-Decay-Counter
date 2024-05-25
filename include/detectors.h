@@ -1,19 +1,19 @@
 #ifndef _DETECTORS_
 #define _DETECTORS_
 
+#include "include/Detectors/AL3X.h"
+#include "include/Detectors/ANUBIS0.h"
+#include "include/Detectors/ANUBIS1.h"
+#include "include/Detectors/CODEXB0.h"
+#include "include/Detectors/CODEXB1.h"
+#include "include/Detectors/FACET.h"
+#include "include/Detectors/FASER1.h"
+#include "include/Detectors/FASER2.h"
+#include "include/Detectors/MAPP1.h"
+#include "include/Detectors/MAPP2.h"
 #include "include/Detectors/MATHUSLA0.h"
 #include "include/Detectors/MATHUSLA1.h"
 #include "include/Detectors/MATHUSLA2.h"
-#include "include/Detectors/FASER1.h"
-#include "include/Detectors/FASER2.h"
-#include "include/Detectors/AL3X.h"
-#include "include/Detectors/CODEXB0.h"
-#include "include/Detectors/CODEXB1.h"
-#include "include/Detectors/ANUBIS0.h"
-#include "include/Detectors/ANUBIS1.h"
-#include "include/Detectors/MAPP1.h"
-#include "include/Detectors/MAPP2.h"
-#include "include/Detectors/FACET.h"
 
 // END OF INCLUDE DEFINITIONS
 
