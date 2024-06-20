@@ -36,6 +36,10 @@ We provide the input files, Python plotting scripts, the final sensitivity plots
 
 An updated Doxygen documentation of the code can be accessed at [![doxygen](https://img.shields.io/badge/Doxygen-808080)](https://wzeren.github.io/Displaced-Decay-Counter).
 
+## New detector implementations
+
+You are most welcome to submit a new detector implementation to this repository!
+
 
 ## Questions and bug reports
 
