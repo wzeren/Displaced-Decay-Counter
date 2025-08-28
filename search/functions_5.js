@@ -11,6 +11,8 @@ var searchData=
   ['mathusla1cuts_8',['MATHUSLA1Cuts',['../d5/d10/MATHUSLA1_8h.html#a02bd3cd9fa738a3d04ec8aee08c629ef',1,'MATHUSLA1Cuts(HepMC::GenEvent *evtInput):&#160;MATHUSLA1.cc'],['../de/d98/MATHUSLA1_8cc.html#adee02fa252a79e20bde9bc28d01e1216',1,'MATHUSLA1Cuts(HepMC::GenEvent *evtin):&#160;MATHUSLA1.cc']]],
   ['mathusla2_9',['MATHUSLA2',['../da/dab/MATHUSLA2_8h.html#af5ae2bcd551715fe8c67a84eb18f74a4',1,'MATHUSLA2():&#160;MATHUSLA2.cc'],['../da/ddd/MATHUSLA2_8cc.html#af5ae2bcd551715fe8c67a84eb18f74a4',1,'MATHUSLA2():&#160;MATHUSLA2.cc']]],
   ['mathusla2cuts_10',['MATHUSLA2Cuts',['../da/dab/MATHUSLA2_8h.html#a8a713dec95394611911ccf57ec3db2be',1,'MATHUSLA2Cuts(HepMC::GenEvent *evtInput):&#160;MATHUSLA2.cc'],['../da/ddd/MATHUSLA2_8cc.html#a33ed62b1c1b66aa0dfcebbce059ccb68',1,'MATHUSLA2Cuts(HepMC::GenEvent *evtin):&#160;MATHUSLA2.cc']]],
-  ['modifydetcutssource_11',['modifyDetCutsSource',['../d0/d33/DetEditor_8cxx.html#a4dde5115a4445b62105d7edfcb7cabc1',1,'DetEditor.cxx']]],
-  ['modifydetectorssource_12',['modifyDetectorsSource',['../d0/d33/DetEditor_8cxx.html#a24ea5c7dbd5604247867daef01442b3d',1,'DetEditor.cxx']]]
+  ['mathusla40_11',['MATHUSLA40',['../d4/dea/MATHUSLA40_8h.html#aaf26110453a3aab88a208eea6fa7d742',1,'MATHUSLA40():&#160;MATHUSLA40.cc'],['../d1/dd2/MATHUSLA40_8cc.html#aaf26110453a3aab88a208eea6fa7d742',1,'MATHUSLA40():&#160;MATHUSLA40.cc']]],
+  ['mathusla40cuts_12',['MATHUSLA40Cuts',['../d4/dea/MATHUSLA40_8h.html#ac766e6c00078920021f77f5bbd96a8ee',1,'MATHUSLA40Cuts(HepMC::GenEvent *evtInput):&#160;MATHUSLA40.cc'],['../d1/dd2/MATHUSLA40_8cc.html#a749fe38e1d59077d565fa90609e2639e',1,'MATHUSLA40Cuts(HepMC::GenEvent *evtin):&#160;MATHUSLA40.cc']]],
+  ['modifydetcutssource_13',['modifyDetCutsSource',['../d0/d33/DetEditor_8cxx.html#a4dde5115a4445b62105d7edfcb7cabc1',1,'DetEditor.cxx']]],
+  ['modifydetectorssource_14',['modifyDetectorsSource',['../d0/d33/DetEditor_8cxx.html#a24ea5c7dbd5604247867daef01442b3d',1,'DetEditor.cxx']]]
 ];
