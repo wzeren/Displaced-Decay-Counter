@@ -39,6 +39,8 @@ bool analyseEvent::passCuts(std::string dettest){
   
   if(dettest=="FACET")testres=FACETCuts(evt);
 
+  if(dettest=="MATHUSLA40")testres=MATHUSLA40Cuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;

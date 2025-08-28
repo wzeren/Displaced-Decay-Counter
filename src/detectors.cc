@@ -74,6 +74,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector FACETX=FACET();
  knownDet.push_back(FACETX);
 
+ // Building MATHUSLA40
+ Detector MATHUSLA40X=MATHUSLA40();
+ knownDet.push_back(MATHUSLA40X);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

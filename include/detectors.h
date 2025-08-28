@@ -14,6 +14,7 @@
 #include "include/Detectors/MAPP1.h"
 #include "include/Detectors/MAPP2.h"
 #include "include/Detectors/FACET.h"
+#include "include/Detectors/MATHUSLA40.h"
 
 // END OF INCLUDE DEFINITIONS
 
