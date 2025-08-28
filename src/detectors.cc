@@ -78,6 +78,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector MATHUSLA40X=MATHUSLA40();
  knownDet.push_back(MATHUSLA40X);
 
+ // Building ANUBISceiling
+ Detector ANUBISceilingX=ANUBISceiling();
+ knownDet.push_back(ANUBISceilingX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

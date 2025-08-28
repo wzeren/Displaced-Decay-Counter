@@ -41,6 +41,8 @@ bool analyseEvent::passCuts(std::string dettest){
 
   if(dettest=="MATHUSLA40")testres=MATHUSLA40Cuts(evt);
 
+  if(dettest=="ANUBISceiling")testres=ANUBISceilingCuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;
