@@ -27,6 +27,7 @@
 #include "include/Detectors/ANUBISceiling.h"
 #include "include/Detectors/BelleII.h"
 #include "include/Detectors/BelleIIBabyGAZELLE.h"
+#include "include/Detectors/BelleIIGODZILLA.h"
 
 // END OF INCLUDE DEFINITIONS
 
