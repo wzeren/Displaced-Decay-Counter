@@ -51,6 +51,8 @@ bool analyseEvent::passCuts(std::string dettest){
 
   if(dettest=="BelleIILGAZELLEB1")testres=BelleIILGAZELLEB1Cuts(evt);
 
+  if(dettest=="BelleIILGAZELLEB2")testres=BelleIILGAZELLEB2Cuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;
