@@ -94,6 +94,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector BelleIIGODZILLAX=BelleIIGODZILLA();
  knownDet.push_back(BelleIIGODZILLAX);
 
+ // Building BelleIILGAZELLEB1
+ Detector BelleIILGAZELLEB1X=BelleIILGAZELLEB1();
+ knownDet.push_back(BelleIILGAZELLEB1X);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

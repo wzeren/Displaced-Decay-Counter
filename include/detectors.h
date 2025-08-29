@@ -19,6 +19,7 @@
 #include "include/Detectors/BelleII.h"
 #include "include/Detectors/BelleIIBabyGAZELLE.h"
 #include "include/Detectors/BelleIIGODZILLA.h"
+#include "include/Detectors/BelleIILGAZELLEB1.h"
 
 // END OF INCLUDE DEFINITIONS
 
