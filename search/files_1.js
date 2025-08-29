@@ -5,5 +5,7 @@ var searchData=
   ['belleiibabygazelle_2ecc_2',['BelleIIBabyGAZELLE.cc',['../da/d89/BelleIIBabyGAZELLE_8cc.html',1,'']]],
   ['belleiibabygazelle_2eh_3',['BelleIIBabyGAZELLE.h',['../d3/d44/BelleIIBabyGAZELLE_8h.html',1,'']]],
   ['belleiigodzilla_2ecc_4',['BelleIIGODZILLA.cc',['../db/df9/BelleIIGODZILLA_8cc.html',1,'']]],
-  ['belleiigodzilla_2eh_5',['BelleIIGODZILLA.h',['../dc/d60/BelleIIGODZILLA_8h.html',1,'']]]
+  ['belleiigodzilla_2eh_5',['BelleIIGODZILLA.h',['../dc/d60/BelleIIGODZILLA_8h.html',1,'']]],
+  ['belleiilgazelleb1_2ecc_6',['BelleIILGAZELLEB1.cc',['../d5/d89/BelleIILGAZELLEB1_8cc.html',1,'']]],
+  ['belleiilgazelleb1_2eh_7',['BelleIILGAZELLEB1.h',['../de/d08/BelleIILGAZELLEB1_8h.html',1,'']]]
 ];

@@ -11,5 +11,9 @@ var searchData=
   ['belleiigodzilla_8',['BelleIIGODZILLA',['../dc/d60/BelleIIGODZILLA_8h.html#a80e7da996dee082f3589455142a9b21a',1,'BelleIIGODZILLA():&#160;BelleIIGODZILLA.cc'],['../db/df9/BelleIIGODZILLA_8cc.html#a80e7da996dee082f3589455142a9b21a',1,'BelleIIGODZILLA():&#160;BelleIIGODZILLA.cc']]],
   ['belleiigodzilla_2ecc_9',['BelleIIGODZILLA.cc',['../db/df9/BelleIIGODZILLA_8cc.html',1,'']]],
   ['belleiigodzilla_2eh_10',['BelleIIGODZILLA.h',['../dc/d60/BelleIIGODZILLA_8h.html',1,'']]],
-  ['belleiigodzillacuts_11',['BelleIIGODZILLACuts',['../dc/d60/BelleIIGODZILLA_8h.html#a4205400acf88bbdc7a3758ee802c77b0',1,'BelleIIGODZILLACuts(HepMC::GenEvent *evtInput):&#160;BelleIIGODZILLA.cc'],['../db/df9/BelleIIGODZILLA_8cc.html#af688bccc1de8d64f4fea0afbd29560fe',1,'BelleIIGODZILLACuts(HepMC::GenEvent *evtin):&#160;BelleIIGODZILLA.cc']]]
+  ['belleiigodzillacuts_11',['BelleIIGODZILLACuts',['../dc/d60/BelleIIGODZILLA_8h.html#a4205400acf88bbdc7a3758ee802c77b0',1,'BelleIIGODZILLACuts(HepMC::GenEvent *evtInput):&#160;BelleIIGODZILLA.cc'],['../db/df9/BelleIIGODZILLA_8cc.html#af688bccc1de8d64f4fea0afbd29560fe',1,'BelleIIGODZILLACuts(HepMC::GenEvent *evtin):&#160;BelleIIGODZILLA.cc']]],
+  ['belleiilgazelleb1_12',['BelleIILGAZELLEB1',['../de/d08/BelleIILGAZELLEB1_8h.html#a72f45b17d70e5e9f73776b5175193ed4',1,'BelleIILGAZELLEB1():&#160;BelleIILGAZELLEB1.cc'],['../d5/d89/BelleIILGAZELLEB1_8cc.html#a72f45b17d70e5e9f73776b5175193ed4',1,'BelleIILGAZELLEB1():&#160;BelleIILGAZELLEB1.cc']]],
+  ['belleiilgazelleb1_2ecc_13',['BelleIILGAZELLEB1.cc',['../d5/d89/BelleIILGAZELLEB1_8cc.html',1,'']]],
+  ['belleiilgazelleb1_2eh_14',['BelleIILGAZELLEB1.h',['../de/d08/BelleIILGAZELLEB1_8h.html',1,'']]],
+  ['belleiilgazelleb1cuts_15',['BelleIILGAZELLEB1Cuts',['../de/d08/BelleIILGAZELLEB1_8h.html#a9e9e993fbd2003cf18ace3b83816ce9b',1,'BelleIILGAZELLEB1Cuts(HepMC::GenEvent *evtInput):&#160;BelleIILGAZELLEB1.cc'],['../d5/d89/BelleIILGAZELLEB1_8cc.html#a681990c3610124d34168f9812e07e63c',1,'BelleIILGAZELLEB1Cuts(HepMC::GenEvent *evtin):&#160;BelleIILGAZELLEB1.cc']]]
 ];
