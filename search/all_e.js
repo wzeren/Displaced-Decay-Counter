@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['weight_0',['weight',['../d4/deb/classCylDetLayer.html#a90498ee4fd7c9101a65cd684297a24d4',1,'CylDetLayer']]],
-  ['what_1',['what',['../db/d20/classmyexception.html#a88f0e7ec8e34ac6a1cf31442bed53d66',1,'myexception']]]
+  ['verbose_0',['verbose',['../d4/db0/classanalysis.html#a5ccced4539bfbafadf84bae096491b2e',1,'analysis']]],
+  ['visiblebr_1',['visibleBR',['../d6/da4/classanalysis_1_1CLLP.html#afe44d164fc277f4946faf06fc4ceaa8c',1,'analysis::CLLP::visibleBR()'],['../d8/d0e/classinputInterface_1_1CLLP.html#a64be4b62793ed65a4ecd47220b7bb07f',1,'inputInterface::CLLP::visibleBR()']]]
 ];
