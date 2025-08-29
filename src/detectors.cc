@@ -82,6 +82,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector ANUBISceilingX=ANUBISceiling();
  knownDet.push_back(ANUBISceilingX);
 
+ // Building BelleII
+ Detector BelleIIX=BelleII();
+ knownDet.push_back(BelleIIX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

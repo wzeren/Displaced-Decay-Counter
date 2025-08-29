@@ -25,6 +25,7 @@
 #include "include/Detectors/FACET.h"
 #include "include/Detectors/MATHUSLA40.h"
 #include "include/Detectors/ANUBISceiling.h"
+#include "include/Detectors/BelleII.h"
 
 // END OF INCLUDE DEFINITIONS
 
