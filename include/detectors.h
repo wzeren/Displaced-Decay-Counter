@@ -17,6 +17,7 @@
 #include "include/Detectors/MATHUSLA40.h"
 #include "include/Detectors/ANUBISceiling.h"
 #include "include/Detectors/BelleII.h"
+#include "include/Detectors/BelleIIBabyGAZELLE.h"
 
 // END OF INCLUDE DEFINITIONS
 
