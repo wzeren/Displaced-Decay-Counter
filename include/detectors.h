@@ -21,6 +21,7 @@
 #include "include/Detectors/BelleIIGODZILLA.h"
 #include "include/Detectors/BelleIILGAZELLEB1.h"
 #include "include/Detectors/BelleIILGAZELLEB2.h"
+#include "include/Detectors/SHiPhsds.h"
 
 // END OF INCLUDE DEFINITIONS
 
