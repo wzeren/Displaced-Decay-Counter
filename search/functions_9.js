@@ -7,5 +7,7 @@ var searchData=
   ['setinputfilepath_4',['setINPUTFILEPATH',['../d4/db0/classanalysis.html#ac17faa400d42d0baf6514315a3ebc262',1,'analysis']]],
   ['setsigma_5',['setSIGMA',['../d4/db0/classanalysis.html#a3fa307ba81a374d3c185d5ccbbe91be1',1,'analysis']]],
   ['setverbose_6',['setVerbose',['../d4/db0/classanalysis.html#aff58bdda1bd311145b0036e52484ddb9',1,'analysis']]],
-  ['storedefaultcards_7',['storeDefaultCards',['../d5/da5/tools_8h.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc'],['../d7/d21/tools_8cc.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc']]]
+  ['shiphsds_7',['SHiPhsds',['../d4/da5/SHiPhsds_8h.html#a5f737326f82e6bbd28d30735e7d60ce5',1,'SHiPhsds():&#160;SHiPhsds.cc'],['../d7/df4/SHiPhsds_8cc.html#a5f737326f82e6bbd28d30735e7d60ce5',1,'SHiPhsds():&#160;SHiPhsds.cc']]],
+  ['shiphsdscuts_8',['SHiPhsdsCuts',['../d4/da5/SHiPhsds_8h.html#a1ee2493c7e806df751f242472b385a27',1,'SHiPhsdsCuts(HepMC::GenEvent *evtInput):&#160;SHiPhsds.cc'],['../d7/df4/SHiPhsds_8cc.html#ab78f8d5ee847451ac1af062a76a9abcf',1,'SHiPhsdsCuts(HepMC::GenEvent *evtin):&#160;SHiPhsds.cc']]],
+  ['storedefaultcards_9',['storeDefaultCards',['../d5/da5/tools_8h.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc'],['../d7/d21/tools_8cc.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc']]]
 ];
