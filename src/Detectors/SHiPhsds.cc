@@ -17,8 +17,8 @@ Detector SHiPhsds() {
 
     // brickization params
     double dh   = 0.1;                // radial thickness
-    double dphi = M_PI / 400.0;       // ~0.00785 rad (like your MATHUSLA40)
-    int phct0   = int(2 * M_PI / dphi); //800
+    int phct0 = 800;
+    double dphi = 2*M_PI / phct0;// ~0.00785 rad (like in MATHUSLA40)
 
     std::vector<CylDetLayer> bricks;
     bricks.clear();
