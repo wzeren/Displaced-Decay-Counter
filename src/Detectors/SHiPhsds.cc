@@ -3,6 +3,7 @@
 
 // SHiPhsds: pyramidal frustum
 //https://cds.cern.ch/record/2878604/files/SPSC-P-369.pdf
+//SHiP Hidden Sector Decay Spectrometer
 // zmin = 33.0 m, length = 50 m
 // upstream: 1.0 × 2.7 m², downstream: 4.0 × 6.0 m²
 
