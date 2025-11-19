@@ -55,6 +55,8 @@ bool analyseEvent::passCuts(std::string dettest){
 
   if(dettest=="SHiPhsds")testres=SHiPhsdsCuts(evt);
 
+  if(dettest=="FOREHUNT")testres=FOREHUNTCuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;

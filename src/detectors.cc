@@ -106,6 +106,10 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector SHiPhsdsX=SHiPhsds();
  knownDet.push_back(SHiPhsdsX);
 
+ // Building FOREHUNT
+ Detector FOREHUNTX=FOREHUNT();
+ knownDet.push_back(FOREHUNTX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 
