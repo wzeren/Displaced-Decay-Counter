@@ -110,6 +110,18 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector FOREHUNTX=FOREHUNT();
  knownDet.push_back(FOREHUNTX);
 
+ // Building DELIGHTA
+ Detector DELIGHTAX=DELIGHTA();
+ knownDet.push_back(DELIGHTAX);
+
+ // Building DELIGHTB
+ Detector DELIGHTBX=DELIGHTB();
+ knownDet.push_back(DELIGHTBX);
+
+ // Building DELIGHTC
+ Detector DELIGHTCX=DELIGHTC();
+ knownDet.push_back(DELIGHTCX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

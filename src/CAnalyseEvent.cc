@@ -57,6 +57,12 @@ bool analyseEvent::passCuts(std::string dettest){
 
   if(dettest=="FOREHUNT")testres=FOREHUNTCuts(evt);
 
+  if(dettest=="DELIGHTA")testres=DELIGHTACuts(evt);
+
+  if(dettest=="DELIGHTB")testres=DELIGHTBCuts(evt);
+
+  if(dettest=="DELIGHTC")testres=DELIGHTCCuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;
