@@ -63,6 +63,10 @@ bool analyseEvent::passCuts(std::string dettest){
 
   if(dettest=="DELIGHTC")testres=DELIGHTCCuts(evt);
 
+  if(dettest=="FCChhFT")testres=FCChhFTCuts(evt);
+
+  if(dettest=="FCChhCT")testres=FCChhCTCuts(evt);
+
 // APPLYING CUTS TO DETECTORS
   
   return testres;

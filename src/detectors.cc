@@ -122,6 +122,14 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector DELIGHTCX=DELIGHTC();
  knownDet.push_back(DELIGHTCX);
 
+ // Building FCChhFT
+ Detector FCChhFTX=FCChhFT();
+ knownDet.push_back(FCChhFTX);
+
+ // Building FCChhCT
+ Detector FCChhCTX=FCChhCT();
+ knownDet.push_back(FCChhCTX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 

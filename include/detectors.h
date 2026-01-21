@@ -26,6 +26,8 @@
 #include "include/Detectors/DELIGHTA.h"
 #include "include/Detectors/DELIGHTB.h"
 #include "include/Detectors/DELIGHTC.h"
+#include "include/Detectors/FCChhFT.h"
+#include "include/Detectors/FCChhCT.h"
 
 // END OF INCLUDE DEFINITIONS
 
