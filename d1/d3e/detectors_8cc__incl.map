@@ -1,12 +1,12 @@
 <map id="src/detectors.cc" name="src/detectors.cc">
-<area shape="rect" id="node1" title=" " alt="" coords="2758,5,2873,31"/>
-<area shape="rect" id="node2" href="$d4/d73/detectors_8h.html" title=" " alt="" coords="2750,79,2881,104"/>
-<area shape="rect" id="node3" href="$d5/d5f/MATHUSLA0_8h.html" title=" " alt="" coords="4385,159,4603,185"/>
-<area shape="rect" id="node14" href="$d5/d10/MATHUSLA1_8h.html" title=" " alt="" coords="4627,159,4846,185"/>
-<area shape="rect" id="node15" href="$da/dab/MATHUSLA2_8h.html" title=" " alt="" coords="4870,159,5089,185"/>
-<area shape="rect" id="node16" href="$d7/d7a/FASER1_8h.html" title=" " alt="" coords="5113,159,5299,185"/>
-<area shape="rect" id="node17" href="$d3/d77/FASER2_8h.html" title=" " alt="" coords="5323,159,5510,185"/>
-<area shape="rect" id="node18" href="$d3/dc1/AL3X_8h.html" title=" " alt="" coords="5534,159,5705,185"/>
+<area shape="rect" id="node1" title=" " alt="" coords="3039,5,3154,31"/>
+<area shape="rect" id="node2" href="$d4/d73/detectors_8h.html" title=" " alt="" coords="3031,79,3162,104"/>
+<area shape="rect" id="node3" href="$d5/d5f/MATHUSLA0_8h.html" title=" " alt="" coords="4822,159,5041,185"/>
+<area shape="rect" id="node14" href="$d5/d10/MATHUSLA1_8h.html" title=" " alt="" coords="5065,159,5283,185"/>
+<area shape="rect" id="node15" href="$da/dab/MATHUSLA2_8h.html" title=" " alt="" coords="5307,159,5526,185"/>
+<area shape="rect" id="node16" href="$d7/d7a/FASER1_8h.html" title=" " alt="" coords="5550,159,5737,185"/>
+<area shape="rect" id="node17" href="$d3/d77/FASER2_8h.html" title=" " alt="" coords="5761,159,5947,185"/>
+<area shape="rect" id="node18" href="$d3/dc1/AL3X_8h.html" title=" " alt="" coords="5971,159,6142,185"/>
 <area shape="rect" id="node19" href="$df/d1c/CODEXB0_8h.html" title=" " alt="" coords="5,159,204,185"/>
 <area shape="rect" id="node20" href="$d2/d75/CODEXB1_8h.html" title=" " alt="" coords="228,159,427,185"/>
 <area shape="rect" id="node21" href="$dc/d24/ANUBIS0_8h.html" title=" " alt="" coords="451,159,646,185"/>
@@ -26,14 +26,16 @@
 <area shape="rect" id="node35" href="$d2/d8a/DELIGHTA_8h.html" title=" " alt="" coords="3705,159,3907,185"/>
 <area shape="rect" id="node36" href="$d4/d30/DELIGHTB_8h.html" title=" " alt="" coords="3931,159,4134,185"/>
 <area shape="rect" id="node37" href="$d4/d16/DELIGHTC_8h.html" title=" " alt="" coords="4158,159,4361,185"/>
-<area shape="rect" id="node4" href="$dc/d03/CDetector_8h.html" title=" " alt="" coords="2663,240,2797,265"/>
-<area shape="rect" id="node13" title=" " alt="" coords="2821,240,2980,265"/>
-<area shape="rect" id="node5" title=" " alt="" coords="2639,313,2693,339"/>
-<area shape="rect" id="node6" href="$d0/dcc/CCylDetLayer_8h.html" title=" " alt="" coords="2717,313,2873,339"/>
-<area shape="rect" id="node7" title=" " alt="" coords="2587,387,2646,412"/>
-<area shape="rect" id="node8" href="$db/d5d/CCylSeg_8h.html" title=" " alt="" coords="2671,387,2797,412"/>
-<area shape="rect" id="node11" title=" " alt="" coords="2822,387,2894,412"/>
-<area shape="rect" id="node12" title=" " alt="" coords="2918,387,2985,412"/>
-<area shape="rect" id="node9" title=" " alt="" coords="2669,460,2719,485"/>
-<area shape="rect" id="node10" title=" " alt="" coords="2743,460,2805,485"/>
+<area shape="rect" id="node38" href="$d9/dfc/FCChhFT_8h.html" title=" " alt="" coords="4385,159,4579,185"/>
+<area shape="rect" id="node39" href="$d0/d53/FCChhCT_8h.html" title=" " alt="" coords="4603,159,4798,185"/>
+<area shape="rect" id="node4" href="$dc/d03/CDetector_8h.html" title=" " alt="" coords="2944,240,3079,265"/>
+<area shape="rect" id="node13" title=" " alt="" coords="3103,240,3261,265"/>
+<area shape="rect" id="node5" title=" " alt="" coords="2920,313,2975,339"/>
+<area shape="rect" id="node6" href="$d0/dcc/CCylDetLayer_8h.html" title=" " alt="" coords="2999,313,3155,339"/>
+<area shape="rect" id="node7" title=" " alt="" coords="2869,387,2927,412"/>
+<area shape="rect" id="node8" href="$db/d5d/CCylSeg_8h.html" title=" " alt="" coords="2952,387,3079,412"/>
+<area shape="rect" id="node11" title=" " alt="" coords="3103,387,3175,412"/>
+<area shape="rect" id="node12" title=" " alt="" coords="3199,387,3266,412"/>
+<area shape="rect" id="node9" title=" " alt="" coords="2950,460,3001,485"/>
+<area shape="rect" id="node10" title=" " alt="" coords="3025,460,3086,485"/>
 </map>

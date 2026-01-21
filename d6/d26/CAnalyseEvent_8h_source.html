@@ -111,22 +111,24 @@ $(function() {
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d8a/DELIGHTA_8h.html">include/Detectors/DELIGHTA.h</a>&quot;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d30/DELIGHTB_8h.html">include/Detectors/DELIGHTB.h</a>&quot;</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d16/DELIGHTC_8h.html">include/Detectors/DELIGHTC.h</a>&quot;</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// END OF INCLUDE DEFINITIONS</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/dfc/FCChhFT_8h.html">include/Detectors/FCChhFT.h</a>&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d53/FCChhCT_8h.html">include/Detectors/FCChhCT.h</a>&quot;</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html">   47</a></span><span class="keyword">class </span><a class="code hl_class" href="../../df/dd3/classanalyseEvent.html">analyseEvent</a>{</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">   50</a></span>  <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">analyseEvent</a>(HepMC::GenEvent* evtInput){<a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">evt</a>=evtInput;};</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">   51</a></span>  <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">~analyseEvent</a>(){}</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#a58eb9e122970638f777d25f36889576c">passCuts</a>(std::string dettest);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">   55</a></span>  HepMC::GenEvent* <a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">evt</a>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">   56</a></span>  HepMC::GenEvent::particle_const_iterator <a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">p</a>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// END OF INCLUDE DEFINITIONS</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html">   49</a></span><span class="keyword">class </span><a class="code hl_class" href="../../df/dd3/classanalyseEvent.html">analyseEvent</a>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">   52</a></span>  <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">analyseEvent</a>(HepMC::GenEvent* evtInput){<a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">evt</a>=evtInput;};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">   53</a></span>  <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">~analyseEvent</a>(){}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dd3/classanalyseEvent.html#a58eb9e122970638f777d25f36889576c">passCuts</a>(std::string dettest);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">   57</a></span>  HepMC::GenEvent* <a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">evt</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">   58</a></span>  HepMC::GenEvent::particle_const_iterator <a class="code hl_variable" href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">p</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aAL3X_8h_html"><div class="ttname"><a href="../../d3/dc1/AL3X_8h.html">AL3X.h</a></div></div>
 <div class="ttc" id="aANUBIS0_8h_html"><div class="ttname"><a href="../../dc/d24/ANUBIS0_8h.html">ANUBIS0.h</a></div></div>
 <div class="ttc" id="aANUBIS1_8h_html"><div class="ttname"><a href="../../d2/d51/ANUBIS1_8h.html">ANUBIS1.h</a></div></div>
@@ -144,6 +146,8 @@ $(function() {
 <div class="ttc" id="aFACET_8h_html"><div class="ttname"><a href="../../da/d30/FACET_8h.html">FACET.h</a></div></div>
 <div class="ttc" id="aFASER1_8h_html"><div class="ttname"><a href="../../d7/d7a/FASER1_8h.html">FASER1.h</a></div></div>
 <div class="ttc" id="aFASER2_8h_html"><div class="ttname"><a href="../../d3/d77/FASER2_8h.html">FASER2.h</a></div></div>
+<div class="ttc" id="aFCChhCT_8h_html"><div class="ttname"><a href="../../d0/d53/FCChhCT_8h.html">FCChhCT.h</a></div></div>
+<div class="ttc" id="aFCChhFT_8h_html"><div class="ttname"><a href="../../d9/dfc/FCChhFT_8h.html">FCChhFT.h</a></div></div>
 <div class="ttc" id="aFOREHUNT_8h_html"><div class="ttname"><a href="../../da/d14/FOREHUNT_8h.html">FOREHUNT.h</a></div></div>
 <div class="ttc" id="aMAPP1_8h_html"><div class="ttname"><a href="../../d4/d05/MAPP1_8h.html">MAPP1.h</a></div></div>
 <div class="ttc" id="aMAPP2_8h_html"><div class="ttname"><a href="../../db/d1e/MAPP2_8h.html">MAPP2.h</a></div></div>
@@ -152,12 +156,12 @@ $(function() {
 <div class="ttc" id="aMATHUSLA2_8h_html"><div class="ttname"><a href="../../da/dab/MATHUSLA2_8h.html">MATHUSLA2.h</a></div></div>
 <div class="ttc" id="aMATHUSLA40_8h_html"><div class="ttname"><a href="../../d4/dea/MATHUSLA40_8h.html">MATHUSLA40.h</a></div></div>
 <div class="ttc" id="aSHiPhsds_8h_html"><div class="ttname"><a href="../../d4/da5/SHiPhsds_8h.html">SHiPhsds.h</a></div></div>
-<div class="ttc" id="aclassanalyseEvent_html"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html">analyseEvent</a></div><div class="ttdoc">The class analyseEvent allows to apply detector cuts to events.</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:47</div></div>
-<div class="ttc" id="aclassanalyseEvent_html_a4bba5d82290f2a69d6572beb8595b8f6"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">analyseEvent::evt</a></div><div class="ttdeci">HepMC::GenEvent * evt</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:55</div></div>
+<div class="ttc" id="aclassanalyseEvent_html"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html">analyseEvent</a></div><div class="ttdoc">The class analyseEvent allows to apply detector cuts to events.</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:49</div></div>
+<div class="ttc" id="aclassanalyseEvent_html_a4bba5d82290f2a69d6572beb8595b8f6"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a4bba5d82290f2a69d6572beb8595b8f6">analyseEvent::evt</a></div><div class="ttdeci">HepMC::GenEvent * evt</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:57</div></div>
 <div class="ttc" id="aclassanalyseEvent_html_a58eb9e122970638f777d25f36889576c"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a58eb9e122970638f777d25f36889576c">analyseEvent::passCuts</a></div><div class="ttdeci">bool passCuts(std::string dettest)</div><div class="ttdoc">The passCuts function looks for the cuts relevant for each detector and applies it to the tested even...</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.cc:13</div></div>
-<div class="ttc" id="aclassanalyseEvent_html_a915fa72c15ea956e845b9559884014cc"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">analyseEvent::p</a></div><div class="ttdeci">HepMC::GenEvent::particle_const_iterator p</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:56</div></div>
-<div class="ttc" id="aclassanalyseEvent_html_a9bb6d0cef8a91353dbbe13857c8b2e16"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">analyseEvent::~analyseEvent</a></div><div class="ttdeci">~analyseEvent()</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:51</div></div>
-<div class="ttc" id="aclassanalyseEvent_html_aec68cb6c52c893a98a113eb5fc9ce14e"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">analyseEvent::analyseEvent</a></div><div class="ttdeci">analyseEvent(HepMC::GenEvent *evtInput)</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:50</div></div>
+<div class="ttc" id="aclassanalyseEvent_html_a915fa72c15ea956e845b9559884014cc"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a915fa72c15ea956e845b9559884014cc">analyseEvent::p</a></div><div class="ttdeci">HepMC::GenEvent::particle_const_iterator p</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:58</div></div>
+<div class="ttc" id="aclassanalyseEvent_html_a9bb6d0cef8a91353dbbe13857c8b2e16"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#a9bb6d0cef8a91353dbbe13857c8b2e16">analyseEvent::~analyseEvent</a></div><div class="ttdeci">~analyseEvent()</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:53</div></div>
+<div class="ttc" id="aclassanalyseEvent_html_aec68cb6c52c893a98a113eb5fc9ce14e"><div class="ttname"><a href="../../df/dd3/classanalyseEvent.html#aec68cb6c52c893a98a113eb5fc9ce14e">analyseEvent::analyseEvent</a></div><div class="ttdeci">analyseEvent(HepMC::GenEvent *evtInput)</div><div class="ttdef"><b>Definition:</b> CAnalyseEvent.h:52</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
