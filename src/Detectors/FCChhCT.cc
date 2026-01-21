@@ -2,7 +2,7 @@
 
 Detector FCChhCT() {
     // Define corner points
-    std::array<double, 2> AA = {-5, 20./1000.}, BB = {5, 20./1000.}, CC = {5, 1.6}, DD = {-5, 1.6};  // Corner points
+    std::array<double, 2> AA = {-5, 20./1000.}, BB = {5, 20./1000.}, CC = {5, 1.7}, DD = {-5, 1.7};  // Corner points
     std::vector<std::array<double, 2>> ptlist = {AA, BB, CC, DD};  // List of points defining the detector
 
     double fcchhctweight = 1.0;  // Angular coverage
