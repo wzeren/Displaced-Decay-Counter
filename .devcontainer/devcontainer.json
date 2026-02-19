@@ -1,0 +1,17 @@
+{
+  "name": "DCC (Displaced Decay Counter)",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "target": "dev"
+  },
+  "workspaceFolder": "/dcc",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/dcc,type=bind",
+  "overrideCommand": true,
+  "remoteUser": "jsk",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools", "ms-vscode.makefile-tools"]
+    }
+  }
+}

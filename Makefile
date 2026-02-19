@@ -3,7 +3,7 @@ HOME = /home/jsk
 
 
 #Pythia Directories
-PYTHIA8=$(HOME)/pythia8245
+PYTHIA8=$(HOME)/pythia8317
 PYTHIALIB=$(PYTHIA8)/lib
 PYTHIAINC=$(PYTHIA8)/include
 PYTHIAINCPYTHIA8=$(PYTHIA8)/include/Pythia8

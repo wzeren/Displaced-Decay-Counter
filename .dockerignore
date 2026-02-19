@@ -1,0 +1,11 @@
+.git
+.github
+.idea
+.vscode
+build
+bin/main
+bin/DetEditor
+doxygen
+*.pdf
+**/node_modules
+**/dist
