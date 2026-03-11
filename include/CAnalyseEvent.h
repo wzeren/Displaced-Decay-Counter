@@ -37,6 +37,7 @@
 #include "include/Detectors/DELIGHTC.h"
 #include "include/Detectors/FCChhFT.h"
 #include "include/Detectors/FCChhCT.h"
+#include "include/Detectors/SHiPold.h"
 
 // END OF INCLUDE DEFINITIONS
 

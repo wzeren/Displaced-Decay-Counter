@@ -130,6 +130,14 @@ std::vector<Detector> CreateDetectors(std::vector<std::string> nameList) {
  Detector FCChhCTX=FCChhCT();
  knownDet.push_back(FCChhCTX);
 
+ // Building 
+ Detector X=();
+ knownDet.push_back(X);
+
+ // Building SHiPold
+ Detector SHiPoldX=SHiPold();
+ knownDet.push_back(SHiPoldX);
+
 // BUILDING THE LIST OF STUDIED DETECTORS
    std::vector<std::array<double,3>> TDcoord;
    TDcoord.clear(); 
