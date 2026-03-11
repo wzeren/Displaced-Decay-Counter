@@ -10,7 +10,7 @@
 #include "include/tools.h"
 #include "fstream"
 #include "include/main.h"
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 #include <unordered_map>
 #include <map>
 #include <utility>

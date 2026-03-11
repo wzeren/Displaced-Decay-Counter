@@ -13,12 +13,10 @@ HEPMC=$(HOME)/hepmc
 HEPMCLIB=$(HEPMC)/lib
 HEPMCINC=$(HEPMC)/include
 
-#JSON DIRECTORIES
+#JSON DIRECTORIES (json.hpp is in include/)
 CURRDIR := $(shell pwd)
-JSON=$(CURRDIR)/thirdParty/json-develop
-JSONINC=$(JSON)/single_include
 
-INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC) -I$(JSONINC)
+INCLUDE=-I$(PYTHIAINC) -I./ -I$(PYTHIAINCPYTHIA8) -I./ -I$(HEPMCINC) -I$(HEADDIR)
 LDLIBS=-Wl,--no-as-needed -ldl
 
 CC=g++

@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 #include <iterator>
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 #include "CInputInterface.h"
 #include "include/functions.h"
 
