@@ -10,7 +10,11 @@ var searchData=
   ['shiphsds_7',['SHiPhsds',['../d7/df4/SHiPhsds_8cc.html#a5f737326f82e6bbd28d30735e7d60ce5',1,'SHiPhsds():&#160;SHiPhsds.cc'],['../d4/da5/SHiPhsds_8h.html#a5f737326f82e6bbd28d30735e7d60ce5',1,'SHiPhsds():&#160;SHiPhsds.cc']]],
   ['shiphsds_2ecc_8',['SHiPhsds.cc',['../d7/df4/SHiPhsds_8cc.html',1,'']]],
   ['shiphsds_2eh_9',['SHiPhsds.h',['../d4/da5/SHiPhsds_8h.html',1,'']]],
-  ['shiphsdscuts_10',['SHiPhsdsCuts',['../d4/da5/SHiPhsds_8h.html#a1ee2493c7e806df751f242472b385a27',1,'SHiPhsdsCuts(HepMC::GenEvent *evtInput):&#160;SHiPhsds.cc'],['../d7/df4/SHiPhsds_8cc.html#ab78f8d5ee847451ac1af062a76a9abcf',1,'SHiPhsdsCuts(HepMC::GenEvent *evtin):&#160;SHiPhsds.cc']]],
-  ['sigma_11',['sigma',['../d9/dbc/classinputInterface.html#aaace266cd116401cb14e0bbcd500c5d4',1,'inputInterface::sigma()'],['../d4/db0/classanalysis.html#a525c99d1f8a60d0ffc7ceb658cefe1be',1,'analysis::sigma()']]],
-  ['storedefaultcards_12',['storeDefaultCards',['../d5/da5/tools_8h.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc'],['../d7/d21/tools_8cc.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc']]]
+  ['shiphsdscuts_10',['SHiPhsdsCuts',['../d7/df4/SHiPhsds_8cc.html#ab78f8d5ee847451ac1af062a76a9abcf',1,'SHiPhsdsCuts(HepMC::GenEvent *evtin):&#160;SHiPhsds.cc'],['../d4/da5/SHiPhsds_8h.html#a1ee2493c7e806df751f242472b385a27',1,'SHiPhsdsCuts(HepMC::GenEvent *evtInput):&#160;SHiPhsds.cc']]],
+  ['shipold_11',['SHiPold',['../dd/dfa/SHiPold_8h.html#a8a5b44d73e45f7d2721313f4aaa8e4ba',1,'SHiPold():&#160;SHiPold.cc'],['../da/d28/SHiPold_8cc.html#a8a5b44d73e45f7d2721313f4aaa8e4ba',1,'SHiPold():&#160;SHiPold.cc']]],
+  ['shipold_2ecc_12',['SHiPold.cc',['../da/d28/SHiPold_8cc.html',1,'']]],
+  ['shipold_2eh_13',['SHiPold.h',['../dd/dfa/SHiPold_8h.html',1,'']]],
+  ['shipoldcuts_14',['SHiPoldCuts',['../da/d28/SHiPold_8cc.html#a068d7c38ccaa09d8cb66c50021348ecc',1,'SHiPoldCuts(HepMC::GenEvent *evtin):&#160;SHiPold.cc'],['../dd/dfa/SHiPold_8h.html#a0da6e3365ff6aae7b9cf721be3906a15',1,'SHiPoldCuts(HepMC::GenEvent *evtInput):&#160;SHiPold.cc']]],
+  ['sigma_15',['sigma',['../d4/db0/classanalysis.html#a525c99d1f8a60d0ffc7ceb658cefe1be',1,'analysis::sigma()'],['../d9/dbc/classinputInterface.html#aaace266cd116401cb14e0bbcd500c5d4',1,'inputInterface::sigma()']]],
+  ['storedefaultcards_16',['storeDefaultCards',['../d5/da5/tools_8h.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc'],['../d7/d21/tools_8cc.html#a16cc569d2f967f992bc4d5d85a0701a5',1,'storeDefaultCards():&#160;tools.cc']]]
 ];
